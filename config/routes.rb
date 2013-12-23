@@ -1,5 +1,10 @@
 Cloudweb::Application.routes.draw do
 
+  root :to => "admin/dashboard#index"
+
+  namespace :admin do
+    resources :dashboard
+  end
 
   devise_for :users
 

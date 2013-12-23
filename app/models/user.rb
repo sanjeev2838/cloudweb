@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me,:token_authenticatable
   # attr_accessible :title, :body
   has_many :machines
-  before_save :ensure_authentication_token
+  #before_save :ensure_authentication_token
   has_many :log_books
 end
