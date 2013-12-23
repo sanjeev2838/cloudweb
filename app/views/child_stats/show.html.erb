@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Diaper count:</b>
+  <%= @child_stat.diaper_count %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @child_stat.weight %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%= @child_stat.height %>
+</p>
+
+<p>
+  <b>Food:</b>
+  <%= @child_stat.food %>
+</p>
+
+
+<%= link_to 'Edit', edit_child_stat_path(@child_stat) %> |
+<%= link_to 'Back', child_stats_path %>

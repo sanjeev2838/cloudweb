@@ -1,0 +1,23 @@
+<h1>Listing logbooks</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @logbooks.each do |logbook| %>
+  <tr>
+    <td><%= logbook.description %></td>
+    <td><%= link_to 'Show', logbook %></td>
+    <td><%= link_to 'Edit', edit_logbook_path(logbook) %></td>
+    <td><%= link_to 'Destroy', logbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Logbook', new_logbook_path %>

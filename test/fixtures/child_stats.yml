@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  diaper_count: 1
+  weight: 1
+  height: 1
+  food: MyString
+
+two:
+  diaper_count: 1
+  weight: 1
+  height: 1
+  food: MyString

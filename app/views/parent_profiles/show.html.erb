@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Device:</b>
+  <%= @parent_profile.device_id %>
+</p>
+
+<p>
+  <b>Device type:</b>
+  <%= @parent_profile.device_type_id %>
+</p>
+
+<p>
+  <b>Imei:</b>
+  <%= @parent_profile.imei %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%= @parent_profile.token_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_parent_profile_path(@parent_profile) %> |
+<%= link_to 'Back', parent_profiles_path %>

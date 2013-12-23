@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Serial number:</b>
+  <%= @machine.serial_number %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @machine.status %>
+</p>
+
+<p>
+  <b>Activated on:</b>
+  <%= @machine.activated_on %>
+</p>
+
+<p>
+  <b>Firmware version:</b>
+  <%= @machine.firmware_version %>
+</p>
+
+<p>
+  <b>Hw config:</b>
+  <%= @machine.hw_config %>
+</p>
+
+<p>
+  <b>Mac address:</b>
+  <%= @machine.mac_address %>
+</p>
+
+<p>
+  <b>Ip address:</b>
+  <%= @machine.ip_address %>
+</p>
+
+
+<%= link_to 'Edit', edit_machine_path(@machine) %> |
+<%= link_to 'Back', machines_path %>

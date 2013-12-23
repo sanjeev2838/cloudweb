@@ -1,4 +1,35 @@
 Cloudweb::Application.routes.draw do
+
+
+  devise_for :users
+
+  resources :logbooks
+
+
+  resources :vaccines
+
+
+  resources :child_brewing_preferences
+
+
+  resources :child_stats
+
+
+  resources :machine_logs
+
+
+  resources :pictures
+
+
+  resources :child_profiles
+
+
+  resources :parent_profiles
+
+
+  resources :machines
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

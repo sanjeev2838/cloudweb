@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Temperature:</b>
+  <%= @child_brewing_preference.temperature %>
+</p>
+
+<p>
+  <b>Milk qty:</b>
+  <%= @child_brewing_preference.milk_qty %>
+</p>
+
+
+<%= link_to 'Edit', edit_child_brewing_preference_path(@child_brewing_preference) %> |
+<%= link_to 'Back', child_brewing_preferences_path %>

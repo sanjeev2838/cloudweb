@@ -1,0 +1,29 @@
+<h1>Listing parent_profiles</h1>
+
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Device type</th>
+    <th>Imei</th>
+    <th>Token</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @parent_profiles.each do |parent_profile| %>
+  <tr>
+    <td><%= parent_profile.device_id %></td>
+    <td><%= parent_profile.device_type_id %></td>
+    <td><%= parent_profile.imei %></td>
+    <td><%= parent_profile.token_id %></td>
+    <td><%= link_to 'Show', parent_profile %></td>
+    <td><%= link_to 'Edit', edit_parent_profile_path(parent_profile) %></td>
+    <td><%= link_to 'Destroy', parent_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Parent profile', new_parent_profile_path %>

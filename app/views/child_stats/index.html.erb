@@ -1,0 +1,29 @@
+<h1>Listing child_stats</h1>
+
+<table>
+  <tr>
+    <th>Diaper count</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>Food</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @child_stats.each do |child_stat| %>
+  <tr>
+    <td><%= child_stat.diaper_count %></td>
+    <td><%= child_stat.weight %></td>
+    <td><%= child_stat.height %></td>
+    <td><%= child_stat.food %></td>
+    <td><%= link_to 'Show', child_stat %></td>
+    <td><%= link_to 'Edit', edit_child_stat_path(child_stat) %></td>
+    <td><%= link_to 'Destroy', child_stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Child stat', new_child_stat_path %>

@@ -1,0 +1,23 @@
+<h1>Listing child_profiles</h1>
+
+<table>
+  <tr>
+    <th>Child name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @child_profiles.each do |child_profile| %>
+  <tr>
+    <td><%= child_profile.child_name %></td>
+    <td><%= link_to 'Show', child_profile %></td>
+    <td><%= link_to 'Edit', edit_child_profile_path(child_profile) %></td>
+    <td><%= link_to 'Destroy', child_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Child profile', new_child_profile_path %>

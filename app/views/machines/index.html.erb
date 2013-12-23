@@ -1,0 +1,35 @@
+<h1>Listing machines</h1>
+
+<table>
+  <tr>
+    <th>Serial number</th>
+    <th>Status</th>
+    <th>Activated on</th>
+    <th>Firmware version</th>
+    <th>Hw config</th>
+    <th>Mac address</th>
+    <th>Ip address</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @machines.each do |machine| %>
+  <tr>
+    <td><%= machine.serial_number %></td>
+    <td><%= machine.status %></td>
+    <td><%= machine.activated_on %></td>
+    <td><%= machine.firmware_version %></td>
+    <td><%= machine.hw_config %></td>
+    <td><%= machine.mac_address %></td>
+    <td><%= machine.ip_address %></td>
+    <td><%= link_to 'Show', machine %></td>
+    <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
+    <td><%= link_to 'Destroy', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Machine', new_machine_path %>

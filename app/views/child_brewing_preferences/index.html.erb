@@ -1,0 +1,25 @@
+<h1>Listing child_brewing_preferences</h1>
+
+<table>
+  <tr>
+    <th>Temperature</th>
+    <th>Milk qty</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @child_brewing_preferences.each do |child_brewing_preference| %>
+  <tr>
+    <td><%= child_brewing_preference.temperature %></td>
+    <td><%= child_brewing_preference.milk_qty %></td>
+    <td><%= link_to 'Show', child_brewing_preference %></td>
+    <td><%= link_to 'Edit', edit_child_brewing_preference_path(child_brewing_preference) %></td>
+    <td><%= link_to 'Destroy', child_brewing_preference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Child brewing preference', new_child_brewing_preference_path %>

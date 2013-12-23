@@ -1,0 +1,33 @@
+<%= form_for(@child_stat) do |f| %>
+  <% if @child_stat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@child_stat.errors.count, "error") %> prohibited this child_stat from being saved:</h2>
+
+      <ul>
+      <% @child_stat.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :diaper_count %><br />
+    <%= f.number_field :diaper_count %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.number_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br />
+    <%= f.number_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :food %><br />
+    <%= f.text_field :food %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

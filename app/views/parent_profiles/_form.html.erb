@@ -1,0 +1,33 @@
+<%= form_for(@parent_profile) do |f| %>
+  <% if @parent_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@parent_profile.errors.count, "error") %> prohibited this parent_profile from being saved:</h2>
+
+      <ul>
+      <% @parent_profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :device_id %><br />
+    <%= f.number_field :device_id %>
+  </div>
+  <div class="field">
+    <%= f.label :device_type_id %><br />
+    <%= f.number_field :device_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :imei %><br />
+    <%= f.text_field :imei %>
+  </div>
+  <div class="field">
+    <%= f.label :token_id %><br />
+    <%= f.text_field :token_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module ChildStatsHelper
+end
