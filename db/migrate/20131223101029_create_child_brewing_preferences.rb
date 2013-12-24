@@ -5,7 +5,7 @@ class CreateChildBrewingPreferences < ActiveRecord::Migration
       t.integer :milk_qty
 
       t.references :child_profile
-
+      t.references :parent_profile
 
       t.timestamps
     end

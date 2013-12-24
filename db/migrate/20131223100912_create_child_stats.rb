@@ -6,7 +6,7 @@ class CreateChildStats < ActiveRecord::Migration
       t.integer :height
       t.string :food
 
-
+      t.references :parent_profile
       t.references :child_profile, index: true
       t.references :vaccine
 

@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(:version => 20131223102710) do
     t.integer  "temperature"
     t.integer  "milk_qty"
     t.integer  "child_profile_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "parent_profile_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "child_profiles", :force => true do |t|
@@ -33,18 +34,20 @@ ActiveRecord::Schema.define(:version => 20131223102710) do
     t.integer  "weight"
     t.integer  "height"
     t.string   "food"
+    t.integer  "parent_profile_id"
     t.integer  "child_profile_id"
     t.integer  "vaccine_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "logbooks", :force => true do |t|
     t.string   "description"
     t.integer  "child_profile_id"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.integer  "parent_profile_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "machine_logs", :force => true do |t|
@@ -70,21 +73,29 @@ ActiveRecord::Schema.define(:version => 20131223102710) do
   create_table "parent_profiles", :force => true do |t|
     t.integer  "device_id"
     t.integer  "device_type_id"
+    t.boolean  "is_machine_owner"
+    t.string   "name"
+    t.boolean  "status"
     t.string   "imei"
     t.string   "token_id"
     t.integer  "machine_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "pictures", :force => true do |t|
-    t.string   "filepath"
-    t.integer  "child_profile_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "pictures", :force => true do |t|
+    t.string   "filepath"
+    t.boolean  "status"
+    t.integer  "parent_profile_id"
+    t.integer  "child_profile_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "users", :force => true do |t|
+    t.string   "username"
+    t.string   "name"
+    t.integer  "role_id"
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
     t.string   "authentication_token"

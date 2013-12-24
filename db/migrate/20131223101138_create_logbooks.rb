@@ -5,7 +5,7 @@ class CreateLogbooks < ActiveRecord::Migration
 
       t.references :child_profile
       t.references :user
-
+      t.references :parent_profile
       t.timestamps
     end
   end
