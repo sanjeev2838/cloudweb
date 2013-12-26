@@ -7,10 +7,25 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<div class="header_div">
+   <div class ="info_div">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+   </div>
+    <div class="image_div">Pic not available</div>
+    <div class="users">You are signed in as <b> <%= current_user.name %></b><%= link_to "Sign_out" , destroy_user_session_path ,:method => :delete%> </div>
+    <div class="search_div">Search
+      <div class="search"></div>
+    </div>
+
+</div>
 
 <%= yield %>
+
+<div class ="footer_div">
+
+
+</div>
 
 </body>
 </html>

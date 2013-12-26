@@ -1,10 +1,20 @@
 Cloudweb::Application.routes.draw do
 
-  root :to => "admin/dashboard#index"
+
+  devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root :to => 'admin/dashboard#index'
+    end
+    unauthenticated :user do
+      root :to => 'devise/sessions#new'
+    end
+  end
 
   namespace :admin do
     resources :dashboard
   end
+
 
   namespace :api do
     namespace :v1 do
@@ -25,6 +35,7 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:id/childrens/:id' => 'child_profiles#update', :via => :update
     end
   end
+
 
   resources :parent_profiles do
     resources :child_profiles
