@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(:version => 20131223102710) do
     t.string   "hw_config"
     t.string   "mac_address"
     t.string   "ip_address"
-    t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "bootloader_version"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "parent_profiles", :force => true do |t|

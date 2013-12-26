@@ -8,8 +8,7 @@ class CreateMachines < ActiveRecord::Migration
       t.string :hw_config
       t.string :mac_address
       t.string :ip_address
-
-      t.references :user
+      t.string :bootloader_version
 
       t.timestamps
     end
