@@ -9,6 +9,7 @@
     <th>Hw config</th>
     <th>Mac address</th>
     <th>Ip address</th>
+    <th>BootLoader Version</th>
     <th></th>
     <th></th>
     <th></th>
@@ -23,6 +24,7 @@
     <td><%= machine.hw_config %></td>
     <td><%= machine.mac_address %></td>
     <td><%= machine.ip_address %></td>
+    <td><%= machine.bootloader_version %></td>
     <td><%= link_to 'Show', machine %></td>
     <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
     <td><%= link_to 'Destroy', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
