@@ -4,4 +4,5 @@ class Machine < ActiveRecord::Base
 
   #has_many :parent_profiles
   has_many :machine_logs
+  has_many :parent_profiles
 end
