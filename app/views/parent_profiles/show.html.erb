@@ -20,6 +20,25 @@
   <%= @parent_profile.token_id %>
 </p>
 
+<p>
+  <b>Status:</b>
+  <%= @parent_profile.status %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <td><%= @parent_profile.name %></td>
+</p>
+
+<p>
+  <b>MachineOwner:</b>
+  <td><%= @parent_profile.is_machine_owner %></td>
+</p>
+<p>
+  <b>Machine_serial_id</b>
+<td><%= @parent_profile.machine_serial_id %></td>
+</p>
+
 
 <%= link_to 'Edit', edit_parent_profile_path(@parent_profile) %> |
 <%= link_to 'Back', parent_profiles_path %>

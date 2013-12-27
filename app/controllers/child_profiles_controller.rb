@@ -1,19 +1,18 @@
 class ChildProfilesController < ApplicationController
-  # GET /child_profiles
-  # GET /child_profiles.json
-  def index
-    @child_profiles = ChildProfile.all
 
+  def index
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profiles = ChildProfile.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @child_profiles }
     end
   end
 
-  # GET /child_profiles/1
-  # GET /child_profiles/1.json
+
   def show
-    @child_profile = ChildProfile.find(params[:id])
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.where(:id =>params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,8 +20,7 @@ class ChildProfilesController < ApplicationController
     end
   end
 
-  # GET /child_profiles/new
-  # GET /child_profiles/new.json
+
   def new
     @child_profile = ChildProfile.new
 
@@ -32,15 +30,15 @@ class ChildProfilesController < ApplicationController
     end
   end
 
-  # GET /child_profiles/1/edit
+
   def edit
     @child_profile = ChildProfile.find(params[:id])
   end
 
-  # POST /child_profiles
-  # POST /child_profiles.json
+
   def create
-    @child_profile = ChildProfile.new(params[:child_profile])
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.create(params[:children])
 
     respond_to do |format|
       if @child_profile.save
@@ -53,10 +51,10 @@ class ChildProfilesController < ApplicationController
     end
   end
 
-  # PUT /child_profiles/1
-  # PUT /child_profiles/1.json
+
   def update
-    @child_profile = ChildProfile.find(params[:id])
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:id])
 
     respond_to do |format|
       if @child_profile.update_attributes(params[:child_profile])
@@ -69,10 +67,10 @@ class ChildProfilesController < ApplicationController
     end
   end
 
-  # DELETE /child_profiles/1
-  # DELETE /child_profiles/1.json
+
   def destroy
-    @child_profile = ChildProfile.find(params[:id])
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:id])
     @child_profile.destroy
 
     respond_to do |format|

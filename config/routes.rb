@@ -18,12 +18,16 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:id' => 'parent_profiles#update', :via => :put
       match  '/profiles/:id' => 'parent_profiles#destroy', :via => :delete
     #for adding childs to parent_profile
-      match  '/profiles/:id/childrens' => 'child_profiles#index', :via => :get
-      match  '/profiles/:id/childrens' => 'child_profiles#create', :via => :post
+      match  '/profiles/:profile_id/childrens' => 'child_profiles#index', :via => :get
+      match  '/profiles/:profile_id/childrens' => 'child_profiles#create', :via => :post
       match  '/profiles/:id/childrens/:id' => 'child_profiles#show', :via => :get
       match  '/profiles/:id/childrens/:id' => 'child_profiles#destroy', :via => :delete
       match  '/profiles/:id/childrens/:id' => 'child_profiles#update', :via => :update
     end
+  end
+
+  resources :parent_profiles do
+    resources :child_profiles
   end
 
   devise_for :users
@@ -34,8 +38,6 @@ Cloudweb::Application.routes.draw do
   resources :child_stats
   resources :machine_logs
   resources :pictures
-  resources :child_profiles
-  resources :parent_profiles
   resources :machines
 
 end
