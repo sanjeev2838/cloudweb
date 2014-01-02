@@ -16,8 +16,10 @@ class ParentProfile < ActiveRecord::Base
   end
 
   def machine_serial_id
-    @machine = Machine.find(self.machine_id)
-    @machine.serial_number
+    if self.machine_id
+      @machine = Machine.find(self.machine_id)
+      @machine.serial_number
+    end
   end
 
 end
