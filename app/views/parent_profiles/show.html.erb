@@ -40,5 +40,27 @@
 </p>
 
 
+<% @parent_profile.child_profiles.each  do |child| %>
+    <p>
+        <b>Child name:</b>
+        <%= child.child_name %> </br>
+      <p>
+        <b> child brewing preferences </b>
+      </p>
+
+    <% unless  child.child_brewing_preference.nil?  %>
+       <p>
+        <b>milk quantity</b>
+          <%= child.child_brewing_preference.milk_qty  %>
+       </p>
+       <p>
+          <b> temperature</b>
+          <%= child.child_brewing_preference.temperature  %>
+       </p>
+      </p>
+    <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_parent_profile_path(@parent_profile) %> |
 <%= link_to 'Back', parent_profiles_path %>
+<%= link_to 'New Child profile', new_parent_profile_child_profile_path(@parent_profile) %>

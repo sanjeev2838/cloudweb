@@ -1,8 +1,9 @@
 class ChildProfile < ActiveRecord::Base
-  attr_accessible :child_name
+  attr_accessible :child_name, :child_brewing_preference_attributes
 
   belongs_to :parent_profile
-  has_many :child_stats
-  has_many :child_brewing_preferences
-  has_many :pictures
+  has_one :child_brewing_preference
+  #has_many :pictures
+
+  accepts_nested_attributes_for :child_brewing_preference
 end

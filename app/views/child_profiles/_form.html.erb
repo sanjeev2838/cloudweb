@@ -1,4 +1,4 @@
-<%= form_for(@child_profile) do |f| %>
+<%= form_for([@parent_profile,@child_profile]) do |f| %>
   <% if @child_profile.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@child_profile.errors.count, "error") %> prohibited this child_profile from being saved:</h2>
@@ -15,6 +15,19 @@
     <%= f.label :child_name %><br />
     <%= f.text_field :child_name %>
   </div>
+
+ #   child_brewing_preference
+  <%= f.fields_for :child_brewing_preference do |builder| %>
+        <div class="field">
+            <%= builder.label :temperature %><br />
+            <%= builder.number_field :temperature %>
+        </div>
+        <div class="field">
+            <%= builder.label :milk_qty %><br />
+            <%= builder.number_field :milk_qty %>
+        </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
