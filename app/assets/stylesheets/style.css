@@ -46,5 +46,22 @@
 }
 
 .footer_div{
-    border solid 1px;
+    margin-top: 10px;
+    border: solid 1px;
+}
+.sign_in_div{
+    border: 2px solid;
+    margin-top: 250px;
+    width: 314px;
+}
+.sing_in_inner_div{
+    padding-left:10px
+}
+table{
+    border-collapse:collapse;
+    border:1px solid grey;
+}
+
+table td{
+    border:1px solid grey;
 }

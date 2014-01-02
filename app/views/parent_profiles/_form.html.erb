@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :device_type_id %><br />
-    <%= f.select :status, [['Andriod', 0], ['Iphone', 1],['blackberry',2]] %>
+    <%= f.select :device_type_id, [['Andriod', 0], ['Iphone', 1],['blackberry',2]] %>
   </div>
   <div class="field">
     <%= f.label :imei %><br />
@@ -36,10 +36,7 @@
       <%= f.label :name %><br />
       <%= f.text_field :name %>
     </div>
-    <div class="field">
-      <%= f.label :is_machine_owner %><br />
-      <%= f.select :is_machine_owner, [['Yes', true], ['No', false]] %>
-    </div>
+
 
     <div class="field">
       <%= f.label :machine_serial_id %><br />

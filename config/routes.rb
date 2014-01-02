@@ -1,6 +1,5 @@
 Cloudweb::Application.routes.draw do
 
-
   devise_for :users
   devise_scope :user do
     authenticated :user do
@@ -12,9 +11,13 @@ Cloudweb::Application.routes.draw do
   end
 
   namespace :admin do
-    resources :dashboard
-  end
+    resources :dashboard do
+      collection do
+        get :staff_users
+      end
+    end
 
+  end
 
   namespace :api do
     namespace :v1 do

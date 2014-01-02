@@ -13,11 +13,28 @@ class ParentProfile < ActiveRecord::Base
   def machine_serial_id=(serial_id)
     @machine = Machine.where(:serial_number =>serial_id).first
     self.machine_id = @machine.id
+
+    # set machine owner
+    if ParentProfile.where(:machine_id => @machine.id).first
+      self.is_machine_owner = false
+    else
+      self.is_machine_owner = true
+    end
   end
 
+
+
   def machine_serial_id
-    @machine = Machine.find(self.machine_id)
-    @machine.serial_number
+    if self.machine_id
+      @machine = Machine.find(self.machine_id)
+      @machine.serial_number
+    end
+  end
+
+  def devise_type
+    return "Andriod" if self.device_type_id == 0
+    return "Iphone" if self.device_type_id == 1
+    return "Blackberry" if self.device_type_id == 2
   end
 
 end

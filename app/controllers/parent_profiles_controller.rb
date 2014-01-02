@@ -40,6 +40,7 @@ class ParentProfilesController < ApplicationController
   # POST /parent_profiles
   # POST /parent_profiles.json
   def create
+    puts "parent profile params #{params}"
     @parent_profile = ParentProfile.new(params[:parent_profile])
 
     respond_to do |format|

@@ -1,3 +1,5 @@
+
+<%= paginate @machines %>
 <h1>Listing machines</h1>
 
 <table>
@@ -25,9 +27,9 @@
     <td><%= machine.mac_address %></td>
     <td><%= machine.ip_address %></td>
     <td><%= machine.bootloader_version %></td>
-    <td><%= link_to 'Show', machine %></td>
+    <td><%= link_to 'View', machine %></td>
     <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
-    <td><%= link_to 'Destroy', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Delete', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

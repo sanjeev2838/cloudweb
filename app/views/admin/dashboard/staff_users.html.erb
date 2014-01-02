@@ -1,0 +1,24 @@
+<table>
+  <th> Name</th>
+  <th> Username</th>
+  <th> Role</th>
+  <th> Last Login</th>
+  <th> Ip Address</th>
+  <th> Action</th>
+
+<% @users.each do |user|%>
+      <tr>
+    <td><%=user.name%></td>
+    <td><%=user.username%></td>
+    <%if user.role_id?%>
+        <td>admin</td>
+    <%else%>
+        <td>normal</td>
+    <%end%>
+    <td><%=user.last_sign_in_at%></td>
+    <td><%=user.last_sign_in_ip%></td>
+    <td></td>
+</tr>
+<%end%>
+</table>
+
