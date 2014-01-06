@@ -13,14 +13,17 @@ class Api::V1::MachinesController < Api::V1::BaseController
 
   #url to test it
 
+  #curl -X POST -H "Content-type: application/json" -d '{"activated_on":"2013-12-23T00:00:00Z","bootloader_version":"2r2r32r23","created_at":"2013-12-24T11:57:08Z","firmware_version":"222323","hw_config":"2r32r322","id":2,"ip_address":"10.0.5.29","mac_address":"00:09:6B:DF:FE:42","serial_number":324242141,"status":true,"updated_at":"2013-12-24T11:57:08Z"}'  http://localhost:3000/api/v1/hosts
+
   #curl -X POST -H "Content-type: application/json" -d '{"activated_on":"2013-12-23T00:00:00Z","bootloader_version":"2r2r32r23","created_at":"2013-12-24T11:57:08Z","firmware_version":"222323","hw_config":"2r32r322","id":2,"ip_address":"r32r2r232","mac_address":"r32r32r22","serial_number":324242141,"status":true,"updated_at":"2013-12-24T11:57:08Z"}'  http://localhost:3000/api/v1/hosts
 
   def create
-    machine = Machine.create(params[:machine])
-    if machine.valid?
+    @machine = Machine.create(params[:machine])
+    if @machine.valid?
       render json:{:status => true}
     else
-      render json:{:status => false, :message => "Unable to register new machine on cloud"}
+      #render json:{:status => false, :message => "Unable to register new machine on cloud"}
+      render json:{:status => false, :message => @machine.errors.full_messages }
     end
   end
 
@@ -36,7 +39,7 @@ class Api::V1::MachinesController < Api::V1::BaseController
     if @machine.destroy
       render json:{:status => true}
     else
-      render json:{:status => false, :message => "Unable to delete machine on cloud"}
+      render json:{:status => false, :message => @machine.errors.full_messages }
     end
   end
 
