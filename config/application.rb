@@ -64,6 +64,7 @@ module Cloudweb
 
       end
 
+    config.middleware.insert_before ActionDispatch::ParamsParser, "CatchJsonParseErrors"
 
   end
 end
