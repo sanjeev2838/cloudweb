@@ -8,7 +8,13 @@ gem 'rails', '3.2.16'
 gem 'sqlite3'
 gem 'devise'
 gem 'kaminari'
+
 gem "acts_as_paranoid", "~>0.4.0"
+
+gem "rmagick"
+gem "carrierwave"
+
+
 
 # Gems used only for assets and not required
 # in production environments by default.

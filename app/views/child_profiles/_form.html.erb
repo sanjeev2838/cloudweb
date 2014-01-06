@@ -26,7 +26,18 @@
             <%= builder.label :milk_qty %><br />
             <%= builder.number_field :milk_qty %>
         </div>
+
   <% end %>
+    <%= f.fields_for :picture do |pic|%>
+        <div class="field">
+          <%= f.label :image %><br />
+          <%= f.file_field :image %>
+        </div>
+  <%end%>
+
+    #child pictures
+
+
 
   <div class="actions">
     <%= f.submit %>
