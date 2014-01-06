@@ -42,3 +42,30 @@
 
 <%= link_to 'Edit', edit_machine_path(@machine) %> |
 <%= link_to 'Back', machines_path %>
+
+
+<div id="machine logs">
+
+<% unless @machine_logs.empty? %>
+      <table>
+        <tr>
+          <th>Data</th>
+          <!--<th></th>-->
+          <!--<th></th>-->
+          <!--<th></th>-->
+        </tr>
+
+        <% @machine_logs.each do |machine_log| %>
+            <tr>
+              <td><%= machine_log.data %></td>
+              <!--<td><%= link_to 'Show', machine_log %></td>-->
+              <!--<td><%= link_to 'Edit', edit_machine_log_path(machine_log) %></td>-->
+              <!--<td><%= link_to 'Destroy', machine_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+            </tr>
+        <% end %>
+      </table>
+ <%else%>
+  <p>No logs for this machine</p>
+ <%end%>
+
+</div>

@@ -28,10 +28,10 @@
         </div>
 
   <% end %>
-    <%= f.fields_for :picture do |pic|%>
+    <%= f.fields_for :pictures do |pic|%>
         <div class="field">
-          <%= f.label :image %><br />
-          <%= f.file_field :image %>
+          <%= pic.label :image %><br />
+          <%= pic.file_field :image, multiple: true  %>
         </div>
   <%end%>
 

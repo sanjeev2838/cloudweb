@@ -13,7 +13,7 @@ class Api::V1::MachineLogsController < Api::V1::BaseController
 #  {"created_at":"2013-12-26T07:43:51Z","description":"testing ","id":1,"machine_id":null,"updated_at":"2013-12-26T07:43:51Z"}
   def create
     @machine = Machine.where(:serial_number => params[:serial_id]).first
-    machine_log = MachineLog.create(:machine_id => @machine.id, :description => params[:description])
+    machine_log = MachineLog.create(:machine_id => @machine.id, :data => params[:data])
     if machine_log.valid?
       render json:{:status => true}
     else
