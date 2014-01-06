@@ -44,7 +44,7 @@ class ParentProfilesController < ApplicationController
     @parent_profile = ParentProfile.new(params[:parent_profile])
 
     respond_to do |format|
-      if @parent_profile.save
+      if @parent_profile.save!
         format.html { redirect_to @parent_profile, notice: 'Parent profile was successfully created.' }
         format.json { render json: @parent_profile, status: :created, location: @parent_profile }
       else

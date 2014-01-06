@@ -13,11 +13,15 @@ class Api::V1::MachineLogsController < Api::V1::BaseController
 #  {"created_at":"2013-12-26T07:43:51Z","description":"testing ","id":1,"machine_id":null,"updated_at":"2013-12-26T07:43:51Z"}
   def create
     @machine = Machine.where(:serial_number => params[:serial_id]).first
-    machine_log = MachineLog.create(:machine_id => @machine.id, :description => params[:description])
-    if machine_log.valid?
-      render json:{:status => true}
+    if @machine.nil?
+      render json:{:status => false, :message => "please provide valid serial id" }
     else
-      render json:{:status => false, :message => "Unable to create machine_log on cloud"}
+      machine_log = MachineLog.new(:machine_id => @machine.id, :description => params[:data])
+      if machine_log.save!
+        render json:{:status => true}
+      else
+        render json:{:status => false, :message => @machine.errors.full_messages }
+      end
     end
   end
 
