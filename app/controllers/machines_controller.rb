@@ -2,7 +2,7 @@ class MachinesController < ApplicationController
   ## GET /machines
   ## GET /machines.json
   def index
-    @machines = Machine.order("serial_number").page(params[:page]).per(2)
+    @machines = Machine.order("serialid").page(params[:page]).per(5)
 
     respond_to do |format|
       format.html # index.html.erb

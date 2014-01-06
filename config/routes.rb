@@ -23,7 +23,7 @@ Cloudweb::Application.routes.draw do
     namespace :v1 do
     # for registering new machine
       match  '/hosts' => "machines#create" , :via => :post
-      match  '/hosts/:serial_id' => 'machines#destroy', :via => :delete
+      match  '/hosts/:serialid' => 'machines#destroy', :via => :delete
     # for adding log entry
       match  '/logs' => 'machine_logs#create', :via => :post
     # for adding parent profile

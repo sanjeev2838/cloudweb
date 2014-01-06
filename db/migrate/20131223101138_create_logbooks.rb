@@ -1,5 +1,6 @@
 class CreateLogbooks < ActiveRecord::Migration
   def change
+
     create_table :logbooks do |t|
       t.string :description
 

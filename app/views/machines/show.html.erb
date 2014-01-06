@@ -2,41 +2,41 @@
 
 <p>
   <b>Serial number:</b>
-  <%= @machine.serial_number %>
+  <%= @machine.serialid %>
 </p>
 
 <p>
   <b>Status:</b>
-  <%= @machine.status %>
+  <%=  @machine.status ? "active" : "inactive"  %>
 </p>
 
 <p>
   <b>Activated on:</b>
-  <%= @machine.activated_on %>
+  <%= @machine.activated_on.strftime("%Y-%m-%d %H:%M") %>
 </p>
 
 <p>
   <b>Firmware version:</b>
-  <%= @machine.firmware_version %>
+  <%= @machine.firmware %>
 </p>
 
 <p>
   <b>Hw config:</b>
-  <%= @machine.hw_config %>
+  <%= @machine.hwconfig %>
 </p>
 
 <p>
   <b>Mac address:</b>
-  <%= @machine.mac_address %>
+  <%= @machine.macaddress %>
 </p>
 
 <p>
   <b>Ip address:</b>
-  <%= @machine.ip_address %>
+  <%= @machine.ipaddress %>
 </p>
 <p>
   <b>bootloader_version:</b>
-  <%= @machine.bootloader_version %>
+  <%= @machine.bootloader %>
 </p>
 
 
@@ -48,17 +48,17 @@
 
 <% unless @machine_logs.empty? %>
       <table>
-        <tr>
-          <th>Data</th>
+        <thead>
+          <th>Log Date Time</th>
+          <th>Log Info</th>
           <!--<th></th>-->
           <!--<th></th>-->
-          <!--<th></th>-->
-        </tr>
+        </thead>
 
         <% @machine_logs.each do |machine_log| %>
             <tr>
+              <td><%= machine_log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= machine_log.data %></td>
-              <!--<td><%= link_to 'Show', machine_log %></td>-->
               <!--<td><%= link_to 'Edit', edit_machine_log_path(machine_log) %></td>-->
               <!--<td><%= link_to 'Destroy', machine_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
             </tr>

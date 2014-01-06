@@ -12,15 +12,15 @@ class Api::V1::MachineLogsController < Api::V1::BaseController
   #end
 #  {"created_at":"2013-12-26T07:43:51Z","description":"testing ","id":1,"machine_id":null,"updated_at":"2013-12-26T07:43:51Z"}
   def create
-    @machine = Machine.where(:serial_number => params[:serial_id]).first
+    @machine = Machine.where(:serialid => params[:serialid]).first
     if @machine.nil?
-      render json:{:status => false, :message => "please provide valid serial id" }
+      render json:{:status => false, :message => "please provide valid serialid " }
     else
-      machine_log = MachineLog.create(:machine_id => @machine.id, :data => params[:data])
-      if machine_log.save!
+      @machine_log = MachineLog.create(:machine_id => @machine.id, :data => params[:data])
+      if @machine_log.valid?
         render json:{:status => true}
       else
-        render json:{:status => false, :message => @machine.errors.full_messages }
+        render json:{:status => false, :message => @machine_log.errors.full_messages }
       end
     end
   end

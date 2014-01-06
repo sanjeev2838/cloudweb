@@ -58,16 +58,14 @@ ActiveRecord::Schema.define(:version => 20140103041011) do
   end
 
   create_table "machines", :force => true do |t|
-    t.integer  "serial_number"
+    t.integer  "serialid"
+    t.string   "firmware"
+    t.string   "hwconfig"
+    t.string   "macaddress"
+    t.string   "ipaddress"
+    t.string   "bootloader"
     t.boolean  "status"
     t.datetime "activated_on"
-    t.string   "firmware_version"
-    t.string   "hw_config"
-    t.string   "mac_address"
-    t.string   "ip_address"
-    t.string   "bootloader_version"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
   end
 
   create_table "parent_profiles", :force => true do |t|

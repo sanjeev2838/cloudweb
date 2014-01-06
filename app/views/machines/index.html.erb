@@ -19,14 +19,14 @@
 
 <% @machines.each do |machine| %>
   <tr>
-    <td><%= machine.serial_number %></td>
-    <td><%= machine.status %></td>
+    <td><%= machine.serialid %></td>
+    <td><%=  machine.status ? "active" : "inactive"  %></td>
     <td><%= machine.activated_on %></td>
-    <td><%= machine.firmware_version %></td>
-    <td><%= machine.hw_config %></td>
-    <td><%= machine.mac_address %></td>
-    <td><%= machine.ip_address %></td>
-    <td><%= machine.bootloader_version %></td>
+    <td><%= machine.firmware %></td>
+    <td><%= machine.hwconfig %></td>
+    <td><%= machine.macaddress %></td>
+    <td><%= machine.ipaddress %></td>
+    <td><%= machine.bootloader %></td>
     <td><%= link_to 'View', machine %></td>
     <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
     <td><%= link_to 'Delete', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
