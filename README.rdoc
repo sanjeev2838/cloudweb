@@ -24,14 +24,19 @@ curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
 ---------------------------------------------
  creating parent profile api :-
 
- curl -X POST -H "Content-type: application/json" -d '{"deviceid":231,"devicetypeid":0,"tokenid":"r32r32","serialid":"123"}' http://localhost:3000/api/v1/profiles
+ curl -X POST -H "Content-type: application/json" -d '{"deviceid":231,"devicetypeid":0,"tokenid":"r32r32","serialid":"123","name":"rahul","imei":"123"}' http://localhost:3000/api/v1/profiles
 
  updating parent profile :-
 
- curl -X PUT -H "Content-type: application/json" -d '{"deviceid":4556,"devicetypeid":0,"imei":"32r2r223","tokenid":"123","serialid":"123"}' http://localhost:3000/api/v1/profiles/1
+ curl -X PUT -H "Content-type: application/json" -d '{"deviceid":231,"devicetypeid":0,"tokenid":"r32r32","serialid":"123","name":"rahul_update","imei":"123"}' http://localhost:3000/api/v1/profiles
 
  delete a parent profile :-
 
  curl -X DELETE     http://localhost:3000/api/v1/profiles/1
 
--------------------------------------------------------------------
+-----------------------------------------------
+4.) child profile :-
+
+  creatig new child_profile :-
+  curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}"}' http://localhost:3000/api/v1/profiles/1/children
+

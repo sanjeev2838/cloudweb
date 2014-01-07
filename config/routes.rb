@@ -21,21 +21,26 @@ Cloudweb::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
     # for registering new machine
       match  '/hosts' => "machines#create" , :via => :post
       match  '/hosts/:serialid' => 'machines#destroy', :via => :delete
+
     # for adding log entry
       match  '/logs' => 'machine_logs#create', :via => :post
+
     # for adding parent profile
       match  '/profiles' => 'parent_profiles#create', :via => :post
       match  '/profiles/:id' => 'parent_profiles#update', :via => :put
       match  '/profiles/:id' => 'parent_profiles#destroy', :via => :delete
+
     #for adding childs to parent_profile
-      match  '/profiles/:profile_id/childrens' => 'child_profiles#index', :via => :get
-      match  '/profiles/:profile_id/childrens' => 'child_profiles#create', :via => :post
-      match  '/profiles/:id/childrens/:id' => 'child_profiles#show', :via => :get
-      match  '/profiles/:id/childrens/:id' => 'child_profiles#destroy', :via => :delete
-      match  '/profiles/:id/childrens/:id' => 'child_profiles#update', :via => :update
+      match  '/profiles/:profile_id/children' => 'child_profiles#index', :via => :get
+      match  '/profiles/:profile_id/children' => 'child_profiles#create', :via => :post
+      match  '/profiles/:id/children/:id' => 'child_profiles#show', :via => :get
+      match  '/profiles/:id/children/:id' => 'child_profiles#destroy', :via => :delete
+      match  '/profiles/:id/children/:id' => 'child_profiles#update', :via => :update
+
     end
   end
 

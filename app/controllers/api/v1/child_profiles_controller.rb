@@ -12,14 +12,21 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   #def show
   #  respond_with @profile
   #end
-  #
+
+  #http://stackoverflow.com/questions/845366/nested-object-creation-with-json-in-rails
+  #If u feel something strange in the following loc bec team lead wants exact naming
+  # convention as in Api document he is written .
+  # listening his developers.
+
   def create
     @parent_profile = ParentProfile.find(params[:profile_id])
+
+    params[:child_profile][:child_brewing_preferences_attributes] = params[:preferences]
     @child_profile = @parent_profile.child_profiles.create(params[:children])
     if @child_profile.valid?
       render json:{:status => true, :child_id => @child_profile.id}
     else
-      render json:{:status => false, :message => "Unable to create new parent profile on cloud"}
+      render json:{:status => false, :message => @child_profile.errors.full_messages}
     end
   end
   #

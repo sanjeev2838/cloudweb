@@ -13,7 +13,7 @@ class ParentProfile < ActiveRecord::Base
 
   before_save :check_machine_serial_id
   validates :deviceid, :devicetypeid, :tokenid,
-            :serialid, :presence => true
+            :serialid,:name,:imei, :presence => true
 
   def serialid=(machine_serial_id)
     @machine = Machine.where(:serialid =>machine_serial_id).first

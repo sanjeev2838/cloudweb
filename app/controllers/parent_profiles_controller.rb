@@ -1,7 +1,7 @@
 class ParentProfilesController < ApplicationController
 
   def index
-    @parent_profiles = ParentProfile.all
+    @parent_profiles = ParentProfile.where(:status => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,6 +33,7 @@ class ParentProfilesController < ApplicationController
   end
 
   def create
+    params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
     @parent_profile = ParentProfile.new(params[:parent_profile])
 
     respond_to do |format|
@@ -62,7 +63,7 @@ class ParentProfilesController < ApplicationController
 
   def destroy
     @parent_profile = ParentProfile.find(params[:id])
-    @parent_profile.destroy
+    @parent_profile.update_column(:status , false)
 
     respond_to do |format|
       format.html { redirect_to parent_profiles_url }

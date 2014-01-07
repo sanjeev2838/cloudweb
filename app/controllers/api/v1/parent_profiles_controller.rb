@@ -12,6 +12,7 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
   #end
 
   def create
+    params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
     profile = ParentProfile.create(params[:parent_profile])
     if profile.valid?
       render json:profile.to_json(:include => :machine )
