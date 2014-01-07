@@ -26,7 +26,7 @@ class ChildProfilesController < ApplicationController
     #@child_profile = @parent_profile.build_child_profile
    # @child_brewing_preference = @child_profile.child_brewing_preference.new
     @child_profile.child_brewing_preference = ChildBrewingPreference.new
-    @child_profile.picture =  Picture.new
+    @child_profile.pictures.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @child_profile }

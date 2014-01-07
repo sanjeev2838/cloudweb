@@ -13,7 +13,7 @@ class ParentProfile < ActiveRecord::Base
 
 
   def machine_serial_id=(machine_serial_id)
-    @machine = Machine.where(:serial_number =>machine_serial_id).first
+    @machine = Machine.where(:serialid =>machine_serial_id).first
     if @machine
       self.machine_id = @machine.id
     # set machine owner
@@ -30,7 +30,7 @@ class ParentProfile < ActiveRecord::Base
   def machine_serial_id
     if self.machine_id
       @machine = Machine.find(self.machine_id)
-      @machine.serial_number
+      @machine.serialid
     end
   end
 
