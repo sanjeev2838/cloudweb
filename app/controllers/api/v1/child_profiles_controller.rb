@@ -21,8 +21,8 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   def create
     @parent_profile = ParentProfile.find(params[:profile_id])
 
-    params[:child_profile][:child_brewing_preferences_attributes] = params[:preferences]
-    @child_profile = @parent_profile.child_profiles.create(params[:children])
+    params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
+    @child_profile = @parent_profile.child_profiles.create(params[:child_profile])
     if @child_profile.valid?
       render json:{:status => true, :child_id => @child_profile.id}
     else
