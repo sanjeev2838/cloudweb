@@ -13,7 +13,15 @@
 
   <div class="field">
     <%= f.label :child_name %><br />
-    <%= f.text_field :child_name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.text_field :dob %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.text_field :gender %>
   </div>
 
  #   child_brewing_preference
@@ -24,18 +32,18 @@
         </div>
         <div class="field">
             <%= builder.label :milk_qty %><br />
-            <%= builder.number_field :milk_qty %>
+            <%= builder.number_field :milk %>
         </div>
 
   <% end %>
-    <%= f.fields_for :pictures do |pic|%>
-        <div class="field">
+    <!--<%= f.fields_for :pictures do |pic|%>-->
+        <!--<div class="field">-->
           <%= pic.label :image %><br />
-          <%= pic.file_field :image, multiple: true  %>
-        </div>
+          <!--<%= pic.file_field :image, multiple: true  %>-->
+        <!--</div>-->
   <%end%>
 
-    #child pictures
+
 
 
 

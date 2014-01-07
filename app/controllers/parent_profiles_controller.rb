@@ -11,6 +11,7 @@ class ParentProfilesController < ApplicationController
 
   def show
     @parent_profile = ParentProfile.find(params[:id])
+    #@child_profiles = ChildProfile.find_all_by_parent_profile_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
