@@ -1,6 +1,5 @@
 class ParentProfilesController < ApplicationController
-  # GET /parent_profiles
-  # GET /parent_profiles.json
+
   def index
     @parent_profiles = ParentProfile.all
 
@@ -10,8 +9,6 @@ class ParentProfilesController < ApplicationController
     end
   end
 
-  # GET /parent_profiles/1
-  # GET /parent_profiles/1.json
   def show
     @parent_profile = ParentProfile.find(params[:id])
 
@@ -21,8 +18,6 @@ class ParentProfilesController < ApplicationController
     end
   end
 
-  # GET /parent_profiles/new
-  # GET /parent_profiles/new.json
   def new
     @parent_profile = ParentProfile.new
 
@@ -32,15 +27,11 @@ class ParentProfilesController < ApplicationController
     end
   end
 
-  # GET /parent_profiles/1/edit
   def edit
     @parent_profile = ParentProfile.find(params[:id])
   end
 
-  # POST /parent_profiles
-  # POST /parent_profiles.json
   def create
-    puts "parent profile params #{params}"
     @parent_profile = ParentProfile.new(params[:parent_profile])
 
     respond_to do |format|
@@ -54,8 +45,6 @@ class ParentProfilesController < ApplicationController
     end
   end
 
-  # PUT /parent_profiles/1
-  # PUT /parent_profiles/1.json
   def update
     @parent_profile = ParentProfile.find(params[:id])
 
@@ -70,8 +59,6 @@ class ParentProfilesController < ApplicationController
     end
   end
 
-  # DELETE /parent_profiles/1
-  # DELETE /parent_profiles/1.json
   def destroy
     @parent_profile = ParentProfile.find(params[:id])
     @parent_profile.destroy

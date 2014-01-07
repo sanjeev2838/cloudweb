@@ -1,18 +1,21 @@
 class ParentProfile < ActiveRecord::Base
   attr_accessible :deviceid, :devicetypeid, :imei, :tokenid, :status, :name, :is_machine_owner,
                   :serialid
+
   attr_accessor   :serialid
-  ##belongs_to :machine
+
   has_many :child_profiles
+  belongs_to :machine
   #has_many :pictures
   #has_many :child_stats
   #has_many :child_brewing_preferences
 
-  belongs_to :machine
+
   before_save :check_machine_serial_id
+  validates :deviceid, :devicetypeid, :tokenid,
+            :serialid, :presence => true
 
-
-  def machine_serial_id=(machine_serial_id)
+  def serialid=(machine_serial_id)
     @machine = Machine.where(:serialid =>machine_serial_id).first
     if @machine
       self.machine_id = @machine.id
@@ -27,7 +30,7 @@ class ParentProfile < ActiveRecord::Base
 
 
 
-  def machine_serial_id
+  def serialid
     if self.machine_id
       @machine = Machine.find(self.machine_id)
       @machine.serialid
