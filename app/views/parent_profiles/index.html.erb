@@ -17,14 +17,14 @@
 
 <% @parent_profiles.each do |parent_profile| %>
   <tr>
-    <td><%= parent_profile.device_id %></td>
+    <td><%= parent_profile.deviceid %></td>
     <td><%= parent_profile.devise_type %></td>
     <td><%= parent_profile.imei %></td>
-    <td><%= parent_profile.token_id %></td>
+    <td><%= parent_profile.tokenid %></td>
     <td><%= parent_profile.status %></td>
     <td><%= parent_profile.name %></td>
     <td><%= parent_profile.is_machine_owner %></td>
-    <td><%= parent_profile.machine_serial_id %></td>
+    <td><%= parent_profile.serialid %></td>
     <td><%= link_to 'Show', parent_profile %></td>
     <td><%= link_to 'Edit', edit_parent_profile_path(parent_profile) %></td>
     <td><%= link_to 'Destroy', parent_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>

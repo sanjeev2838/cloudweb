@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20140103041011) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
-    t.integer  "milk_qty"
+    t.integer  "milk"
     t.integer  "child_profile_id"
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(:version => 20140103041011) do
   end
 
   create_table "child_profiles", :force => true do |t|
-    t.string   "child_name"
+    t.string   "name"
+    t.string   "dob"
+    t.string   "gender"
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -33,7 +35,8 @@ ActiveRecord::Schema.define(:version => 20140103041011) do
     t.integer  "diaper_count"
     t.integer  "weight"
     t.integer  "height"
-    t.string   "food"
+    t.string   "meals"
+    t.integer  "bottle"
     t.integer  "parent_profile_id"
     t.integer  "child_profile_id"
     t.integer  "vaccine_id"
@@ -69,13 +72,13 @@ ActiveRecord::Schema.define(:version => 20140103041011) do
   end
 
   create_table "parent_profiles", :force => true do |t|
-    t.integer  "device_id"
-    t.integer  "device_type_id"
+    t.integer  "deviceid"
+    t.integer  "devicetypeid"
     t.boolean  "is_machine_owner"
     t.string   "name"
     t.boolean  "status"
     t.string   "imei"
-    t.string   "token_id"
+    t.string   "tokenid"
     t.integer  "machine_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

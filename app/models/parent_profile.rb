@@ -1,7 +1,7 @@
 class ParentProfile < ActiveRecord::Base
-  attr_accessible :device_id, :device_type_id, :imei, :token_id, :status, :name, :is_machine_owner,
-                  :machine_serial_id
-  attr_accessor   :machine_serial_id
+  attr_accessible :deviceid, :devicetypeid, :imei, :tokenid, :status, :name, :is_machine_owner,
+                  :serialid
+  attr_accessor   :serialid
   ##belongs_to :machine
   has_many :child_profiles
   #has_many :pictures
@@ -35,9 +35,9 @@ class ParentProfile < ActiveRecord::Base
   end
 
   def devise_type
-    return "Andriod" if self.device_type_id == 0
-    return "Iphone" if self.device_type_id == 1
-    return "Blackberry" if self.device_type_id == 2
+    return "Andriod" if self.devicetypeid == 0
+    return "Iphone" if self.device_ypeid == 1
+    return "Blackberry" if self.devicetypeid == 2
   end
 
   private

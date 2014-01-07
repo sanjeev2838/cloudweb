@@ -1,7 +1,9 @@
 class CreateChildProfiles < ActiveRecord::Migration
   def change
     create_table :child_profiles do |t|
-      t.string :child_name
+      t.string :name
+      t.string :dob
+      t.string :gender
       t.references :parent_profile, index: true
 
       t.timestamps

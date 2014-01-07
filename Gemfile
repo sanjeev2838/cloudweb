@@ -9,7 +9,6 @@ gem 'sqlite3'
 gem 'devise'
 gem 'kaminari'
 
-gem "acts_as_paranoid", "~>0.4.0"
 
 gem "rmagick"
 gem "carrierwave"

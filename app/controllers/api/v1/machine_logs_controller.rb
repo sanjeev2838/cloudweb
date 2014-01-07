@@ -10,7 +10,6 @@ class Api::V1::MachineLogsController < Api::V1::BaseController
   #def show
   #  respond_with @machine
   #end
-#  {"created_at":"2013-12-26T07:43:51Z","description":"testing ","id":1,"machine_id":null,"updated_at":"2013-12-26T07:43:51Z"}
   def create
     @machine = Machine.where(:serialid => params[:serialid]).first
     if @machine.nil?
