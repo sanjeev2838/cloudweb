@@ -48,6 +48,7 @@
       <th>Date of Birth</th>
       <th>Gender</th>
       <th>Brewing Preferences</th>
+      <th>images</th>
 
     </tr>
 
@@ -69,6 +70,13 @@
 
           <% end %>
          </td>
+          <td><% child.pictures.each do |picture|%>
+                <p>
+                 <%= image_tag picture.image_url if picture.image? %>
+                </p>
+
+          <%end%>
+          </td>
         </tr>
     <% end %>
   </table>

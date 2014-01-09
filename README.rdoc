@@ -38,5 +38,8 @@ curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
 4.) child profile :-
 
   creatig new child_profile :-
-  curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}"}' http://localhost:3000/api/v1/profiles/1/children
+  curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}}' http://localhost:3000/api/v1/profiles/1/children
 
+
+------------------------------------------------------------
+curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}","picture":""}' http://localhost:3000/api/v1/profiles/1/children
