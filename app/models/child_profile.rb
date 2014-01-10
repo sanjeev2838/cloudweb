@@ -7,4 +7,5 @@ class ChildProfile < ActiveRecord::Base
 
   accepts_nested_attributes_for :child_brewing_preference
   #accepts_nested_attributes_for :pictures
+  has_many :logbooks
 end

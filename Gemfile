@@ -10,10 +10,11 @@ gem 'devise'
 gem 'kaminari'
 
 
-gem "rmagick"
-gem "carrierwave"
+gem 'rmagick'
+gem 'carrierwave'
 
-
+gem 'jbuilder'
+# gem 'active_model_serializers'
 
 # Gems used only for assets and not required
 # in production environments by default.

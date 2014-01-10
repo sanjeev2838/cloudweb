@@ -1,21 +1,19 @@
+#todo Better to write jbuilder template later on
 class Api::V1::ParentProfilesController < Api::V1::BaseController
-  #before_filter :authorize_admin!, :except => [:index, :show]
   before_filter :find_profile, :only => [:update, :destroy]
-
-  #def index
-  #  @profiles = ParentProfile.all
-  #  respond_with(@profiles)
-  #end
-
-  #def show
-  #  respond_with @profile
-  #end
 
   def create
     params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
-    profile = ParentProfile.create(params[:parent_profile])
-    if profile.valid?
-      render json:profile.to_json(:include => :machine )
+    @parent_profile = ParentProfile.create(params[:parent_profile])
+    if @parent_profile.valid?
+#      @profile['status'] = true
+#       @api_value = @profile.to_json(:include => :machine,:root => true )
+#       @api_value['status'] = false
+#      render json:@profile.to_json(:include => :machine,:root => true )
+#      format.json { render json:@parent_profile.to_json(:root => :true), status: :true}
+      respond_to do |format|
+        format.json { render action: :show}
+      end
     else
       render json:{:status => false, :message => profile.errors.full_messages}
     end
@@ -29,7 +27,6 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
     end
   end
 
-  # curl -X DELETE  http://localhost:3000/api/v1/profiles/12
   def destroy
     if @profile.update_column(:status , false)
       render json:{:status => true}
@@ -39,7 +36,6 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
   end
 
   private
-
   def find_profile
     @profile = ParentProfile.find(params[:id])
   rescue ActiveRecord::RecordNotFound

@@ -1,0 +1,25 @@
+<%= form_for(@child_brewing_preference) do |f| %>
+    <% if @child_brewing_preference.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@child_brewing_preference.errors.count, "error") %> prohibited this child_brewing_preference from being saved:</h2>
+
+          <ul>
+            <% @child_brewing_preference.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :temperature %><br />
+      <%= f.number_field :temperature %>
+    </div>
+    <div class="field">
+      <%= f.label :milk_qty %><br />
+      <%= f.number_field :milk_qty %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

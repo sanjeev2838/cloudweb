@@ -9,16 +9,15 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     #redirect_to post_path(@post)
   end
 
+#todo   BUT ABOUT THE STATUS HERE
   def show
-    @parent_profile = ParentProfile.find(params[:profile_id])
-    @child_profile = @parent_profile.child_profiles.find(params[:id])
-    if @child_profile.valid?
-      #@child_profile.update_column(:status , false)
+    begin
+     @parent_profile = ParentProfile.find(params[:profile_id])
+     @child_profile = @parent_profile.child_profiles.find(params[:id])
       render json:@child_profile.to_json(:include => :pictures )
-    else
-      render json:{:status => false, :message => "Child not found for this id"}
+    rescue ActiveRecord::RecordNotFound
+      render json:{:status => false, :message => "Unable to find parent profile on cloud"}
     end
-
   end
 
   #http://stackoverflow.com/questions/845366/nested-object-creation-with-json-in-rails
@@ -71,7 +70,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   end
   #
   def destroy
-
     @parent_profile = ParentProfile.find(params[:profile_id])
     @child_profile = @parent_profile.child_profiles.find(params[:id])
     if @child_profile.update_column(:status , false)

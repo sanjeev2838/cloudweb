@@ -43,3 +43,20 @@ curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
 
 ------------------------------------------------------------
 curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}","picture":""}' http://localhost:3000/api/v1/profiles/1/children
+
+
+5.) Creating log entries correspondint to child :-
+
+   creating new log :
+
+   updating log :-
+
+   deleting log :
+
+   getting list of log :-
+
+   showing single log entry :-
+
+
+ curl -X POST -H "Content-type: application/json" -d '{"log": "test"}' http://localhost:3000/api/v1/profiles
+ curl -X POST -H "Content-type: application/json" -d '{"deviceid":23}' http://localhost:3000/api/v1/profiles

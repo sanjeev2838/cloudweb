@@ -1,8 +1,5 @@
 Cloudweb::Application.routes.draw do
 
-  resources :cars
-
-
   devise_for :users
   devise_scope :user do
     authenticated :user do
@@ -19,31 +16,39 @@ Cloudweb::Application.routes.draw do
         get :staff_users
       end
     end
-
   end
 
   namespace :api do
     namespace :v1 do
 
-    # for registering new machine
-      match  '/hosts' => "machines#create" , :via => :post
+# for registering new machine
+      match  '/hosts' => 'machines#create' , :via => :post
       match  '/hosts/:serialid' => 'machines#destroy', :via => :delete
 
-    # for adding log entry
+# for adding log entry
       match  '/logs' => 'machine_logs#create', :via => :post
 
-    # for adding parent profile
+# for adding parent profile
+
       match  '/profiles' => 'parent_profiles#create', :via => :post
       match  '/profiles/:id' => 'parent_profiles#update', :via => :put
       match  '/profiles/:id' => 'parent_profiles#destroy', :via => :delete
 
-    #for adding childs to parent_profile
+#for adding children to parent_profile
+
       match  '/profiles/:profile_id/children' => 'child_profiles#index', :via => :get
       match  '/profiles/:profile_id/children' => 'child_profiles#create', :via => :post
       match  '/profiles/:profile_id/children/:id' => 'child_profiles#show', :via => :get
       match  '/profiles/:profile_id/children/:id' => 'child_profiles#destroy', :via => :delete
       match  '/profiles/:profile_id/children/:id' => 'child_profiles#update', :via => :put
 
+#for adding logs for children activities
+
+      match  '/profiles/:profile_id/children/:children_id/logbook' => 'logbooks#index', :via => :get
+      match  '/profiles/:profile_id/children/:children_id/logbook' => 'logbooks#create', :via => :post
+      match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#show', :via => :get
+      match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#destroy', :via => :delete
+      match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#update', :via => :put
 
     end
   end
