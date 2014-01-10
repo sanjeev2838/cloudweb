@@ -1,5 +1,5 @@
 class ChildProfile < ActiveRecord::Base
-  attr_accessible :name,:dob,:gender,:child_brewing_preference_attributes
+  attr_accessible :name,:dob,:gender,:status, :child_brewing_preference_attributes
 
   belongs_to :parent_profile
   has_one :child_brewing_preference

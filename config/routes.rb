@@ -28,6 +28,7 @@ Cloudweb::Application.routes.draw do
     # for registering new machine
       match  '/hosts' => "machines#create" , :via => :post
       match  '/hosts/:serialid' => 'machines#destroy', :via => :delete
+      match  '/hosts'  => 'machines#show', :via => :get
 
     # for adding log entry
       match  '/logs' => 'machine_logs#create', :via => :post
@@ -44,6 +45,9 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:profile_id/children/:id' => 'child_profiles#destroy', :via => :delete
       match  '/profiles/:profile_id/children/:id' => 'child_profiles#update', :via => :put
 
+    # for child brewing preferences
+      match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#index', :via => :get
+      match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#update', :via => :put
 
     end
   end

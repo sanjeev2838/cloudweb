@@ -7,9 +7,23 @@ class Api::V1::MachinesController < Api::V1::BaseController
   #  respond_with(@machines)
   #end
   #
-  #def show
-  #  respond_with @machine
-  #end
+
+  def show
+   require "digest"
+   auth_code = Digest::MD5.hexdigest("techno$garden")
+   if auth_code == params[:authcode]
+
+      @machine = Machine.where(:serialid => params[:serialid]).first
+      unless @machine.nil?
+        render json:{:status => true,:machine=>@machine}
+      else
+        render json:{:status => false, :message=> "Machine not found for this serial no."}
+      end
+   else
+     render json:{:status => false, :message=> "authcode not matched"}
+   end
+
+  end
 
   #url to test it
 

@@ -6,7 +6,7 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
   #  @profiles = ParentProfile.all
   #  respond_with(@profiles)
   #end
-
+  #
   #def show
   #  respond_with @profile
   #end
