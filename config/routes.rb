@@ -49,6 +49,13 @@ Cloudweb::Application.routes.draw do
       match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#index', :via => :get
       match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#update', :via => :put
 
+    # for adding child stats
+      match '/profiles/:profile_id/children/:child_id/stats' => 'child_stats#create', :via => :post
+      match '/profiles/:profile_id/children/:child_id/stats' => 'child_stats#index', :via => :get
+
+    # for getting all vaccines
+      match '/vaccines' => 'vaccines#index',  :via => :get
+
     end
   end
 

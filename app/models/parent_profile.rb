@@ -15,6 +15,12 @@ class ParentProfile < ActiveRecord::Base
   validates :deviceid, :devicetypeid, :tokenid,
             :serialid,:name,:imei, :presence => true
 
+  def as_json(options ={})
+    h = super(options)
+    h["status"] = true
+    h
+  end
+
   def serialid=(machine_serial_id)
     @machine = Machine.where(:serialid =>machine_serial_id).first
     if @machine

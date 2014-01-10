@@ -4,6 +4,7 @@ class ChildProfile < ActiveRecord::Base
   belongs_to :parent_profile
   has_one :child_brewing_preference
   has_many :pictures
+  has_many :child_stats
 
   accepts_nested_attributes_for :child_brewing_preference
   #accepts_nested_attributes_for :pictures
