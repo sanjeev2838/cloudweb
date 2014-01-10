@@ -1,9 +1,12 @@
 cloud web is project related to creating an backend for application.
 It offers an api for adding removing and changing information from
 the backend .
-
+----
+ Getting a valid machine
+------------------------------------------------
+curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/hosts?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
 ---------------
-commands or things rekated to project :-
+commands or things related to project :-
 ---------------------------------------------
 mac address :- ( 00:09:6B:DF:FE:42 )
 
@@ -44,6 +47,7 @@ curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
 ------------------------------------------------------------
 curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}","picture":""}' http://localhost:3000/api/v1/profiles/1/children
 
+<<<<<<< HEAD
 
 5.) Creating log entries correspondint to child :-
 
@@ -60,3 +64,44 @@ curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"g
 
  curl -X POST -H "Content-type: application/json" -d '{"log": "test"}' http://localhost:3000/api/v1/profiles
  curl -X POST -H "Content-type: application/json" -d '{"deviceid":23}' http://localhost:3000/api/v1/profiles
+=======
+----------------------------------------------------------------
+Get all child of parent
+ curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children
+
+-----------------------------------------------------------------
+ get specific child of parent
+ curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1
+-----------------------------------------------------------------
+ update a child profile
+ curl -X PUT -H "Content-type: application/json" -d '{"name":"child1","dob":"2013-12-12","gender":"female"}' http://localhost:3000/api/v1/profiles/1/children/1
+-----------------------------------------------------------------
+ Delete a child profile
+ curl -X DELETE -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1
+
+5.)Child brewing preference
+----------------------------------------------------------------
+Get child brewing preference
+curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1/brew
+
+----------------------------------------------------------------
+update child brewing preference
+curl -X PUT -H "Content-type: application/json" -d '{"temperature":"22","milk":"10"}' http://localhost:3000/api/v1/profiles/1/children/1/brew
+
+
+6.) Child stats
+----------------------------------------------------------------
+Get all stats of a child
+curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1/stats
+----------------------------------------------------------------
+Add new stat of child
+curl -X POST -H "Content-type: application/json" -d '{"diapers":"2","weight":"10","height":"10","meals":"food","vaccine":"vac 1","bottle":"1"}' http://localhost:3000/api/v1/profiles/1/children/1/stats
+-----------------------------------------------------------------
+
+7.)Get all vaccines
+ ----------------------------------------------------------------
+ curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/vaccines?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
+
+
+
+>>>>>>> 1bdecdbbd3e1c423ea390edd973ebfb4afbc3930

@@ -6,7 +6,7 @@ class MachinesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @machines }
+      format.json { render json: @machines, :status => :true }
     end
   end
 

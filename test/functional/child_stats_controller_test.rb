@@ -18,7 +18,7 @@ class ChildStatsControllerTest < ActionController::TestCase
 
   test "should create child_stat" do
     assert_difference('ChildStat.count') do
-      post :create, child_stat: { diaper_count: @child_stat.diaper_count, food: @child_stat.food, height: @child_stat.height, weight: @child_stat.weight }
+      post :create, child_stat: { diapers: @child_stat.diaper_count, food: @child_stat.food, height: @child_stat.height, weight: @child_stat.weight }
     end
 
     assert_redirected_to child_stat_path(assigns(:child_stat))
@@ -35,7 +35,7 @@ class ChildStatsControllerTest < ActionController::TestCase
   end
 
   test "should update child_stat" do
-    put :update, id: @child_stat, child_stat: { diaper_count: @child_stat.diaper_count, food: @child_stat.food, height: @child_stat.height, weight: @child_stat.weight }
+    put :update, id: @child_stat, child_stat: { diapers: @child_stat.diaper_count, food: @child_stat.food, height: @child_stat.height, weight: @child_stat.weight }
     assert_redirected_to child_stat_path(assigns(:child_stat))
   end
 

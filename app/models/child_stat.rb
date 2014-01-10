@@ -1,5 +1,5 @@
 class ChildStat < ActiveRecord::Base
-  attr_accessible :diaper_count, :food, :height, :weight
+  attr_accessible :diapers, :meals, :height, :weight ,:bottle ,:vaccine_id
 
   belongs_to :child_profile
   has_many :vaccines
