@@ -1,5 +1,4 @@
 class Api::V1::ChildProfilesController < Api::V1::BaseController
-  #before_filter :authorize_admin!, :except => [:index, :show]
   before_filter :find_profile, :only => [:index,:show, :update,:destroy]
 
   def index
@@ -10,8 +9,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     else
       render json:{:status => false, :message => "Child not found for this id"}
     end
-    #@child_profile = @.comments.create(params[:comment])
-    #redirect_to post_path(@post)
   end
 
 #todo   BUT ABOUT THE STATUS HERE

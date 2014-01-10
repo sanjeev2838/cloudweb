@@ -22,11 +22,13 @@ Cloudweb::Application.routes.draw do
     namespace :v1 do
 
 # for registering new machine
+
       match  '/hosts' => 'machines#create' , :via => :post
       match  '/hosts/:serialid' => 'machines#destroy', :via => :delete
       match  '/hosts'  => 'machines#show', :via => :get
 
 # for adding log entry
+
       match  '/logs' => 'machine_logs#create', :via => :post
 
 # for adding parent profile
@@ -52,16 +54,25 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#update', :via => :put
 
     # for child brewing preferences
+
       match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#index', :via => :get
       match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#update', :via => :put
 
     # for adding child stats
+
       match '/profiles/:profile_id/children/:child_id/stats' => 'child_stats#create', :via => :post
       match '/profiles/:profile_id/children/:child_id/stats' => 'child_stats#index', :via => :get
 
     # for getting all vaccines
+
       match '/vaccines' => 'vaccines#index',  :via => :get
 
+   # Api for child pictures
+
+      match  '/profiles/:profile_id/children/:children_id/pictures' => 'pictures#create', :via => :post
+      match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#show', :via => :get
+      match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#update', :via => :put
+      match  '/profiles/:profile_id/children/:children_id/pictures' => 'pictures#index', :via => :get
     end
   end
 

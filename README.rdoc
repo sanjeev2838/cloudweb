@@ -15,6 +15,7 @@ mac address :- ( 00:09:6B:DF:FE:42 )
 Create new log record :-
  curl -X POST -H "Content-type: application/json" -d  '{"data":"test","serialid":"12345"}' http://localhost:3000/api/v1/logs
 
+
 2.)register machine and deactivate it :-
 ---------------------------------------------
 create new machine object :-
@@ -22,6 +23,7 @@ create new machine object :-
 
 inactive a machine :-
 curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
+
 
 3.) parent profile :-
 ---------------------------------------------
@@ -43,41 +45,36 @@ curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
   creatig new child_profile :-
   curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}}' http://localhost:3000/api/v1/profiles/1/children
 
+  ----------------------------------------------------------------
+  Get all child of parent
+  curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children
 
+ -----------------------------------------------------------------
+  get specific child of parent
+  curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1
+ -----------------------------------------------------------------
+  update a child profile
+  curl -X PUT -H "Content-type: application/json" -d '{"name":"child1","dob":"2013-12-12","gender":"female"}' http://localhost:3000/api/v1/profiles/1/children/1
+ -----------------------------------------------------------------
+  Delete a child profile
+  curl -X DELETE -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1
 ------------------------------------------------------------
 curl -X POST -H "Content-type: application/json" -d '{"name":"patani","dob":0,"gender":"male","preferences":{"temperature":23,"milk":12}","picture":""}' http://localhost:3000/api/v1/profiles/1/children
 
-<<<<<<< HEAD
 
 5.) Creating log entries correspondint to child :-
 
    creating new log :
-
+    curl -X POST -H "Content-type: application/json" -d '{"log": "test"}' http://localhost:3000/api/v1/profiles/1/children/1/logbook
    updating log :-
-
+    curl -X PUT -H "Content-type: application/json" -d '{"log": "test_update"}' http://localhost:3000/api/v1/profiles/1/children/1/logbook/1
    deleting log :
 
    getting list of log :-
-
+    curl -X GET  http://localhost:3000/api/v1/profiles/1/children/1/logbook
    showing single log entry :-
+    curl -X GET  http://localhost:3000/api/v1/profiles/1/children/1/logbook/1
 
-
- curl -X POST -H "Content-type: application/json" -d '{"log": "test"}' http://localhost:3000/api/v1/profiles
- curl -X POST -H "Content-type: application/json" -d '{"deviceid":23}' http://localhost:3000/api/v1/profiles
-=======
-----------------------------------------------------------------
-Get all child of parent
- curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children
-
------------------------------------------------------------------
- get specific child of parent
- curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1
------------------------------------------------------------------
- update a child profile
- curl -X PUT -H "Content-type: application/json" -d '{"name":"child1","dob":"2013-12-12","gender":"female"}' http://localhost:3000/api/v1/profiles/1/children/1
------------------------------------------------------------------
- Delete a child profile
- curl -X DELETE -H "Content-type: application/json"  http://localhost:3000/api/v1/profiles/1/children/1
 
 5.)Child brewing preference
 ----------------------------------------------------------------
@@ -102,6 +99,3 @@ curl -X POST -H "Content-type: application/json" -d '{"diapers":"2","weight":"10
  ----------------------------------------------------------------
  curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/vaccines?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
 
-
-
->>>>>>> 1bdecdbbd3e1c423ea390edd973ebfb4afbc3930
