@@ -80,4 +80,14 @@ class MachinesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def upload_index
+
+  end
+
+  def uploadFile
+    puts "the params are #{params}"
+    post = Machine.save(params[:upload])
+    render :text => "File has been uploaded successfully"
+  end
+
 end

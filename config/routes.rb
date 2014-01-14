@@ -89,6 +89,13 @@ Cloudweb::Application.routes.draw do
   resources :child_stats
   resources :machine_logs
   resources :pictures
-  resources :machines
+
+  resources :machines  do
+    collection do
+      get :upload_index
+      post :uploadFile
+    end
+  end
+
 
 end
