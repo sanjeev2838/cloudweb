@@ -1,6 +1,7 @@
 <h1>Listing parent_profiles</h1>
 
-<table>
+<table id="parent_profile_table">
+  <thead>
   <tr>
     <th>Device</th>
     <th>Device type</th>
@@ -14,7 +15,9 @@
     <th></th>
     <th></th>
   </tr>
+  </thead>
 
+  <tbody>
 <% @parent_profiles.each do |parent_profile| %>
   <tr>
     <td><%= parent_profile.deviceid %></td>
@@ -30,8 +33,14 @@
     <td><%= link_to 'Destroy', parent_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
 
 <br />
 
 <%= link_to 'New Parent profile', new_parent_profile_path %>
+<script>
+    $(document).ready(function(){
+        $("#parent_profile_table").dataTable()
+    });
+</script>

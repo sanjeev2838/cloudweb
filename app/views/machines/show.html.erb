@@ -47,14 +47,14 @@
 <div id="machine logs">
 
 <% unless @machine_logs.empty? %>
-      <table>
+      <table id= "machine_logs">
         <thead>
           <th>Log Date Time</th>
           <th>Log Info</th>
           <!--<th></th>-->
           <!--<th></th>-->
         </thead>
-
+         <tbody>
         <% @machine_logs.each do |machine_log| %>
             <tr>
               <td><%= machine_log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
@@ -63,9 +63,15 @@
               <!--<td><%= link_to 'Destroy', machine_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
             </tr>
         <% end %>
+         </tbody>
       </table>
  <%else%>
-  <p>No logs for this machine</p>
+    <p>No logs for this machine</p>
  <%end%>
 
 </div>
+<script>
+    $(document).ready(function(){
+        $("#machine_logs").dataTable()
+    });
+</script>

@@ -1,21 +1,26 @@
 <h1>Listing machine_logs</h1>
 
-<table>
-  <tr>
-    <th>Data</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<table id="machine_logs">
+  <thead>
+    <tr>
+        <th>Data</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
 <% @machine_logs.each do |machine_log| %>
-  <tr>
-    <td><%= machine_log.data %></td>
-    <td><%= link_to 'Show', machine_log %></td>
-    <td><%= link_to 'Edit', edit_machine_log_path(machine_log) %></td>
-    <td><%= link_to 'Destroy', machine_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+     <tr>
+        <td><%= machine_log.data %></td>
+        <td><%= link_to 'Show', machine_log %></td>
+        <td><%= link_to 'Edit', edit_machine_log_path(machine_log) %></td>
+        <td><%= link_to 'Destroy', machine_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     </tr>
+
 <% end %>
+  </tbody>
 </table>
 
 <br />
