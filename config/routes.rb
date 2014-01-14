@@ -71,7 +71,7 @@ Cloudweb::Application.routes.draw do
 
       match  '/profiles/:profile_id/children/:children_id/pictures' => 'pictures#create', :via => :post
       match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#show', :via => :get
-      match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#update', :via => :put
+      match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#destroy', :via => :delete
       match  '/profiles/:profile_id/children/:children_id/pictures' => 'pictures#index', :via => :get
     end
   end

@@ -16,9 +16,6 @@ class Api::V1::VaccinesController < Api::V1::BaseController
     else
       render json:{:status => false, :message => "Authcode not matched "}
     end
-
-
-
   end
   #
   ## GET /vaccines/1
