@@ -99,3 +99,16 @@ curl -X POST -H "Content-type: application/json" -d '{"diapers":"2","weight":"10
  ----------------------------------------------------------------
  curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/vaccines?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
 
+8.) api for pictures
+---------------------------------
+ creating a new picture record:-
+ curl -X POST -H "Content-type: application/json" -d '{"picture":"test","profilepic":"true"}  http://localhost:3000/api/v1/profiles/1/children/1/pictures'
+
+ get all pictures related to child profile :-
+ curl -X GET  http://localhost:3000/api/v1/profiles/1/children/1/pictures
+
+ delete an existing picture record :-
+ curl -X DELETE  http://localhost:3000/api/v1/profiles/1/children/1/pictures/1
+
+ get a specific picture record :-
+ curl -X GET  http://localhost:3000/api/v1/profiles/1/children/1/pictures/1

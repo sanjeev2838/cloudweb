@@ -1,6 +1,7 @@
 json.set! :status ,true
 json.child do |json|
     json.array!(@pictures) do |picture|
-        json.extract! picture, :id
+         json.pictureid  picture.id
+         json.filepath   picture.image.path
     end
 end
