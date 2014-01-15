@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20131223102710) do
     t.string   "filepath"
     t.boolean  "status"
     t.string   "image"
+    t.boolean  "profilepic"
     t.integer  "parent_profile_id"
     t.integer  "child_profile_id"
     t.datetime "created_at",        :null => false
