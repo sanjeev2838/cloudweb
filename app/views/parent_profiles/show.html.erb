@@ -5,11 +5,10 @@
   <b>Registered On:</b>
   <%= @parent_profile.created_at.strftime("%Y-%m-%d %H:%M") %>
 </p>
-
-<p class="center">
-  <b>Last Active On:</b>
-
-</p>
+  <p class="center">
+    <b>Devise Type:</b>
+    <%= @parent_profile.devise_type %>
+  </p>
 
 <p class="right">
   <b>Status:</b>
@@ -18,17 +17,8 @@
 </p>
 </div>
  <div class="content_row">
+
 <p class="left">
-  <b>Devise Type:</b>
-  <%= @parent_profile.devise_type %>
-</p>
-
-<p class="center">
-  <b>IMEI:</b>
-  <%= @parent_profile.imei %>
-</p>
-
-<p class="right">
   <b>MachineOwner:</b>
   <td><%= @parent_profile.is_machine_owner %></td>
 </p>

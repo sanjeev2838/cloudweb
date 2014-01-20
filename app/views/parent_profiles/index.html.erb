@@ -4,9 +4,7 @@
 <table id="parent_profile_table">
   <thead>
   <tr>
-    <th>Device</th>
     <th>Device type</th>
-    <th>Imei</th>
     <th>Token</th>
     <th>Status</th>
     <th>Name</th>
@@ -21,9 +19,7 @@
   <tbody>
 <% @parent_profiles.each do |parent_profile| %>
   <tr>
-    <td><%= parent_profile.deviceid %></td>
     <td><%= parent_profile.devise_type %></td>
-    <td><%= parent_profile.imei %></td>
     <td><%= parent_profile.tokenid %></td>
     <td><%= parent_profile.status %></td>
     <td><%= parent_profile.name %></td>

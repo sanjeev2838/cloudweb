@@ -1,5 +1,5 @@
 class ParentProfile < ActiveRecord::Base
-  attr_accessible :deviceid, :devicetypeid, :imei, :tokenid, :status, :name, :is_machine_owner,
+  attr_accessible :devicetypeid, :tokenid, :status, :name, :is_machine_owner,
                   :serialid
 
   attr_accessor   :serialid
@@ -13,8 +13,8 @@ class ParentProfile < ActiveRecord::Base
 
 
   before_save :check_machine_serial_id
-  validates :deviceid, :devicetypeid, :tokenid,
-            :serialid,:name,:imei, :presence => true
+  validates :devicetypeid, :tokenid,
+            :serialid,:name,:presence => true
 
   def as_json(options ={})
     h = super(options)
