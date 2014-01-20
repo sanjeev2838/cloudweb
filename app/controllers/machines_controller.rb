@@ -81,14 +81,21 @@ class MachinesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def upload_index
+
+  def machines_import
 
   end
 
-  def uploadFile
-    puts "the params are #{params}"
-    post = Machine.save(params[:upload])
-    render :text => "File has been uploaded successfully"
+  def machine_csv_download
+
+    respond_to do |format|
+      format.html
+      format.rss
+      format.xls {
+        send_data(generate_csv , :type=>"application/ms-excel", :filename => "Machines.xls",:orientation=>"landscape",:margin=>{:top=>0.25,:bottom=>0.25,:left=>0.25,:header=>0.05})
+      }
+    end
   end
+
 
 end

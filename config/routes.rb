@@ -101,8 +101,8 @@ Cloudweb::Application.routes.draw do
 
   resources :machines  do
     collection do
-      get :upload_index
-      post :uploadFile
+      get :machines_import,:machine_csv_download
+
     end
   end
 

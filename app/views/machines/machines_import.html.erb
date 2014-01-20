@@ -1,0 +1,8 @@
+<h3> Machines > Import</h3>
+<div class="csv_format">
+  <%= link_to "Download CSV format" ,{:controller=>"/machines",:action=>"machine_csv_download",:format => 'xls'}%>
+  <!--<a  style="color: deepskyblue" href="#">Download CSV format</a>-->
+</div>
+
+<label>Select CSV file to upload</label>
+<input type="file" />

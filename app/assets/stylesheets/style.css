@@ -199,3 +199,11 @@ html, body {
 #error_explanation{
     margin-top: 10px;
 }
+
+.csv_format{
+    height: 30px;
+    width: 130px;
+    float: right;
+    color: deepskyblue;
+;
+}
