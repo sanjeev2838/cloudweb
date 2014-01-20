@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115061132) do
+ActiveRecord::Schema.define(:version => 20140120061137) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -53,6 +53,12 @@ ActiveRecord::Schema.define(:version => 20140115061132) do
     t.datetime "updated_at",      :null => false
   end
 
+  create_table "languages", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "logbooks", :force => true do |t|
     t.string   "log"
     t.integer  "child_profile_id"
@@ -75,18 +81,28 @@ ActiveRecord::Schema.define(:version => 20140115061132) do
     t.string   "macaddress"
     t.string   "ipaddress"
     t.string   "bootloader"
+    t.string   "color"
     t.boolean  "status"
     t.datetime "activated_on"
   end
 
+  create_table "milestones", :force => true do |t|
+    t.string   "title"
+    t.string   "icon"
+    t.integer  "language_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "parent_profiles", :force => true do |t|
-    t.integer  "deviceid"
     t.integer  "devicetypeid"
     t.boolean  "is_machine_owner"
     t.string   "name"
     t.boolean  "status"
-    t.string   "imei"
     t.string   "tokenid"
+    t.string   "email"
+    t.string   "password"
+    t.string   "token"
     t.integer  "machine_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

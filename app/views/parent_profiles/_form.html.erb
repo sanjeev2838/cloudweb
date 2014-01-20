@@ -11,18 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :device_id %><br />
-    <%= f.number_field :deviceid %>
-  </div>
+
   <div class="field">
     <%= f.label :devicetypeid %><br />
     <%= f.select :devicetypeid, [['Andriod', 0], ['Iphone', 1],['blackberry',2]] %>
   </div>
-  <div class="field">
-    <%= f.label :imei %><br />
-    <%= f.text_field :imei %>
-  </div>
+
   <div class="field">
     <%= f.label :token_id %><br />
     <%= f.text_field :tokenid %>
