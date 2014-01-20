@@ -1,5 +1,11 @@
 Cloudweb::Application.routes.draw do
 
+  resources :milestones
+
+
+  resources :languages
+
+
   resources :firmwares
 
 
