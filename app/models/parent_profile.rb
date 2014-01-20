@@ -1,29 +1,35 @@
 class ParentProfile < ActiveRecord::Base
   attr_accessible :devicetypeid, :tokenid, :status, :name, :is_machine_owner,
-                  :serialid
+                  :serialid, :authtoken, :email, :password, :relation
 
   attr_accessor   :serialid
 
   has_many :child_profiles
-  belongs_to :machine
-  #has_many :pictures
-  #has_many :child_stats
-  #has_many :child_brewing_preferences
   has_many :logbooks
-
+  belongs_to :machine
 
   before_save :check_machine_serial_id
+  before_create :generate_access_token
   validates :devicetypeid, :tokenid,
-            :serialid,:name,:presence => true
+            :serialid,:name,:email,:password, :relation, :presence => true
 
-  def as_json(options ={})
-    h = super(options)
-    h["status"] = true
-    h
+  RELATIONS = {  mamma: 0, pappa: 1, gaurdian: 2 }
+  DEVICES = { andriod: 0 , iphone: 1 , blackberry: 2}
+
+  validates :relation, inclusion: {in: ParentProfile::RELATIONS.values}
+  validates :devicetypeid, inclusion: {in: ParentProfile::DEVICES.values}
+
+  def relation_type
+    ParentProfile::RELATIONS.key(self.relation).to_s
+  end
+
+
+  def devise_type
+    ParentProfile::DEVICES.key(self.devicetypeid).to_s
   end
 
   def serialid=(machine_serial_id)
-    @machine = Machine.where(:serialid =>machine_serial_id).first
+    @machine = Machine.where(:serialid => machine_serial_id).first
     if @machine
       self.machine_id = @machine.id
     # set machine owner
@@ -35,8 +41,6 @@ class ParentProfile < ActiveRecord::Base
     end
   end
 
-
-
   def serialid
     if self.machine_id
       @machine = Machine.find(self.machine_id)
@@ -44,11 +48,7 @@ class ParentProfile < ActiveRecord::Base
     end
   end
 
-  def devise_type
-    return "Andriod" if self.devicetypeid == 0
-    return "Iphone" if self.devicetypeid == 1
-    return "Blackberry" if self.devicetypeid == 2
-  end
+
 
   private
   def check_machine_serial_id
@@ -58,6 +58,10 @@ class ParentProfile < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def generate_access_token
+      self.authtoken = SecureRandom.hex
   end
 
 end

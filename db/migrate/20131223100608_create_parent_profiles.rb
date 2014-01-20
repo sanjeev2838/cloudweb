@@ -9,7 +9,9 @@ class CreateParentProfiles < ActiveRecord::Migration
       t.string :tokenid
       t.string :email
       t.string :password
-      t.string :token
+      t.string :authtoken
+
+      t.integer :relation
       t.references :machine, index: true
 
       t.timestamps

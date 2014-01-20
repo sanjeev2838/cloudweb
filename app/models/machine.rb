@@ -1,4 +1,5 @@
 class Machine < ActiveRecord::Base
+  #Todo add hex code validations for color
   attr_accessible :activated_on, :firmware, :hwconfig, :ipaddress, :macaddress, :serialid, :status,
                   :bootloader , :color
   validates :firmware, :hwconfig, :bootloader, :presence => true
@@ -25,4 +26,5 @@ class Machine < ActiveRecord::Base
   def set_activated_on
     self.activated_on = Time.now
   end
+
 end

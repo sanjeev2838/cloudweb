@@ -102,7 +102,8 @@ ActiveRecord::Schema.define(:version => 20140120061137) do
     t.string   "tokenid"
     t.string   "email"
     t.string   "password"
-    t.string   "token"
+    t.string   "authtoken"
+    t.integer  "relation"
     t.integer  "machine_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
