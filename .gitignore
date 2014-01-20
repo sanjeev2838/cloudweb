@@ -8,13 +8,10 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
+
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/db/*.sqlite3
-config/initializers/secret_token.rb
-config/secrets.yml
 .idea/
 /public
