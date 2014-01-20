@@ -1,6 +1,6 @@
 class Machine < ActiveRecord::Base
   attr_accessible :activated_on, :firmware, :hwconfig, :ipaddress, :macaddress, :serialid, :status,
-                  :bootloader
+                  :bootloader , :color
   validates :firmware, :hwconfig, :bootloader, :presence => true
   validates :serialid,:presence => true, :uniqueness => true
   #has_many :parent_profiles

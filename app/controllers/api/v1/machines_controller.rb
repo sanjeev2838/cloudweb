@@ -1,20 +1,27 @@
 class Api::V1::MachinesController < Api::V1::BaseController
+  before_filter :find_machine, :only => [:show, :update, :destroy]
 
+  #require "digest"
+  #auth_code = Digest::MD5.hexdigest("techno$garden")
   def show
-    #require "digest"
-    #auth_code = Digest::MD5.hexdigest("techno$garden")
     if "5e7add11cb09a9e70061776727555f4c" == params[:authcode]
-      @machine = Machine.where(:serialid => params[:serialid]).first
-      unless @machine.nil?
-        render action: :show
-      else
-        render json:{:status => false, :message=> "Machine not found for this serial no."}
-      end
+      render action: :show  unless @machine
     else
       render json:{:status => false, :message=> "authcode not matched"}
     end
   end
 
+  def update
+    if params[:color].nil?
+      render json:{:status => false, :message=> "provide color as parameter to update "}
+      return
+    end
+    if "5e7add11cb09a9e70061776727555f4c" == params[:authcode]
+      render action: :show   if  @machine.update_attributes(:color => params[:color])
+    else
+      render json:{:status => false, :message=> "authcode not matched "}
+    end
+  end
 
   def create
     params[:machine] = (params[:machine]).merge(:status => false)
@@ -27,16 +34,17 @@ class Api::V1::MachinesController < Api::V1::BaseController
   end
 
   def destroy
-    @machine = Machine.where(:serialid => params[:serialid]).first
-    if @machine.nil?
-      render json:{:status => false, :message => "please provide valid serial id" }
+    if @machine.update_attributes(:status => false)
+      render json:{:status => true}
     else
-      if @machine.update_attributes(:status => false)
-        render json:{:status => true}
-      else
-        render json:{:status => false, :message => @machine.errors.full_messages }
-      end
+      render json:{:status => false, :message => @machine.errors.full_messages }
     end
   end
 
+  private
+  def find_machine
+    @machine = Machine.where(:serialid => params[:serialid]).first
+  rescue ActiveRecord::RecordNotFound
+    render json:{:status => false, :message => "Unable to find Machine with serial id on cloud"}
+  end
 end

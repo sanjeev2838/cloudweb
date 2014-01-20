@@ -22,8 +22,13 @@ create new machine object :-
   curl -X POST -H "Content-type: application/json" -d  '{"bootloader":"312","firmware":"331","hwconfig":"1231","ipaddress":"123.10.23.12","macaddress":"00:09:6B:fF:FE:42","serialid":12}' http://localhost:3000/api/v1/hosts
 
 inactive a machine :-
-curl -X DELETE     http://localhost:3000/api/v1/hosts/1234
+curl -X DELETE  http://localhost:3000/api/v1/hosts/12
 
+to show an machine record :-
+curl -X GET  http://localhost:3000/api/v1/hosts/12?authcode=5e7add11cb09a9e70061776727555f4c
+
+to verify host :-
+ curl -X POST -H "Content-type: application/json" -d  '{"serialid":"12","authcode":"5e7add11cb09a9e70061776727555f4c","color":"red"}' http://localhost:3000/api/v1/verify
 
 3.) parent profile :-
 ---------------------------------------------
@@ -112,3 +117,6 @@ curl -X POST -H "Content-type: application/json" -d '{"diapers":"2","weight":"10
 
  get a specific picture record :-
  curl -X GET  http://localhost:3000/api/v1/profiles/1/children/1/pictures/1
+
+
+
