@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131223102710) do
+ActiveRecord::Schema.define(:version => 20140115061132) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20131223102710) do
     t.integer  "vaccine_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "firmwares", :force => true do |t|
+    t.string   "firmwareversion"
+    t.string   "serialids"
+    t.string   "binaryfile"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "logbooks", :force => true do |t|

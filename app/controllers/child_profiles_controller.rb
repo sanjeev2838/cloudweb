@@ -11,14 +11,18 @@ class ChildProfilesController < ApplicationController
   #end
   #
   #
-  #def show
-  #  @child_profile = @parent_profile.child_profiles.where(:id =>params[:id])
-  #  @brewing_preference = @child_profile.brewing_preference
-  #  respond_to do |format|
-  #    format.html # show.html.erb
-  #    format.json { render json: @child_profile }
-  #  end
-  #end
+  def show
+    @parent_profile= ParentProfile.find(params[:parent_profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:id])
+    @brewing_preference = @child_profile.child_brewing_preference
+    @machine = Machine.find(@parent_profile.machine_id)
+    @child_state = ChildStat.find_all_by_id(params[:id])
+    @logs = Logbook.find_all_by_child_profile_id(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @child_profile }
+    end
+  end
 
 
   def new

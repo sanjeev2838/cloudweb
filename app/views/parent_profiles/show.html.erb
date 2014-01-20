@@ -1,90 +1,111 @@
-<p id="notice"><%= notice %></p>
+<h3>User Manager > <%= @parent_profile.name %> </h3>
 
-<p>
-  <b>Device:</b>
-  <%= @parent_profile.deviceid %>
+<div class="content_row">
+<p class="left">
+  <b>Registered On:</b>
+  <%= @parent_profile.created_at.strftime("%Y-%m-%d %H:%M") %>
 </p>
 
-<p>
-  <b>Device type:</b>
+<p class="center">
+  <b>Last Active On:</b>
+
+</p>
+
+<p class="right">
+  <b>Status:</b>
+  <%= @parent_profile.status %>
+
+</p>
+</div>
+ <div class="content_row">
+<p class="left">
+  <b>Devise Type:</b>
   <%= @parent_profile.devise_type %>
 </p>
 
-<p>
-  <b>Imei:</b>
+<p class="center">
+  <b>IMEI:</b>
   <%= @parent_profile.imei %>
 </p>
 
-<p>
-  <b>Token:</b>
-  <%= @parent_profile.tokenid %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @parent_profile.status %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <td><%= @parent_profile.name %></td>
-</p>
-
-<p>
+<p class="right">
   <b>MachineOwner:</b>
   <td><%= @parent_profile.is_machine_owner %></td>
 </p>
-<p>
-  <b>Machine_serial_id</b>
-<td><%= @parent_profile.serialid %></td>
-</p>
+</div> <br>
+
+
+<div id="machines">
+  <h3> Machine</h3>
+<%unless @machine.nil?%>
+  <table id="user_machine_table">
+    <thead>
+        <th>Serial No</th>
+        <th>Activated On</th>
+        <th>Firmware</th>
+        <th>HW config</th>
+        <th>Mac</th>
+        <th>Ip Address</th>
+        <th>actions</th>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td><%=@machine.serialid%></td>
+            <td><%=@machine.activated_on%></td>
+            <td><%=@machine.firmware%></td>
+            <td><%=@machine.hwconfig%></td>
+            <td><%=@machine.macaddress%></td>
+            <td><%=@machine.ipaddress%></td>
+            <td></td>
+        </tr>
+     </tbody>
+  </table>
+<%end%>
+</div> <br>
+<br>
+
 
 <div id= "child_profiles">
-  <h1>Listing childs</h1>
+  <h3>Children total(<%=@parent_profile.child_profiles.count%>)</h3>
 
-  <table>
-    <tr>
+  <table id="parent_child_table">
+    <thead>
       <th>Child name</th>
-      <th>Date of Birth</th>
-      <th>Gender</th>
-      <th>Brewing Preferences</th>
-      <th>images</th>
+      <th>Registered On</th>
+      <th>Last Access On</th>
+      <th>Status</th>
+      <th>Action</th>
+    </thead>
 
-    </tr>
-
+    <tbody>
     <% @parent_profile.child_profiles.each  do |child| %>
         <tr>
           <td><%= child.name %></td>
-          <td><%= child.dob%></td>
-`         <td><%= child.gender%></td>
-         <td> <% unless  child.child_brewing_preference.nil?  %>
-              <p>
-                <b>milk quantity</b>
-                <%= child.child_brewing_preference.milk  %>
-              </p>
-              <p>
-                <b> temperature</b>
-                <%= child.child_brewing_preference.temperature  %>
-              </p>
-              </p>
+          <td><%= child.created_at%></td>
+          <td></td>
+          <td><%=child.status ? "active" : "inactive"%></td>
+          <td>
+                <%= link_to "Show" , parent_profile_child_profile_path(@parent_profile,child) %>
 
-          <% end %>
-         </td>
-          <td><% child.pictures.each do |picture|%>
-                <p>
-                 <%= image_tag picture.image_url if picture.image? %>
-                </p>
-
-          <%end%>
           </td>
         </tr>
     <% end %>
+    </tbody>
   </table>
 
   <br />
 
 </div>
 
-<%= link_to 'Edit', edit_parent_profile_path(@parent_profile) %> |
-<%= link_to 'Back', parent_profiles_path %>
-<%= link_to 'New Child profile', new_parent_profile_child_profile_path(@parent_profile) %>
+<script>
+    $(document).ready(function(){
+        $("#user_machine_table").dataTable()
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#parent_child_table").dataTable()
+    });
+</script>

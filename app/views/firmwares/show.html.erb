@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Firmwareversion:</b>
+  <%= @firmware.firmwareversion %>
+</p>
+
+<p>
+  <b>Serialids:</b>
+  <%= @firmware.serialids %>
+</p>
+
+<p>
+  <b>Binaryfile:</b>
+  <%= @firmware.binaryfile %>
+</p>
+
+
+<%= link_to 'Edit', edit_firmware_path(@firmware) %> |
+<%= link_to 'Back', firmwares_path %>

@@ -1,0 +1,29 @@
+<%= form_for(@firmware, :multipart => true ) do |f| %>
+  <% if @firmware.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@firmware.errors.count, "error") %> prohibited this firmware from being saved:</h2>
+
+      <ul>
+      <% @firmware.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :firmwareversion %><br />
+    <%= f.text_field :firmwareversion %>
+  </div>
+  <div class="field">
+    <%= f.label :serialids %><br />
+    <%= f.text_area :serialids,:size => "40x7", :placeholder => "comma seprated keys" %>
+  </div>
+  <div class="field">
+     <p><%= f.label :binaryfile, "Firmware File" %> :
+        <%= f.file_field :binaryfile %></p>
+   </div>
+  <div class="actions">
+    <%= f.submit "Add" %>
+  </div>
+<% end %>

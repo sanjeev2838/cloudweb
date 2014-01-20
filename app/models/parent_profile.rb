@@ -9,6 +9,7 @@ class ParentProfile < ActiveRecord::Base
   #has_many :pictures
   #has_many :child_stats
   #has_many :child_brewing_preferences
+  has_many :logbooks
 
 
   before_save :check_machine_serial_id
@@ -45,7 +46,7 @@ class ParentProfile < ActiveRecord::Base
 
   def devise_type
     return "Andriod" if self.devicetypeid == 0
-    return "Iphone" if self.device_ypeid == 1
+    return "Iphone" if self.devicetypeid == 1
     return "Blackberry" if self.devicetypeid == 2
   end
 

@@ -1,10 +1,100 @@
-<p id="notice"><%= notice %></p>
+<h3>User Manager > <%= @parent_profile.name %> > <%=@child_profile.name%> </h3>
 
-<p>
-  <b>Child name:</b>
-  <%= @child_profile.child_name %>
-</p>
+<div class="content_row">
+  <p class="left">
+    <b>Registered On:</b>
+    <%= @child_profile.created_at.strftime("%Y-%m-%d %H:%M") %>
+  </p>
 
+  <p class="center">
+    <b>Last Active On:</b>
 
-<%= link_to 'Edit', edit_child_profile_path(@child_profile) %> |
-<%= link_to 'Back', child_profiles_path %>
+  </p>
+
+  <p class="right">
+    <b>Machine:</b>
+    <%= @machine.serialid %>
+
+  </p>
+</div>
+<div class="content_row">
+  <p class="left">
+    <b>Status:</b>
+    <%= @child_profile.status ? "active" : "inactive" %>
+  </p>
+
+</div> <br>
+
+<h3>Preferences</h3>
+<h4> Milk  <%= @brewing_preference.milk %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTemperature <%=@brewing_preference.temperature%></h4>
+   <br>
+<br>
+
+<h3>Pictures</h3>
+<%unless @child_profile.pictures.nil?%>
+    <%@child_profile.pictures.each do |pic|%>
+        <%= image_tag pic.image_url if pic.image? %>
+    <%end%>
+<%end%>
+<br>
+<br>
+<h3>Stats</h3>
+<% unless @child_state.nil? %>
+<table id="child_stat_table">
+  <thead>
+    <th>Date Time</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>Daipers</th>
+    <th>Food</th>
+    <th>Vaccines</th>
+    <th>Actions</th>
+   </thead>
+    <tbody>
+    <%@child_state.each do |stat|%>
+        <tr>
+          <td><%=stat.created_at%></td>
+          <td><%=stat.weight%></td>
+          <td><%=stat.height%></td>
+          <td><%=stat.diapers%></td>
+          <td><%=stat.meals %></td>
+          <td></td>
+          <td></td>
+        </tr>
+     <%end%>
+    </tbody>
+</table>
+<%end%>
+<br>
+<br>
+<% unless @logs.nil? %>
+<h3>Log Book</h3>
+<table id="child_log_table">
+  <thead>
+    <th>Date Time</th>
+    <th>Parent</th>
+    <th>Text</th>
+    <th>Action</th>
+  </thead>
+    <% @logs.each do |log|%>
+  <tbody>
+    <tr>
+        <td><%= log.created_at%></td>
+        <td><%= log.parent_profile.name%></td>
+        <td><%= log.log%></td>
+        <td></td>
+    </tr>
+  </tbody>
+    <%end%>
+</table>
+<%end%>
+<script>
+    $(document).ready(function(){
+        $("#child_stat_table").dataTable()
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $("#child_log_table").dataTable()
+    });
+</script>

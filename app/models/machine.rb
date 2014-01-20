@@ -18,14 +18,7 @@ class Machine < ActiveRecord::Base
 
   before_save :set_activated_on
 
-  def self.save(upload)
-    name =  upload['datafile'].original_filename
-    directory = "public/firmware"
-    # create the file path
-    path = File.join(directory, name)
-    # write the file
-    File.open(path, "wb") { |f| f.write(upload['datafile'].read) }
-  end
+
 
   protected
 

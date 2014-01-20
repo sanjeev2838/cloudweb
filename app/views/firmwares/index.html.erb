@@ -1,0 +1,31 @@
+<h1>Listing firmwares</h1>
+
+<table id="firmware_table">
+  <thead>
+
+    <th>Firmwareversion</th>
+    <th>Binaryfile</th>
+    <th>Serialids</th>
+    <th></th>
+  </thead>
+
+  <tbody>
+<% @firmwares.each do |firmware| %>
+  <tr>
+    <td><%= firmware.firmwareversion %></td>
+    <td><%= firmware.binaryfile %></td>
+    <td><%= firmware.serialids %></td>
+    <td></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New Firmware', new_firmware_path %>
+<script>
+    $(document).ready(function(){
+        $("#firmware_table").dataTable()
+    });
+</script>

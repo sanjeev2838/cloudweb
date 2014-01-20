@@ -11,6 +11,7 @@ class ParentProfilesController < ApplicationController
 
   def show
     @parent_profile = ParentProfile.find(params[:id])
+    @machine = Machine.find_by_id(@parent_profile.machine_id) unless @parent_profile.nil?
     #@child_profiles = ChildProfile.find_all_by_parent_profile_id(params[:id])
 
     respond_to do |format|
@@ -37,7 +38,7 @@ class ParentProfilesController < ApplicationController
     @parent_profile = ParentProfile.new(params[:parent_profile])
 
     respond_to do |format|
-      if @parent_profile.save!
+      if @parent_profile.save
         format.html { redirect_to @parent_profile, notice: 'Parent profile was successfully created.' }
         format.json { render json: @parent_profile, status: :created, location: @parent_profile }
       else

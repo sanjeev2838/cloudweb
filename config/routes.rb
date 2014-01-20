@@ -1,5 +1,8 @@
 Cloudweb::Application.routes.draw do
 
+  resources :firmwares
+
+
   devise_for :users
   devise_scope :user do
     authenticated :user do

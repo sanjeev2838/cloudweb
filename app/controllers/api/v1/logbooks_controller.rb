@@ -20,7 +20,9 @@ class Api::V1::LogbooksController <  Api::V1::BaseController
 
 
   def create
+    params[:logbook] = params[:logbook].merge :parent_profile_id => params[:profile_id]
     @log_book = @child_profile.logbooks.create(params[:logbook])
+
     if @log_book.valid?
       render json:{:status => true, :logid => @log_book.id}
     else

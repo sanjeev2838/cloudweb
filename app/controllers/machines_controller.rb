@@ -14,7 +14,8 @@ class MachinesController < ApplicationController
   # GET /machines/1.json
   def show
     @machine = Machine.find(params[:id])
-    @machine_logs = MachineLog.find_all_by_machine_id(params[:id])
+    @machine_logs = MachineLog.order(:created_at => :asc).find_all_by_machine_id(params[:id])
+    @owner = ParentProfile.find_by_machine_id(params[:id],:conditions=>{:is_machine_owner=>true})
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @machine }
