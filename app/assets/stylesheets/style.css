@@ -205,5 +205,7 @@ html, body {
     width: 130px;
     float: right;
     color: deepskyblue;
-;
+}
+.csv_format a {
+    color: deepskyblue;
 }

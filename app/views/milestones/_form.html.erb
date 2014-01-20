@@ -9,7 +9,19 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %><br>
+    <div class="field">
+      <p>
+      <%= f.label :title %>
+      <%= f.text_field :title%>
+      </p>
+    </div>
+    <div class="field">
+      <p>
+        <%= f.label :language%>
+        <%= select :language,:language_id, @languages.map { |d| [d.title, d.id] },:prompt => "Select" %>
+      </p>
+    </div>
 
   <div class="actions">
     <%= f.submit %>

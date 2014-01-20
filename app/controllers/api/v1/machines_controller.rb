@@ -43,8 +43,13 @@ class Api::V1::MachinesController < Api::V1::BaseController
 
   private
   def find_machine
-    @machine = Machine.where(:serialid => params[:serialid]).first
-  rescue ActiveRecord::RecordNotFound
-    render json:{:status => false, :message => "Unable to find Machine with serial id on cloud"}
+    begin
+      @machine = Machine.find_by_serialid(params[:serialid])
+      raise  ActiveRecord::RecordNotFound if @machine.nil?
+    rescue ActiveRecord::RecordNotFound  => exception
+      render json:{:status => false, :message => exception.message}
+    end
   end
+
+
 end
