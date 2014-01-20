@@ -36,7 +36,7 @@ Cloudweb::Application.routes.draw do
       match  '/hosts/:serialid' => 'machines#destroy', :via => :delete
       match  '/hosts/:serialid'  => 'machines#show', :via => :get
 
-      match '/verify'  => 'machines#update', :via => :post
+      match '/verify'  => 'machines#update', :via => :put
 # for adding log entry
 
       match  '/logs' => 'machine_logs#create', :via => :post
@@ -102,8 +102,8 @@ Cloudweb::Application.routes.draw do
 
   resources :machines  do
     collection do
-      get :upload_index
-      post :uploadFile
+      get :machines_import,:machine_csv_download
+
     end
   end
 

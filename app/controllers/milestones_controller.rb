@@ -25,6 +25,8 @@ class MilestonesController < ApplicationController
   # GET /milestones/new.json
   def new
     @milestone = Milestone.new
+    @languages = Language.all
+    puts "the languages are #{@languages}"
 
     respond_to do |format|
       format.html # new.html.erb

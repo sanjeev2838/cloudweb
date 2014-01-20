@@ -13,6 +13,8 @@ gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave'
 
+gem 'spreadsheet'
+
 gem 'jbuilder'
 # gem 'active_model_serializers'
 
