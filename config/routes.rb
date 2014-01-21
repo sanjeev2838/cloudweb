@@ -41,6 +41,10 @@ Cloudweb::Application.routes.draw do
 
       match  '/logs' => 'machine_logs#create', :via => :post
 
+# for login and logout for user
+      match  '/login'  => 'sessions#create', :via => :post
+      match  '/logout' => 'sessions#destroy', :via => :delete
+
 # for adding parent profile
 
       match  '/profiles' => 'parent_profiles#create', :via => :post

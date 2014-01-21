@@ -14,6 +14,7 @@ gem 'rmagick'
 gem 'carrierwave'
 
 gem 'spreadsheet'
+gem 'bcrypt-ruby', '3.1.2'
 
 gem 'jbuilder'
 # gem 'active_model_serializers'
