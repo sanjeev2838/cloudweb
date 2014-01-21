@@ -1,6 +1,6 @@
 class ParentProfile < ActiveRecord::Base
   attr_accessible :devicetypeid, :tokenid, :status, :name, :is_machine_owner,
-                  :serialid, :authtoken, :email, :password, :relation
+                  :serialid, :authtoken, :email, :password, :relation, :lang
 
   attr_accessor   :serialid
 
@@ -15,9 +15,10 @@ class ParentProfile < ActiveRecord::Base
 
   RELATIONS = {  mamma: 0, pappa: 1, gaurdian: 2 }
   DEVICES = { andriod: 0 , iphone: 1 , blackberry: 2}
-
+  LANG = %w(sv no en)
   validates :relation, inclusion: {in: ParentProfile::RELATIONS.values}
   validates :devicetypeid, inclusion: {in: ParentProfile::DEVICES.values}
+  validates :lang, inclusion: {in: ParentProfile::LANG }
 
   def relation_type
     ParentProfile::RELATIONS.key(self.relation).to_s

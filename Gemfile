@@ -17,6 +17,7 @@ gem 'spreadsheet'
 gem 'bcrypt-ruby', '3.1.2'
 
 gem 'jbuilder'
+gem 'globalize3'
 # gem 'active_model_serializers'
 
 # Gems used only for assets and not required

@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < Api::V1::BaseController
 
+
   def new
 
   end
@@ -7,6 +8,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def create
     puts "the params are #{params}"
     user = ParentProfile.find_by_email(params[:session][:email])
+    I18n.locale = user.lang.to_sym
     unless user.nil?
       if user.password == params[:session][:password]
         render json:{:status => true, :authcode => user.authtoken}
@@ -19,9 +21,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def destroy
-    puts "in destroy method"
-    sign_out
-    redirect_to root_url
+
   end
 
 end
