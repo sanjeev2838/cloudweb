@@ -47,7 +47,7 @@ class FirmwaresController < ApplicationController
     FileUtils.cp tmp.path, file
     params[:firmware].delete :binaryfile
     @firmware = Firmware.new(params[:firmware])
-    @firmware.binaryfile = "public/firware/#{original_filename}"
+    @firmware.binaryfile = "public/firmware/#{original_filename}"
     respond_to do |format|
       if @firmware.save
         format.html { redirect_to @firmware, notice: 'Firmware was successfully created.' }

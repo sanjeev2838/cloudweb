@@ -5,11 +5,10 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def create
-    puts "the params are #{params}"
     user = ParentProfile.find_by_email(params[:session][:email])
     unless user.nil?
       if user.password == params[:session][:password]
-        render json:{:status => true, :authcode => user.authtoken}
+        render json:{:status => true, :authcode => user.authtoken, :id=> user.id}
       else
         render json:{:status => false, :message => " Password not Matched"}
       end
@@ -19,9 +18,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def destroy
-    puts "in destroy method"
-    sign_out
-    redirect_to root_url
+
   end
 
 end

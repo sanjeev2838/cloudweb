@@ -4,5 +4,15 @@
   <!--<a  style="color: deepskyblue" href="#">Download CSV format</a>-->
 </div>
 
-<label>Select CSV file to upload</label>
-<input type="file" />
+<%= form_for :machine_upload , :url=>{:action=>'import_machine_csv'} do |f| %>
+    <div class="field">
+      <p>
+        <%=f.label :select_file%>
+        <%=f.file_field :file%>
+      </p>
+    </div>
+    <div>
+      <%=f.submit :uplaod%>
+    </div>
+
+<%end%>
