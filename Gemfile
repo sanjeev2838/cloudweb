@@ -14,9 +14,11 @@ gem 'rmagick'
 gem 'carrierwave'
 
 gem 'spreadsheet'
-gem 'bcrypt-ruby', '3.1.2'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'strong_parameters'
 
 gem 'jbuilder'
+gem 'globalize3'
 # gem 'active_model_serializers'
 
 # Gems used only for assets and not required

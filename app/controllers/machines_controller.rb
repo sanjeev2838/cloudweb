@@ -2,7 +2,7 @@ class MachinesController < ApplicationController
   ## GET /machines
   ## GET /machines.json
   def index
-    @machines = Machine.order("serialid").page(params[:page]).per(5)
+    @machines = Machine.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -110,56 +110,47 @@ class MachinesController < ApplicationController
     #      order_progress_logfile.sync = true
     #      schooldata = Logger.new(order_progress_logfile)
     #      directory =  "#{Rails.root}/public/system/School_data"
-    #      Spreadsheet.client_encoding = 'UTF-8'
+          Spreadsheet.client_encoding = 'UTF-8'
           book = Spreadsheet.open(@file)
           book.worksheets.each do |sheet|
             index = 0
             i = 0
             sheet.each_with_index do |row,ind|
               unless index >= 3
-                puts "the row count is #{sheet.count}"
-                puts "column count is #{sheet.column_count()}"
-    #            column_count = sheet.column_count()
-    #            # column_count.times do |col|
-    #            student_id=sheet.row(3+i)[2]
-    #            school_session_id = sheet.row(3+i)[3]
-    #            height = sheet.row(3+i)[4]
-    #            weight = sheet.row(3+i)[5]
-    #            blood_group = sheet.row(3+i)[6]
-    #            v_left = sheet.row(3+i)[7]
-    #            v_right = sheet.row(3+i)[8]
-    #            teeth = sheet.row(3+i)[9]
-    #            oral_hygine= sheet.row(3+i)[10]
-    #            s_alinment = sheet.row(3+i)[11]
-    #            @health_status = HealthStatus.new
-    #            @health_status.student_id = student_id
-    #            @health_status.school_session_id =  school_session_id
-    #            @health_status.height =height
-    #            @health_status.weight = weight
-    #            @health_status.blood_group=blood_group
-    #            @health_status.vision_left = v_left
-    #            @health_status.vision_right = v_right
-    #            @health_status.teeth = teeth
-    #            @health_status.oral_hygiene = oral_hygine
-    #            @health_status.specific_ailment = s_alinment
-    #            @previous_health_status = HealthStatus.find_by_student_id_and_school_session_id(student_id,school_session_id)
-    #            if @previous_health_status.nil?
-    #              if @health_status.valid?
-    #                @health_status.save!
-    #              else
-    #                schooldata.error "Error accured at #{@health_status.attributes} with error message #{@health_status.errors.full_messages}"
-    #              end
-    #            else
-    #              schooldata.error "Error occured at #{@health_status.attributes} with error message #{@health_status.errrors.full_messages}"
-    #            end
-    #            i = i+1
+                column_count = sheet.column_count()
+                column_count.times do |col|
+                  serial_id=sheet.row(3+i)[0]
+                  firmware = sheet.row(3+i)[1]
+                  hw_config = sheet.row(3+i)[2]
+                  mac_address = sheet.row(3+i)[3]
+                  ip_address = sheet.row(3+i)[4]
+                  boot_loader = sheet.row(3+i)[5]
+                  colour = sheet.row(3+i)[6]
+                  status = sheet.row(3+i)[7]
+
+                  @machine = Machine.new
+                  @machine.serialid=serial_id
+                  @machine.firmware=firmware
+                  @machine.hwconfig=hw_config
+                  @machine.macaddress=mac_address
+                  @machine.ipaddress=ip_address
+                  @machine.bootloader=boot_loader
+                  @machine.color=colour
+                  @machine.status=status
+                  if @machine.valid?
+                      @machine.save!
+                    else
+                      puts "the error is  #{@machine.errors.full_messages}"
+                    end
+                  i = i+1
+                end
               else
-    #            index=index+1
+                index=index+1
               end
             end
           end
           flash[:notice] = "Data uploaded successfully"
-          redirect_to :controller => "machines",:action => "import_machine_csv"
+          redirect_to root_url
         rescue Exception => exc
     #      schooldata.error exc
           puts "the error is #{exc}"

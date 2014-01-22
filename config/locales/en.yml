@@ -3,3 +3,7 @@
 
 en:
   hello: "Hello world"
+  login:
+      not_registered: "User with this email not registered"
+      password : "email or password not matched"
+

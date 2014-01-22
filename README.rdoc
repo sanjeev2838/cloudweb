@@ -4,7 +4,7 @@ the backend .
 ----
  Getting a valid machine
 ------------------------------------------------
-curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/hosts?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
+curl -X GET -H "Content-type: application/json, authtoken='123'"  http://localhost:3000/api/v1/hosts?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
 ---------------
 commands or things related to project :-
 ---------------------------------------------
@@ -38,7 +38,7 @@ to verify host :-
 
  updating parent profile :-
 
- curl -X PUT -H "Content-type: application/json" -d '{"deviceid":231,"devicetypeid":0,"tokenid":"r32r32","serialid":"123","name":"rahul_update","imei":"123"}' http://localhost:3000/api/v1/profiles
+ curl -X PUT -H "Content-type: application/json" -d '{"deviceid":231,"devicetypeid":0,"tokenid":"r32r32","serialid":"123","name":"rahul_update"}' http://localhost:3000/api/v1/profiles
 
  delete a parent profile :-
 
@@ -118,5 +118,9 @@ curl -X POST -H "Content-type: application/json" -d '{"diapers":"2","weight":"10
  get a specific picture record :-
  curl -X GET  http://localhost:3000/api/v1/profiles/1/children/1/pictures/1
 
+9.)
+------------------------------------------------------------------
+For parent log in
+curl -X POST -H "Content-type: application/json" -d  '{"email":"usr@email.com","password":"password"}' http://localhost:3000/api/v1/login
 
 

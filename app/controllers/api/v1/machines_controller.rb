@@ -47,7 +47,7 @@ class Api::V1::MachinesController < Api::V1::BaseController
       @machine = Machine.find_by_serialid(params[:serialid])
       raise  ActiveRecord::RecordNotFound if @machine.nil?
     rescue ActiveRecord::RecordNotFound  => exception
-      render json:{:status => false, :message => exception.message}
+      render json:{:status => false, :message => "Machine not Found"}
     end
   end
 

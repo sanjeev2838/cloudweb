@@ -1,5 +1,8 @@
 Cloudweb::Application.routes.draw do
 
+  #get "users/new"
+  resources :users
+
   resources :milestones
 
 
@@ -9,15 +12,8 @@ Cloudweb::Application.routes.draw do
   resources :firmwares
 
 
-  devise_for :users
-  devise_scope :user do
-    authenticated :user do
-      root :to => 'admin/dashboard#index'
-    end
-    unauthenticated :user do
-      root :to => 'devise/sessions#new'
-    end
-  end
+
+  root :to => 'sessions#new'
 
   namespace :admin do
     resources :dashboard do
@@ -26,6 +22,13 @@ Cloudweb::Application.routes.draw do
       end
     end
   end
+
+  #for admin users
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+
 
   namespace :api do
     namespace :v1 do
@@ -95,7 +98,7 @@ Cloudweb::Application.routes.draw do
     resources :child_profiles
   end
 
-  devise_for :users
+
 
   resources :logbooks
   resources :vaccines

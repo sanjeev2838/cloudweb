@@ -22,7 +22,7 @@ class ParentProfilesController < ApplicationController
 
   def new
     @parent_profile = ParentProfile.new
-
+    @languages = ParentProfile::LANG
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @parent_profile }
