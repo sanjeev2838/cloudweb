@@ -1,3 +1,4 @@
+
 class ChildProfilesController < ApplicationController
   before_filter :find_profile, :only => [:new, :create,:show,:edit,:index,:update, :destroy]
 

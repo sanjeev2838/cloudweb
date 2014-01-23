@@ -3,8 +3,15 @@ class Api::V1::PicturesController < Api::V1::BaseController
   before_filter :find_child_profile, :only => [:create, :index, :destroy, :show]
   def index
     @pictures = @child_profile.pictures
+    pics = []
+    @pictures.each do |pic|
+        pics << pic.image_url
+    end
+
     if @pictures.empty?
       render json:{:status => false, :message => "Unable to find any picture attached with this profile"}
+    else
+      render json:{:status => true, :picture =>pics }
     end
   end
 

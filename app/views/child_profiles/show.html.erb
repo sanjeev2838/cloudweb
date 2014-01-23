@@ -35,7 +35,7 @@
 <h3>Pictures</h3>
 <%unless @child_profile.pictures.nil?%>
     <%@child_profile.pictures.each do |pic|%>
-        <%= image_tag pic.image_url if pic.image? %>
+        <%= image_tag pic.image_url  if pic.image? %>
     <%end%>
 <%end%>
 <br>
