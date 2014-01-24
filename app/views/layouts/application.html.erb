@@ -12,7 +12,7 @@
     <div class="image_div">
       <img src="/..//assets/logo.png">
     </div>
-    <div class="users">You are signed in as <b> </b>&nbsp </div>
+    <div class="users">You are signed in as <b><%= current_user.name%> </b>&nbsp <%= link_to "SignOut", signout_path, method: "delete" %> </div>
     <div class="search_div">Search
       <div class="search"><input type="text" id="search_field" placeholder="search" /></div>
     </div>
