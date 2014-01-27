@@ -15,15 +15,7 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
     end
   end
 
-  #      @profile['status'] = true
-  #       @api_value = @profile.to_json(:include => :machine,:root => true )
-  #       @api_value['status'] = false
-  #      render json:@profile.to_json(:include => :machine,:root => true )
-  #      format.json { render json:@parent_profile.to_json(:root => :true), status: :true}
-
-
   def update
-
     if @parent_profile.update_attributes(params[:parent_profile])
       render action: :update
     else
