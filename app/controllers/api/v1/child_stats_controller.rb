@@ -8,11 +8,28 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     @parent_profile = ParentProfile.find(params[:profile_id])
     @child_profile = @parent_profile.child_profiles.find(params[:child_id])
     @child_stats = @child_profile.child_stats
+    @child_stats = get_child_stat(params[:type])
 
     unless @child_stats.nil?
       render json:{:status=>true ,:child_state=>@child_stats }
     else
       render json:{:status => false, :message => "Child stat not found "}
+    end
+  end
+
+  def get_child_stat(type)
+    #  time_range = 1.weeks.ago..Time.now
+    case type
+      when "daily"
+        @child_profile.child_stats.where("created_at >= ?", 1.day.ago..Time.now)
+      when "weekly"
+        @child_profile.child_stats.where("created_at >= ?", 1.weeks.ago..Time.now)
+      when "monthly"
+        @child_profile.child_stats.where("created_at >= ?", 1.months.ago..Time.now)
+      when "yearly"
+        @child_profile.child_stats.where("created_at >= ?", 1.years.ago..Time.now)
+      else
+        @child_profile.child_stats
     end
   end
 
@@ -24,7 +41,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     @child_stat = @child_profile.child_stats.new(params[:child_stat])
 
     if @child_stat.save
-      render json:{:status=>true ,:child_state=>@child_stat.to_json }
+      render json:{:status=>true ,:child_stat => @child_stat.to_json }
     else
       render json:{:status => false, :message => @child_stat.errors.full_messages}
     end
