@@ -1,4 +1,4 @@
-
+User.create!(:name=>"admin",:email=>"admin@email.com",:password=>"password",:password_confirmation=>"password",:admin=>true)
 
 @machine=Machine.create!(:bootloader=>312,:firmware=>331,:hwconfig=>1231,:ipaddress=>'123.10.23.12',:macaddress=>'00:09:6B:fF:FE:42',:serialid=>12)
  if @machine

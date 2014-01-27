@@ -1,0 +1,25 @@
+<%unless @users.nil?%>
+    <table id="all_users">
+      <thead>
+        <th>Name</th>
+        <th>Admin</th>
+        <th>Added on</th>
+      </thead>
+      <%@users.each do |user|%>
+      <tbody>
+        <tr>
+          <td><%= user.name%></td>
+          <td><%= user.admin%></td>
+          <td><%= user.created_at%></td>
+        </tr>
+      </tbody>
+      <%end%>
+
+    </table>
+<%end%>
+
+<script>
+    $(document).ready(function(){
+        $("#all_users").dataTable()
+    });
+</script>

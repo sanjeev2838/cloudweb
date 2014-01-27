@@ -1,21 +1,16 @@
 class Api::V1::VaccinesController < Api::V1::BaseController
 
-  ## GET /vaccines
-  ## GET /vaccines.json
   def index
-    require "digest"
-    auth_code = Digest::MD5.hexdigest("techno$garden")
-    if auth_code == params[:authcode]
-      @machine = Machine.where(:serialid => params[:serialid]).first
-      unless @machine.nil?
-        @vaccines = Vaccine.all
-        render json:{:status=>true ,:vaccines=>@vaccines }
-      else
-        render json:{:status => false, :message => "No vaccines found "}
-      end
-    else
-      render json:{:status => false, :message => "Authcode not matched "}
-    end
+    @vaccines = Vaccine.all
+    render json:{:status=>true ,:vaccines=>@vaccines }
+  end
+
+  def verify_token
+    authtoken = request.headers['authtoken']
+    @profile = ParentProfile.find(params[:profile_id])
+    raise  if @profile.authtoken != authtoken
+  rescue Exception =>e
+    render json:{:status => false, :message => "Auth token not verified"}
   end
   #
   ## GET /vaccines/1
@@ -88,4 +83,7 @@ class Api::V1::VaccinesController < Api::V1::BaseController
   #    format.json { head :no_content }
   #  end
   #end
+
+
+
 end
