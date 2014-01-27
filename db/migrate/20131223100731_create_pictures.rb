@@ -8,7 +8,7 @@ class CreatePictures < ActiveRecord::Migration
 
       t.references :parent_profile
       t.references :child_profile
-
+      t.references :diary
       t.timestamps
     end
   end

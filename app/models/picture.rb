@@ -3,6 +3,8 @@ class Picture < ActiveRecord::Base
 
   belongs_to :child_profile
   #belongs_to :parent_profile
+  belongs_to :diary
+  belongs_to :milestone
 
   mount_uploader :image, ImageUploader
 

@@ -1,5 +1,8 @@
 Cloudweb::Application.routes.draw do
 
+  resources :diaries
+
+
   #get "users/new"
   resources :users
 
@@ -10,7 +13,6 @@ Cloudweb::Application.routes.draw do
 
 
   resources :firmwares
-
 
 
   root :to => 'sessions#new'
@@ -90,6 +92,19 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#show', :via => :get
       match  '/profiles/:profile_id/children/:children_id/pictures/:id' => 'pictures#destroy', :via => :delete
       match  '/profiles/:profile_id/children/:children_id/pictures' => 'pictures#index', :via => :get
+
+   # Api for diary
+   #   match  '/profiles/:profile_id/children/:children_id/logbook' => 'logbooks#index', :via => :get
+      match  '/profiles/:profile_id/children/:children_id/diary' => 'diaries#create', :via => :post
+      #match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#show', :via => :get
+      #match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#destroy', :via => :delete
+      #match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#update', :via => :put
+
+   # Api for milestones
+      match '/milestones' => 'milestones#index',  :via => :get
+
+   # Api for languages
+   #   match '/languages' => 'langages#index',  :via => :get
     end
   end
 

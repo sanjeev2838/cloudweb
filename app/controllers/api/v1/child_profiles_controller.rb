@@ -85,6 +85,26 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   end
 
+  def get_vaccines
+    #todo result based on type parameter
+  end
+
+  def get_meals
+    #todo result based on type parameter
+
+  end
+
+  def get_half_booltes
+
+  end
+
+  def get_full_bottle_entries
+
+  end
+
+  def get_diapers
+
+  end
 
   private
   def find_profile
