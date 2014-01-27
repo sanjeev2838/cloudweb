@@ -1,4 +1,5 @@
 class Api::V1::ChildStatsController < Api::V1::BaseController
+  before_filter :verify_token
 
 #todo remove parent_profile later on
   before_filter :find_profile, :only => [:update,:index,:create]
@@ -18,7 +19,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   def create
     @parent_profile = ParentProfile.find(params[:profile_id])
     @child_profile = @parent_profile.child_profiles.find(params[:child_id])
-    vaccine = Vaccine.find_by_title(params[:vaccine])
+    vaccine = Vaccine.find_by_title(params[:vaccine])  if params[:vaccine]
     params[:child_stat] = params[:child_stat].merge(:vaccine_id => vaccine.id) unless vaccine.nil?
     @child_stat = @child_profile.child_stats.new(params[:child_stat])
 
@@ -31,9 +32,19 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   end
 
   private
+
   def find_profile
     @profile = ParentProfile.find(params[:profile_id])
   rescue ActiveRecord::RecordNotFound
     render json:{:status => false, :message => "Unable to find parent profile on cloud"}
   end
+
+  def verify_token
+    authtoken = request.headers['authtoken']
+    @profile = ParentProfile.find(params[:profile_id])
+    raise  if @profile.authtoken != authtoken
+  rescue Exception => e
+    render json:{:status => false, :message => "Auth token not verified"}
+  end
+
 end

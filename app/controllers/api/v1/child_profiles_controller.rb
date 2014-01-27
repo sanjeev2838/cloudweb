@@ -3,7 +3,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   def index
     @parent_profile = ParentProfile.find(params[:profile_id])
-    @child_profiles=@parent_profile.child_profiles
+    @child_profiles=@parent_profile.child_profiles.where(status: true)
 
     if @child_profiles.empty?
        render json:{:status => false, :message => "Child not found for this id"}
@@ -75,6 +75,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   #
   def destroy
     @parent_profile = ParentProfile.find(params[:profile_id])
+    #todo add exception handler here for wrong id
     @child_profile = @parent_profile.child_profiles.find(params[:id])
     if @child_profile.update_column(:status , false)
       #@child_profile.update_column(:status , false)
