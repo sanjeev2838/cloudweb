@@ -7,8 +7,11 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   def index
     @parent_profile = ParentProfile.find(params[:profile_id])
     @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return
+    end
     @stats = ChildStat.get_child_stat(@child_profile.id,@parent_profile.id,params[:type])
-
     if @stats.empty?
       render json:{:status => false, :message => "Child stats not found "}
     end
@@ -40,11 +43,11 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   end
 
   def verify_token
-    authtoken = request.headers['authtoken']
-    @profile = ParentProfile.find(params[:profile_id])
-    raise  if @profile.authtoken != authtoken
-  rescue Exception => e
-    render json:{:status => false, :message => "Auth token not verified"}
+  #  authtoken = request.headers['authtoken']
+  #  @profile = ParentProfile.find(params[:profile_id])
+  #  raise  if @profile.authtoken != authtoken
+  #rescue Exception => e
+  #  render json:{:status => false, :message => "Auth token not verified"}
   end
 
 end
