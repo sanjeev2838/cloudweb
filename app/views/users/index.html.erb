@@ -1,16 +1,27 @@
+<h2>List All Users</h2><br><br>
 <%unless @users.nil?%>
     <table id="all_users">
       <thead>
         <th>Name</th>
-        <th>Admin</th>
-        <th>Added on</th>
+        <th>User Name</th>
+        <th>Role</th>
+        <th>Last Login</th>
+        <th>ip Address</th>
+        <th>Actions</th>
       </thead>
       <%@users.each do |user|%>
       <tbody>
         <tr>
           <td><%= user.name%></td>
-          <td><%= user.admin%></td>
-          <td><%= user.created_at%></td>
+          <td><%= user.email%></td>
+          <%if user.admin%>
+            <td>admin</td>
+          <%else%>
+            <td>Normal</td>
+          <%end%>
+          <td><%= user.last_login%></td>
+          <td><%= user.ip_address%></td>
+          <td></td>
         </tr>
       </tbody>
       <%end%>

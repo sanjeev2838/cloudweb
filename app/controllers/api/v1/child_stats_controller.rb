@@ -27,7 +27,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     @child_stat = @child_profile.child_stats.new(params[:child_stat])
 
     if @child_stat.save
-      render json:{:status=>true ,:child_stat => @child_stat.to_json }
+      render json:{:status=>true ,:child_state=>@child_stat.as_json }
     else
       render json:{:status => false, :message => @child_stat.errors.full_messages}
     end

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_filter :admin_user, only: [:destroy,:new,:update,:edit]
   def index
     @users = User.all
+
   end
   def new
     @user = User.new
@@ -22,6 +23,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def update
+
   end
 
 

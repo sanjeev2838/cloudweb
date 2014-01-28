@@ -22,7 +22,7 @@ class MilestonesController < ApplicationController
 
   def new
     @milestone = Milestone.new
-    @languages = Language.all
+
     puts "the languages are #{@languages}"
 
     respond_to do |format|
