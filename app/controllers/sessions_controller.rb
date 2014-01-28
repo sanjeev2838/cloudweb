@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-       sign_in user
-       #current_user user
+      user.update_attributes(:ip_address => request.remote_ip,:last_login=> Time.now)
+      sign_in user
+
       redirect_to admin_dashboard_index_path
     else
       redirect_to signin_path

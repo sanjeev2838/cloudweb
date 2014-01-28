@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140127055702) do
+ActiveRecord::Schema.define(:version => 20140128070026) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -30,6 +30,11 @@ ActiveRecord::Schema.define(:version => 20140127055702) do
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "child_profiles_parent_profiles", :force => true do |t|
+    t.integer "child_profile_id"
+    t.integer "parent_profile_id"
   end
 
   create_table "child_stats", :force => true do |t|
@@ -107,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20140127055702) do
   create_table "milestones", :force => true do |t|
     t.string   "title"
     t.string   "icon"
+    t.string   "image"
     t.integer  "language_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -146,6 +152,8 @@ ActiveRecord::Schema.define(:version => 20140127055702) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "ip_address"
+    t.datetime "last_login"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

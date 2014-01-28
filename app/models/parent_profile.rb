@@ -4,7 +4,7 @@ class ParentProfile < ActiveRecord::Base
 
   attr_accessor   :serialid
 
-  has_many :child_profiles
+  has_and_belongs_to_many :child_profiles
   has_many :logbooks
   belongs_to :machine
 
@@ -19,7 +19,7 @@ class ParentProfile < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   RELATIONS = {  mamma: 0, pappa: 1, gaurdian: 2 }
-  DEVICES = { andriod: 0 , iphone: 1 , blackberry: 2}
+  DEVICES = { iphone: 0 , android: 1 , blackberry: 2}
   LANG = %w(sv no en)
   validates :relation, inclusion: {in: ParentProfile::RELATIONS.values}
   validates :devicetypeid, inclusion: {in: ParentProfile::DEVICES.values}

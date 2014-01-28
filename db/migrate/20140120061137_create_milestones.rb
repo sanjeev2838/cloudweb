@@ -3,6 +3,7 @@ class CreateMilestones < ActiveRecord::Migration
     create_table :milestones do |t|
       t.string :title
       t.string :icon
+      t.string :image
 
       t.references :language
       t.timestamps
