@@ -23,7 +23,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     @child_profile = @parent_profile.child_profiles.find(params[:child_id])
     vaccine = Vaccine.find_by_title(params[:vaccine])  if params[:vaccine]
     params[:child_stat] = params[:child_stat].merge(:vaccine_id => vaccine.id) unless vaccine.nil?
-   # params[:child_stat] = params[:child_stat].merge(:)
+    params[:child_stat] = params[:child_stat].merge(:parent_profile_id => @parent_profile.id)
     @child_stat = @child_profile.child_stats.new(params[:child_stat])
 
     if @child_stat.save
