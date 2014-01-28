@@ -6,6 +6,5 @@ json.children do |json|
        json.set! :dob,child_profile.dob
        json.set! :gender,child_profile.gender
        json.set! :filepath, request.protocol + request.host_with_port + child_profile.pictures.first.image_url
-
     end
 end

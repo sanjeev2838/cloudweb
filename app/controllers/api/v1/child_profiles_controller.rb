@@ -117,11 +117,11 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
    # todo refector later on by migrating a helper method
 
   def verify_token
-    authtoken = request.headers['authtoken']
-    @profile = ParentProfile.find(params[:profile_id])
-    raise  if @profile.authtoken != authtoken
-  rescue Exception =>e
-    render json:{:status => false, :message => "Auth token not verified"}
+  #  authtoken = request.headers['authtoken']
+  #  @profile = ParentProfile.find(params[:profile_id])
+  #  raise  if @profile.authtoken != authtoken
+  #rescue Exception =>e
+  #  render json:{:status => false, :message => "Auth token not verified"}
   end
 
 end

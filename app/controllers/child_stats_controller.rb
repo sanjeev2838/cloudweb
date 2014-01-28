@@ -1,6 +1,5 @@
 class ChildStatsController < ApplicationController
-  # GET /child_stats
-  # GET /child_stats.json
+
   def index
     @child_stats = ChildStat.all
 
@@ -10,8 +9,6 @@ class ChildStatsController < ApplicationController
     end
   end
 
-  # GET /child_stats/1
-  # GET /child_stats/1.json
   def show
     @child_stat = ChildStat.find(params[:id])
 
@@ -21,8 +18,6 @@ class ChildStatsController < ApplicationController
     end
   end
 
-  # GET /child_stats/new
-  # GET /child_stats/new.json
   def new
     @child_stat = ChildStat.new
 
@@ -32,13 +27,10 @@ class ChildStatsController < ApplicationController
     end
   end
 
-  # GET /child_stats/1/edit
   def edit
     @child_stat = ChildStat.find(params[:id])
   end
 
-  # POST /child_stats
-  # POST /child_stats.json
   def create
     @child_stat = ChildStat.new(params[:child_stat])
 
@@ -53,8 +45,6 @@ class ChildStatsController < ApplicationController
     end
   end
 
-  # PUT /child_stats/1
-  # PUT /child_stats/1.json
   def update
     @child_stat = ChildStat.find(params[:id])
 
@@ -69,8 +59,6 @@ class ChildStatsController < ApplicationController
     end
   end
 
-  # DELETE /child_stats/1
-  # DELETE /child_stats/1.json
   def destroy
     @child_stat = ChildStat.find(params[:id])
     @child_stat.destroy
