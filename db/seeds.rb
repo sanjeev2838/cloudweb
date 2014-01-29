@@ -6,3 +6,7 @@ User.create!(:name=>"admin",:email=>"admin@email.com",:password=>"password",:pas
     @child_profile = @parent_profile.child_profiles.create!(:name=>"Child1",:dob=>"2013-12-12",:gender => "male")
  end
 
+10.times do |vac|
+  Vaccine.create!(:title=>"vac#{vac}")
+end
+

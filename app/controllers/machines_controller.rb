@@ -150,7 +150,7 @@ class MachinesController < ApplicationController
             end
           end
           flash[:notice] = "Data uploaded successfully"
-          redirect_to root_url
+          redirect_to admin_dashboard_index_path
         rescue Exception => exc
     #      schooldata.error exc
           puts "the error is #{exc}"
@@ -163,7 +163,7 @@ class MachinesController < ApplicationController
     else
       #schooldata.error "File no found"
       flash[:notice] = "File not found error"
-      redirect_to root_url
+      redirect_to admin_dashboard_index_path
     end
   end
 

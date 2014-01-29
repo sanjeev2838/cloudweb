@@ -52,7 +52,7 @@ class ChildStat < ActiveRecord::Base
         stats
       else
         stats
-      end
+    end
   end
 
   def self.filter_data_x(records)
@@ -105,6 +105,275 @@ class ChildStat < ActiveRecord::Base
     end
     stat
   end
+
+
+
+    def self.get_child_vaccine(child_id,parent_id,type=nil)
+      case type
+        when "daily"
+          time_range = 1.days.ago..Time.now
+          child_states= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
+          list=[]
+          vac = Hash.new
+          child_states.each do |stat|
+            vaccine=Vaccine.find_by_id(stat.vaccine_id)
+            vac = {"vaccine"=>vaccine.title,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+            list << vac
+          end
+          list
+
+        when "weekly"
+          time_range = 1.weeks.ago..Time.now
+          child_states= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
+          list=[]
+          vac = Hash.new
+          child_states.each do |stat|
+            vaccine=Vaccine.find_by_id(stat.vaccine_id)
+            vac = {"vaccine"=>vaccine.title,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+            list << vac
+          end
+          list
+
+        when "monthly"
+          time_range = 1.months.ago..Time.now
+          child_states= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
+          list=[]
+          vac = Hash.new
+          child_states.each do |stat|
+            vaccine=Vaccine.find_by_id(stat.vaccine_id)
+            vac = {"vaccine"=>vaccine.title,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+            list << vac
+          end
+          list
+
+        when "yearly"
+          time_range = 1.years.ago..Time.now
+          child_states= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
+          list=[]
+          vac = Hash.new
+          child_states.each do |stat|
+            vaccine=Vaccine.find_by_id(stat.vaccine_id)
+            vac = {"vaccine"=>vaccine.title,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+            list << vac
+          end
+          list
+
+        else
+          list
+        end
+    end
+
+
+  def self.get_child_meals(child_id,parent_id,type=nil)
+    case type
+      when "daily"
+        time_range = 1.days.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("meals IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        meal = Hash.new
+        child_states.each do |stat|
+          meal = {"meal"=>stat.meals,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << meal
+        end
+        list
+
+      when "weekly"
+        time_range = 1.weeks.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("meals_id IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        meal = Hash.new
+        child_states.each do |stat|
+          meal = {"meal"=>stat.meals,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << meal
+        end
+        list
+
+      when "monthly"
+        time_range = 1.months.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("meals_id IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        meal = Hash.new
+        child_states.each do |stat|
+          meal = {"meal"=>stat.meals,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << meal
+        end
+        list
+
+      when "yearly"
+        time_range = 1.years.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("meals_id IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        meal = Hash.new
+        child_states.each do |stat|
+          meal = {"meal"=>stat.meals,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << meal
+        end
+        list
+
+      else
+        list
+    end
+  end
+
+
+  def self.get_child_diapers(child_id,parent_id,type=nil)
+    case type
+      when "daily"
+        time_range = 1.days.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("diapers IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        diaper = Hash.new
+        child_states.each do |stat|
+          diaper = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << diaper
+        end
+        list
+
+      when "weekly"
+        time_range = 1.weeks.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("daipers_id IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        diaper = Hash.new
+        child_states.each do |stat|
+          diaper = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << diaper
+        end
+        list
+
+      when "monthly"
+        time_range = 1.months.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("diapers_id IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        diaper = Hash.new
+        child_states.each do |stat|
+          diaper = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << diaper
+        end
+        list
+
+      when "yearly"
+        time_range = 1.years.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("diapers_id IS NOT NULL").where(:created_at => time_range).all
+        list=[]
+        diaper = Hash.new
+        child_states.each do |stat|
+          diaper = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << diaper
+        end
+        list
+
+      else
+        list
+    end
+  end
+
+  def self.get_child_full_bottal(child_id,parent_id,type=nil)
+    case type
+      when "daily"
+        time_range = 1.days.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 1).all
+        list=[]
+        full_bottle = Hash.new
+        child_states.each do |stat|
+          full_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << full_bottle
+        end
+        list
+
+      when "weekly"
+        time_range = 1.weeks.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 1).all
+        list=[]
+        full_bottle = Hash.new
+        child_states.each do |stat|
+          full_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << full_bottle
+        end
+        list
+
+      when "monthly"
+        time_range = 1.months.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 1).all
+        list=[]
+        full_bottle = Hash.new
+        child_states.each do |stat|
+          full_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << full_bottle
+        end
+        list
+
+      when "yearly"
+        time_range = 1.years.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 1).all
+        list=[]
+        full_bottle = Hash.new
+        child_states.each do |stat|
+          full_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << full_bottle
+        end
+        list
+
+      else
+        list
+    end
+
+  end
+
+  def self.get_child_half_bottal(child_id,parent_id,type=nil)
+    case type
+      when "daily"
+        time_range = 1.days.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 0).all
+        list=[]
+        half_bottle = Hash.new
+        child_states.each do |stat|
+          half_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << half_bottle
+        end
+        list
+
+      when "weekly"
+        time_range = 1.weeks.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 0).all
+        list=[]
+        half_bottle = Hash.new
+        child_states.each do |stat|
+          half_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << half_bottle
+        end
+        list
+
+      when "monthly"
+        time_range = 1.months.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 0).all
+        list=[]
+        half_bottle = Hash.new
+        child_states.each do |stat|
+          half_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << half_bottle
+        end
+        list
+
+      when "yearly"
+        time_range = 1.years.ago..Time.now
+        child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where(:created_at => time_range).where( :bottle=> 0).all
+        list=[]
+        half_bottle = Hash.new
+        child_states.each do |stat|
+          half_bottle = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
+          list << half_bottle
+        end
+        list
+
+      else
+        list
+    end
+
+  end
+
+
+
+
 
   #def self.stat_hash_the_way_they_need(parent, others)
   #    stats = {}

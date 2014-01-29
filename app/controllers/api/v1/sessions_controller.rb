@@ -10,7 +10,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
     unless user.nil?
       I18n.locale = user.lang.to_sym
       if user.password == params[:session][:password]
-        render json:{:status => true, :authcode => user.authtoken, :id=> user.id}
+        render json:{:status => true, :authtoken => user.authtoken, :id=> user.id}
       else
         render json:{:status => false, :message => I18n.t('login.password')}
       end

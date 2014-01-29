@@ -18,6 +18,75 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   end
 
 
+
+  def child_vaccines
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return
+    end
+    @vaccines = ChildStat.get_child_vaccine(@child_profile.id,@parent_profile.id,params[:type])
+    if @vaccines.empty?
+      render json:{:status => false, :message => "Child stats not found "}
+    end
+
+  end
+
+  def child_meals
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return
+    end
+    @meals = ChildStat.get_child_meals(@child_profile.id,@parent_profile.id,params[:type])
+    if @meals.empty?
+      render json:{:status => false, :message => "Child stats not found "}
+    end
+
+  end
+
+  def child_diapers
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return
+    end
+    @diapers = ChildStat.get_child_diapers(@child_profile.id,@parent_profile.id,params[:type])
+    if @diapers.empty?
+      render json:{:status => false, :message => "Child stats not found "}
+    end
+  end
+
+  def child_full_bottles
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return
+    end
+    @child_full_bottles = ChildStat.get_child_full_bottal(@child_profile.id,@parent_profile.id,params[:type])
+    if @child_full_bottles.empty?
+      render json:{:status => false, :message => "Child stats not found "}
+    end
+  end
+
+  def child_half_bottles
+    @parent_profile = ParentProfile.find(params[:profile_id])
+    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return
+    end
+    @child_half_bottles = ChildStat.get_child_half_bottal(@child_profile.id,@parent_profile.id,params[:type])
+    if @child_half_bottles.empty?
+      render json:{:status => false, :message => "Child stats not found "}
+    end
+  end
+
+
   def create
     @parent_profile = ParentProfile.find(params[:profile_id])
     @child_profile = @parent_profile.child_profiles.find(params[:child_id])

@@ -34,6 +34,11 @@ Cloudweb::Application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :child_stats  do
+        collection do
+           get :child_vaccines,:child_meals ,:child_diapers,:child_full_bottles,:child_half_bottles
+        end
+        end
 
 # for registering new machine
 
@@ -81,6 +86,12 @@ Cloudweb::Application.routes.draw do
 
       match '/profiles/:profile_id/children/:child_id/stats' => 'child_stats#create', :via => :post
       match '/profiles/:profile_id/children/:child_id/stats' => 'child_stats#index', :via => :get
+      match '/profiles/:profile_id/children/:child_id/vaccines'=> 'child_stats#child_vaccines', :via => :get
+      match '/profiles/:profile_id/children/:child_id/meals'=> 'child_stats#child_meals', :via => :get
+      match '/profiles/:profile_id/children/:child_id/diapers'=> 'child_stats#child_diapers', :via => :get
+      match '/profiles/:profile_id/children/:child_id/fullbottles'=> 'child_stats#child_full_bottles', :via => :get
+      match '/profiles/:profile_id/children/:child_id/halfbottles'=> 'child_stats#child_half_bottles', :via => :get
+
 
     # for getting all vaccines
 
