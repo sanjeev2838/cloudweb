@@ -209,3 +209,10 @@ html, body {
 .csv_format a {
     color: deepskyblue;
 }
+
+.text_field{
+    margin-right: 50px;
+    width: 200px;
+
+    display: inline;
+}

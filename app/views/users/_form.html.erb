@@ -1,0 +1,47 @@
+
+<%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this milestone from being saved:</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %><br>
+    <div class="field">
+      <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </p>
+    </div>
+    <div class="field">
+      <p>
+        <%= f.label :email %><br>
+        <%= f.text_field :email %>
+      </p>
+    </div>
+    <div class="field">
+      <p>
+        <%= f.label :password %> <br>
+        <%= f.password_field :password %>
+      </p>
+    </div>
+    <div class="field">
+      <p>
+        <%= f.label :password_confirmation, "Confirmation" %><br>
+        <%= f.password_field :password_confirmation %>
+      </p>
+    </div>
+    <div class="field">
+      <p>
+        <%= f.label :admin,"Make this user admin"%><br/>
+        <%= f.check_box :admin%>
+      </p>
+
+    </div>
+
+    <%= f.submit "Submit"%>
+<% end %>
+

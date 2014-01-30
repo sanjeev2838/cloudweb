@@ -28,7 +28,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     end
     @vaccines = ChildStat.get_child_vaccine(@child_profile.id,@parent_profile.id,params[:type])
     if @vaccines.empty?
-      render json:{:status => false, :message => "Child stats not found "}
+      render json:{:status => false, :message => "Child Vaccines not found "}
     end
 
   end
@@ -42,7 +42,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     end
     @meals = ChildStat.get_child_meals(@child_profile.id,@parent_profile.id,params[:type])
     if @meals.empty?
-      render json:{:status => false, :message => "Child stats not found "}
+      render json:{:status => false, :message => "Child meals not found "}
     end
 
   end
@@ -56,7 +56,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     end
     @diapers = ChildStat.get_child_diapers(@child_profile.id,@parent_profile.id,params[:type])
     if @diapers.empty?
-      render json:{:status => false, :message => "Child stats not found "}
+      render json:{:status => false, :message => "Child diapers not found "}
     end
   end
 
@@ -69,7 +69,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     end
     @child_full_bottles = ChildStat.get_child_full_bottal(@child_profile.id,@parent_profile.id,params[:type])
     if @child_full_bottles.empty?
-      render json:{:status => false, :message => "Child stats not found "}
+      render json:{:status => false, :message => "Child full bottles not found "}
     end
   end
 
@@ -82,25 +82,30 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     end
     @child_half_bottles = ChildStat.get_child_half_bottal(@child_profile.id,@parent_profile.id,params[:type])
     if @child_half_bottles.empty?
-      render json:{:status => false, :message => "Child stats not found "}
+      render json:{:status => false, :message => "Child half bottles not found "}
     end
   end
 
 
   def create
     @parent_profile = ParentProfile.find(params[:profile_id])
-    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
-    vaccine = Vaccine.find_by_title(params[:vaccine])  if params[:vaccine]
-    params[:child_stat] = params[:child_stat].merge(:vaccine_id => vaccine.id) unless vaccine.nil?
-    params[:child_stat] = params[:child_stat].merge(:parent_profile_id => @parent_profile.id)
-    @child_stat = @child_profile.child_stats.new(params[:child_stat])
+    begin
+      @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+      raise  ActiveRecord::RecordNotFound if @child_profile.nil?
+      rescue ActiveRecord::RecordNotFound
+        render json:{:status => false, :message => "Unable to find child profile on cloud"}
+      else
+        vaccine = Vaccine.find_by_title(params[:vaccine])  if params[:vaccine]
+        params[:child_stat] = params[:child_stat].merge(:vaccine_id => vaccine.id) unless vaccine.nil?
+        params[:child_stat] = params[:child_stat].merge(:parent_profile_id => @parent_profile.id)
+        @child_stat = @child_profile.child_stats.new(params[:child_stat])
 
-    if @child_stat.save
-      render json:{:status=>true ,:child_state=>@child_stat.as_json }
-    else
-      render json:{:status => false, :message => @child_stat.errors.full_messages}
+        if @child_stat.save
+          render json:{:status=>true ,:child_state=>@child_stat.as_json }
+        else
+          render json:{:status => false, :message => @child_stat.errors.full_messages}
+        end
     end
-
   end
 
   private

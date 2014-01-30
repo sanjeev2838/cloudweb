@@ -10,7 +10,7 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find_by_remember_token(cookies[:remember_token])
+    @current_user ||= User.find_by_id(session[:current_user_id])
 
   end
 
@@ -21,6 +21,7 @@ module SessionsHelper
   def sign_out
     current_user = nil
     cookies.delete(:remember_token)
+    session[:current_user_id]=nil
 
   end
 

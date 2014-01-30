@@ -1,6 +1,13 @@
-<h1>Editing child_profile</h1>
+<h1>Editing Child Profile</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @child_profile %> |
-<%= link_to 'Back', child_profiles_path %>
+<%unless @child_profile.pictures.nil?%>
+    <%@child_profile.pictures.each do |pic|%>
+        <%= image_tag pic.image_url  if pic.image? %><br>
+        <%= link_to "Remove", pic,:method => "delete"%>
+
+    <%end%>
+<%end%>
+
+

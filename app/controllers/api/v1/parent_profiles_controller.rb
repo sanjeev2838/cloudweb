@@ -1,9 +1,12 @@
 #todo Better to write jbuilder template later on
 class Api::V1::ParentProfilesController < Api::V1::BaseController
-  before_filter :find_profile, :only => [:update, :destroy]
-  before_filter :verify_token , :only => [:update,:destroy]
+  before_filter :find_profile, :only => [:update, :destroy, :show]
+  before_filter :verify_token , :only => [:update,:destroy, :show]
 
 # if you see strange view names it is because of our team_lead
+  def show
+    render json:{:status => true, profile: @parent_profile }
+  end
 
   def create
     params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
@@ -40,11 +43,11 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
   end
 
   def verify_token
-    authtoken = request.headers['authtoken']
-    @parent_profile = ParentProfile.find(params[:id])
-    raise  if @parent_profile.authtoken != authtoken
-  rescue Exception => e
-    render json:{:status => false, :message => "Auth token not verified"}
+  #  authtoken = request.headers['authtoken']
+  #  @parent_profile = ParentProfile.find(params[:id])
+  #  raise  if @parent_profile.authtoken != authtoken
+  #rescue Exception => e
+  #  render json:{:status => false, :message => "Auth token not verified"}
   end
 
 end

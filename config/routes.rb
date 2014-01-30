@@ -60,7 +60,7 @@ Cloudweb::Application.routes.draw do
       match  '/profiles' => 'parent_profiles#create', :via => :post
       match  '/profiles/:id' => 'parent_profiles#update', :via => :put
       match  '/profiles/:id' => 'parent_profiles#destroy', :via => :delete
-
+      match  '/profiles/:id' => 'parent_profiles#show', :via => :get
 #for adding children to parent_profile
 
       match  '/profiles/:profile_id/children' => 'child_profiles#index', :via => :get

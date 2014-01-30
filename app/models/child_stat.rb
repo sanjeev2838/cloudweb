@@ -90,17 +90,18 @@ class ChildStat < ActiveRecord::Base
     stat[:vaccines][user.to_sym] = 0
     stat[:meals][user.to_sym] = 0
     stat[:diapers][user.to_sym] = 0
-    created_at =
     records.each do |record|
       stat[:graph][record.created_at.to_s][:weight] =  record.weight if record.weight
       stat[:graph][record.created_at.to_s][:height] =  record.height if record.height
       stat[:vaccines][user.to_sym] += 1 if record.vaccine_id
       stat[:meals][user.to_sym]  += 1 if record.meals
       stat[:diapers][user.to_sym]  += 1 if record.diapers
-      if record.bottle == 1
+      if record.bottle
+       if  record.bottle== 1
         stat[:bottles_full][user.to_sym] += 1
-      else
+       else
         stat[:bottles_half][user.to_sym] += 1
+       end
       end
     end
     stat
@@ -168,7 +169,7 @@ class ChildStat < ActiveRecord::Base
     case type
       when "daily"
         time_range = 1.days.ago..Time.now
-        child_states= where(:child_profile_id=>child_id).where("meals IS NOT NULL").where(:created_at => time_range).all
+        child_states= where(:child_profile_id=>child_id).where("meals NOT NULL").where(:created_at => time_range).all
         list=[]
         meal = Hash.new
         child_states.each do |stat|
@@ -179,7 +180,7 @@ class ChildStat < ActiveRecord::Base
 
       when "weekly"
         time_range = 1.weeks.ago..Time.now
-        child_states= where(:child_profile_id=>child_id).where("meals_id IS NOT NULL").where(:created_at => time_range).all
+        child_states= where(:child_profile_id=>child_id).where("meals IS NOT NULL").where(:created_at => time_range).all
         list=[]
         meal = Hash.new
         child_states.each do |stat|
@@ -190,7 +191,7 @@ class ChildStat < ActiveRecord::Base
 
       when "monthly"
         time_range = 1.months.ago..Time.now
-        child_states= where(:child_profile_id=>child_id).where("meals_id IS NOT NULL").where(:created_at => time_range).all
+        child_states= where(:child_profile_id=>child_id).where("meals IS NOT NULL").where(:created_at => time_range).all
         list=[]
         meal = Hash.new
         child_states.each do |stat|
@@ -201,7 +202,7 @@ class ChildStat < ActiveRecord::Base
 
       when "yearly"
         time_range = 1.years.ago..Time.now
-        child_states= where(:child_profile_id=>child_id).where("meals_id IS NOT NULL").where(:created_at => time_range).all
+        child_states= where(:child_profile_id=>child_id).where("meals IS NOT NULL").where(:created_at => time_range).all
         list=[]
         meal = Hash.new
         child_states.each do |stat|
