@@ -27,14 +27,14 @@
        <li><a href="/milestones">Milestones</a></li>
      </ul>
    </li>
-   <li><a href="">Machines</a>
+   <li><a href="/machines">Machines</a>
      <ul>
        <li> <a href="/machines">Machines</a></li>
        <li> <a href="/firmwares">Firmware</a></li>
        <li><a href="/machines/machines_import">Machine Import</a></li>
      </ul>
    </li>
-   <li><a href="">Staff Users</a>
+   <li><%= link_to "Staff Users", users_path%>
      <% if current_user.admin? && !current_user?(@user) %>
      <ul>
        <li><%= link_to "Add New User", signup_path%> </li>

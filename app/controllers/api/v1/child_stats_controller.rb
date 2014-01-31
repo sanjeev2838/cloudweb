@@ -60,27 +60,29 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     end
   end
 
-  def child_full_bottles
+  def get_child_parent_id(params)
     @parent_profile = ParentProfile.find(params[:profile_id])
     @child_profile = @parent_profile.child_profiles.find(params[:child_id])
     if params[:type].nil?
       render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
       return
     end
-    @child_full_bottles = ChildStat.get_child_full_bottal(@child_profile.id,@parent_profile.id,params[:type])
+    [@parent_profile.id,@child_profile.id]
+  end
+
+  def child_full_bottles
+    child_id = get_child_parent_id(params)[0]
+    parent_id = get_child_parent_id(params)[1]
+    @child_full_bottles = ChildStat.get_child_bottle(child_id,parent_id,params[:type],1)
     if @child_full_bottles.empty?
       render json:{:status => false, :message => "Child full bottles not found "}
     end
   end
 
   def child_half_bottles
-    @parent_profile = ParentProfile.find(params[:profile_id])
-    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
-    if params[:type].nil?
-      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
-      return
-    end
-    @child_half_bottles = ChildStat.get_child_half_bottal(@child_profile.id,@parent_profile.id,params[:type])
+    child_id = get_child_parent_id(params)[0]
+    parent_id = get_child_parent_id(params)[1]
+    @child_half_bottles = ChildStat.get_child_bottle(@child_profile.id,@parent_profile.id,params[:type],2)
     if @child_half_bottles.empty?
       render json:{:status => false, :message => "Child half bottles not found "}
     end
@@ -94,9 +96,8 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
       raise  ActiveRecord::RecordNotFound if @child_profile.nil?
       rescue ActiveRecord::RecordNotFound
         render json:{:status => false, :message => "Unable to find child profile on cloud"}
-      else
-        vaccine = Vaccine.find_by_title(params[:vaccine])  if params[:vaccine]
-        params[:child_stat] = params[:child_stat].merge(:vaccine_id => vaccine.id) unless vaccine.nil?
+    else
+        params[:child_stat] = params[:child_stat].merge(:vaccine_id => params[:vaccine])
         params[:child_stat] = params[:child_stat].merge(:parent_profile_id => @parent_profile.id)
         @child_stat = @child_profile.child_stats.new(params[:child_stat])
 

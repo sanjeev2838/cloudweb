@@ -7,13 +7,12 @@
   <thead>
   <tr>
     <th>Serial number</th>
-    <th>Status</th>
-    <th>Activated on</th>
     <th>Firmware version</th>
     <th>Hw config</th>
-    <th>Mac address</th>
-    <th>Ip address</th>
     <th>BootLoader Version</th>
+    <th>Ip address</th>
+    <th>Mac address</th>
+    <th>Status</th>
     <th></th>
     <th></th>
     <th></th>
@@ -23,13 +22,12 @@
 <% @machines.each do |machine| %>
   <tr>
     <td><%= machine.serialid %></td>
-    <td><%=  machine.status ? "active" : "inactive"  %></td>
-    <td><%= machine.activated_on %></td>
     <td><%= machine.firmware %></td>
     <td><%= machine.hwconfig %></td>
-    <td><%= machine.macaddress %></td>
-    <td><%= machine.ipaddress %></td>
     <td><%= machine.bootloader %></td>
+    <td><%= machine.ipaddress %></td>
+    <td><%= machine.macaddress %></td>
+    <td><%=  machine.status ? "active" : "inactive"  %></td>
     <td><%= link_to 'View', machine %></td>
     <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
     <td><%= link_to 'Delete', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>

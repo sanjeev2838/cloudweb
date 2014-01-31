@@ -3,7 +3,7 @@
 <div class="content_row">
   <p class="left">
     <b>Registered On:</b>
-    <%= @child_profile.created_at.strftime("%Y-%m-%d %H:%M") %>
+    <%= date_format(@child_profile.created_at) %>
   </p>
 
   <p class="center">
@@ -35,7 +35,7 @@
 <h3>Pictures</h3>
 <%unless @child_profile.pictures.nil?%>
     <%@child_profile.pictures.each do |pic|%>
-        <%= image_tag pic.image_url  if pic.image? %>
+        <%= link_to (image_tag pic.image_url ,:height => 100,:width => 100) if pic.image? %>
     <%end%>
 <%end%>
 <br>
@@ -55,7 +55,7 @@
     <tbody>
     <%@child_state.each do |stat|%>
         <tr>
-          <td><%=stat.created_at%></td>
+          <td><%=date_format(stat.created_at)%></td>
           <td><%=stat.weight%></td>
           <td><%=stat.height%></td>
           <td><%=stat.diapers%></td>

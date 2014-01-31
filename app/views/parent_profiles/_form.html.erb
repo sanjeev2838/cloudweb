@@ -36,10 +36,6 @@
       <%= f.label :machine_serial_id %><br />
       <%= f.number_field :serialid %>
     </div>
-    <div class="field">
-        <%= f.label :language%><br />
-        <%= select :language,:language_id, @languages,:prompt => "Select" %>
-    </div>
 
   <div class="actions">
     <%= f.submit %>

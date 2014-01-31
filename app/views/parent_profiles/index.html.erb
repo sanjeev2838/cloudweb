@@ -4,14 +4,12 @@
 <table id="parent_profile_table">
   <thead>
   <tr>
-    <th>Device type</th>
-    <th>Relation</th>
-    <th>Token</th>
-    <th>Status</th>
     <th>Name</th>
-    <th>Is machine owner</th>
-    <th>machine </th>
+    <th>Email</th>
+    <th>Relation</th>
     <th>Language</th>
+    <th>Machine</th>
+    <th>machine owner</th>
     <th></th>
     <th></th>
     <th></th>
@@ -21,15 +19,19 @@
   <tbody>
 <% @parent_profiles.each do |parent_profile| %>
   <tr>
-    <td><%= parent_profile.devise_type %></td>
-    <td><%= parent_profile.relation_type%></td>
-    <td><%= parent_profile.tokenid %></td>
-    <td><%= parent_profile.status %></td>
     <td><%= parent_profile.name %></td>
-    <td><%= parent_profile.is_machine_owner %></td>
+    <td><%= parent_profile.email%></td>
+     <td><%= parent_profile.relation_type %></td>
+     <% if parent_profile.lang == "en" %>
+        <td>English</td>
+     <% elsif parent_profile.lang == "no" %>
+        <td>Norwegian</td>
+     <%else%>
+        <td>swedish</td>
+     <%end%>
     <td><%= parent_profile.serialid %></td>
-    <td><%= parent_profile.lang%></td>
-    <td><%= link_to 'Show', parent_profile %></td>
+    <td><%= parent_profile.is_machine_owner %></td>
+     <td><%= link_to 'Show', parent_profile %></td>
     <td><%= link_to 'Edit', edit_parent_profile_path(parent_profile) %></td>
     <td><%= link_to 'Destroy', parent_profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
