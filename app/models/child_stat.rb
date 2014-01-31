@@ -70,6 +70,7 @@ class ChildStat < ActiveRecord::Base
       sum_weight += record.weight if record.weight
       sum_height += record.height if record.height
       stat[:vaccines] += 1 if record.vaccine_id
+      #todo why not null empty string
       stat[:meals]  += 1 if record.meals
       stat[:diapers]  += 1 if record.diapers
       if record.bottle == 1
@@ -107,107 +108,120 @@ class ChildStat < ActiveRecord::Base
     stat
   end
 
-  def self.perform_query_vaccine(child_id)
-    child_states= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
-    list=[]
-    vac = Hash.new
-    child_states.each do |stat|
-      vaccine=Vaccine.find_by_id(stat.vaccine_id)
-      vac = {"vaccine"=>vaccine.title,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
-      list << vac
+  def self.add_entry(list,date,entry)
+    if list[date].empty?
+      list[date] = Hash.new { |h, k| h[k] = Array.new }
+      list[date][:date] =  date
+      list[date][:entries] = []
+      list[date][:entries] << entry
+    else
+      list[date][:date] =  date
+      list[date][:entries] << entry
     end
-    []
+    list
+  end
+  def self.extract_info(child_stats ,diaper_bottle=false, meals=false, vaccine=false)
+    list =  Hash.new { |h, k| h[k] = Hash.new }
+    child_stats.each do |stat|
+      # for useful date format  %e %b %Y : for am and pm :-%I:%M %p""
+      date = stat.created_at.strftime("%e %b %Y")
+      entry = {}
+      entry[:name] = stat.parent_profile.name
+      entry[:time] = stat.created_at.strftime("%I:%M %p")
+      if meals && stat.meals.length > 1
+        entry[:meals] = stat.meals
+        add_entry(list,date,entry)
+      end
+      if vaccine && stat.vaccine_id
+        vaccine=Vaccine.find_by_id(stat.vaccine_id)
+        entry[:vaccine] = vaccine.title
+        add_entry(list,date,entry)
+      end
+      if diaper_bottle
+        add_entry(list,date,entry)
+      end
+    end
+    list.values
+  end
+
+  def self.perform_query_vaccine(child_id,time_range)
+    child_stats= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
+    extract_info(child_stats ,false, false, true)
   end
 
   def self.get_child_vaccine(child_id,parent_id,type=nil)
-      case type
-        when "daily"
-          time_range = 1.days.ago..Time.now
-          perform_query_vaccine(child_id)
-        when "weekly"
-          time_range = 1.weeks.ago..Time.now
-          perform_query_vaccine(child_id)
-        when "monthly"
-          time_range = 1.months.ago..Time.now
-          perform_query_vaccine(child_id)
-        when "yearly"
-          time_range = 1.years.ago..Time.now
-          perform_query_vaccine(child_id)
-        else
-          []
-        end
+    case type
+      when "daily"
+        time_range = 1.days.ago..Time.now
+        perform_query_vaccine(child_id,time_range)
+      when "weekly"
+        time_range = 1.weeks.ago..Time.now
+        perform_query_vaccine(child_id,time_range)
+      when "monthly"
+        time_range = 1.months.ago..Time.now
+        perform_query_vaccine(child_id,time_range)
+      when "yearly"
+        time_range = 1.years.ago..Time.now
+        perform_query_vaccine(child_id,time_range)
+      else
+        []
     end
+  end
 
-  def self.meals_query(child_id)
-    time_range = 1.days.ago..Time.now
-    child_states= where(:child_profile_id=>child_id).where("meals NOT NULL").where(:created_at => time_range).all
-    list=[]
-    meal = Hash.new
-    child_states.each do |stat|
-      meal = {"meal"=>stat.meals,"time"=>stat.created_at,"name"=>stat.parent_profile.name}
-      list << meal
-    end
-    list
+
+  def self.meals_query(child_id,time_range)
+    child_stats= where(:child_profile_id=>child_id).where("meals NOT NULL").where(:created_at => time_range).all
+    extract_info(child_stats , false,true)
   end
 
   def self.get_child_meals(child_id,parent_id,type=nil)
     case type
       when "daily"
         time_range = 1.days.ago..Time.now
-        meals_query(child_id)
+        meals_query(child_id,time_range)
       when "weekly"
         time_range = 1.weeks.ago..Time.now
-        meals_query(child_id)
+        meals_query(child_id,time_range)
       when "monthly"
         time_range = 1.months.ago..Time.now
-        meals_query(child_id)
+        meals_query(child_id,time_range)
       when "yearly"
         time_range = 1.years.ago..Time.now
-        meals_query(child_id)
+        meals_query(child_id,time_range)
       else
         []
     end
   end
 
-  def self.perform_diaper_query(child_id)
-    child_states= where(:child_profile_id=>child_id).where("diapers IS NOT NULL").where(:created_at => time_range).all
-    list=[]
-    diaper = Hash.new
-    child_states.each do |stat|
-      diaper = {"time"=>stat.created_at,"name"=>stat.parent_profile.name}
-      list << diaper
-    end
-    list
+  def self.perform_diaper_query(child_id,time_range)
+    child_stats= where(:child_profile_id=>child_id).where("diapers IS NOT NULL").where(:created_at => time_range).all
+    extract_info(child_stats,true)
   end
 
   def self.get_child_diapers(child_id,parent_id,type=nil)
     case type
       when "daily"
         time_range = 1.days.ago..Time.now
-        perform_diaper_query(child_id)
+        perform_diaper_query(child_id,time_range)
       when "weekly"
         time_range = 1.weeks.ago..Time.now
-        perform_diaper_query(child_id)
+        perform_diaper_query(child_id,time_range)
       when "monthly"
         time_range = 1.months.ago..Time.now
-        perform_diaper_query(child_id)
+        perform_diaper_query(child_id,time_range)
       when "yearly"
         time_range = 1.years.ago..Time.now
-        perform_diaper_query(child_id)
+        perform_diaper_query(child_id, time_range)
       else
         []
     end
   end
 
   def self.perform_bottle_query(child_id,time_range, bottle)
-    child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where( :bottle=> bottle).where(:created_at => time_range).all
-    half_bottle = Hash.new{|hash, key| hash[key] = Array.new;}
-    child_states.each do |stat|
-      time = stat.created_at.strftime("%m/%d/%Y")
-      half_bottle[time] << stat.parent_profile.name
-    end
-    half_bottle
+    child_stats= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where( :bottle=> bottle).where(:created_at => time_range).all
+    extract_info(child_stats,true)
   end
+
 
   def self.get_child_bottle(child_id,parent_id,type=nil,bottle)
     case type
@@ -228,10 +242,27 @@ class ChildStat < ActiveRecord::Base
     end
   end
 
+   #todo add method_missing for code repetition
 
 
-
-
+  #def self.perform_bottle_query(child_id,time_range, bottle)
+  #  child_states= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where( :bottle=> bottle).where(:created_at => time_range).all
+  #  list =  Hash.new { |h, k| h[k] = Hash.new }
+  #  child_states.each do |stat|
+  #      date = stat.created_at.strftime("%m/%d/%Y")
+  #      if list[date].empty?
+  #        list[date] = Hash.new { |h, k| h[k] = Array.new }
+  #        list[date][:date] =  date
+  #        list[date][:time] << stat.created_at.strftime("%H-%M-%S")
+  #        list[date][:data] << stat.parent_profile.name
+  #      else
+  #        list[date][:date] =  date
+  #        list[date][:time] << stat.created_at.strftime("%H-%M-%S")
+  #        list[date][:data] << stat.parent_profile.name
+  #      end
+  #    end
+  #  list.values
+  #end
 
   #def self.stat_hash_the_way_they_need(parent, others)
   #    stats = {}
