@@ -6,7 +6,11 @@
 <div class="child_pic">
 
   <%unless @child_profile.pictures.nil?%>
-      <%= link_to (image_tag @child_profile.pictures.first.image_url ,:height => 100,:width => 100),@child_profile.pictures.first.image_url,{ :class => "grouped_elements", :rel => "images"}  %>
+      <%if @child_profile.pictures.first.nil?%>
+        <img style="height: 120px; width: 100px" src="/..//assets/child-default.png">
+      <%else%>
+        <%= link_to (image_tag @child_profile.pictures.first.image_url ,:height => 120,:width => 100),@child_profile.pictures.first.image_url,{ :class => "grouped_elements", :rel => "images"}  %>
+      <%end%>
   <%end%>
 </div><br>
 <h3 class="heading_color">Profile Info</h3>
