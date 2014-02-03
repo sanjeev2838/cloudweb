@@ -1,4 +1,4 @@
-<h1>Listing firmwares</h1>
+<h1 class="new_machine_head">Listing firmwares</h1>
 
 <table id="firmware_table">
   <thead>
@@ -23,7 +23,7 @@
 
 <br />
 
-<%= link_to 'New Firmware', new_firmware_path %>
+<div class="new_firm"><%= link_to 'New Firmware', new_firmware_path %>   </div>
 <script>
     $(document).ready(function(){
         $("#firmware_table").dataTable()

@@ -6,14 +6,17 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="devise_body">
+<body>
+<div class="main_wrapper">
+  <div class="wrap">
 <div class="logo_div">
   <img src="/..//assets/logo_blue.png">
   </div>
-<hr style="color: deepskyblue">
+<!--<hr style="color: deepskyblue">-->
+    <div class="signo_in">
 <div class="sign_in_div">
   <h3 style="color: deepskyblue">Login</h3><br>
-  <hr style="color: deepskyblue">
+  <!--<hr style="color: deepskyblue">-->
   <div class="sing_in_inner_div">
     <div class="info_div">
       <% flash.each do |key, value| %>
@@ -23,6 +26,12 @@
 <%= yield %>
 </div>
 </div>
+      </div>
 
+<div class ="footer">
+  <p id="footer_text">Copyright @2014, Technogarden</p>
+</div>
+  </div>
+</div>
 </body>
 </html>

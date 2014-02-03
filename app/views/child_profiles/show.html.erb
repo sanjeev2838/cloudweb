@@ -1,6 +1,6 @@
 <div class="heading">
     <h1><%= @child_profile.name%>'s Profile</h1>
-  <h4>Dashboard > <%= link_to "Parent Profile",parent_profiles_path %> > <%= link_to @parent_profile.name,parent_profile_path(@parent_profile)%> </h4><br>
+  <h4 class="breadcrum">Dashboard > <%= link_to "Parent Profile",parent_profiles_path %> > <%= link_to @parent_profile.name,parent_profile_path(@parent_profile)%> </h4><br>
 </div>
 
 <div class="child_pic">
@@ -13,6 +13,7 @@
       <%end%>
   <%end%>
 </div><br>
+<div class="childo">
 <h3 class="heading_color">Profile Info</h3>
 <div class="content_row">
   <p class="left">
@@ -34,7 +35,7 @@
 <h3 class="heading_color">Preferences</h3>
 <%unless @brewing_preference.nil?%>
     <div class="content_row">
-      <p class="left">
+      <p class="lefto">
         <b>Milk: </b>
         <%= @brewing_preference.milk %> units
       </p>
@@ -43,6 +44,7 @@
         <b>Temperature: </b>
         <%= @brewing_preference.temperature %> cel
       </p>
+      </div>
       </div>
 
     <%end%>
