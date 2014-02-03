@@ -6,8 +6,14 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="devise_body">
+<div class="logo_div">
+  <img src="/..//assets/logo_blue.png">
+  </div>
+<hr style="color: deepskyblue">
 <div class="sign_in_div">
+  <h3 style="color: deepskyblue">Login</h3><br>
+  <hr style="color: deepskyblue">
   <div class="sing_in_inner_div">
     <div class="info_div">
       <% flash.each do |key, value| %>

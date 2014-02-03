@@ -2,6 +2,9 @@
 <div class="heading">
     <h1>Listing machines</h1>
 </div>
+<div class="float_right">
+  <%= link_to 'New Machine', new_machine_path %>
+  </div>
 
 <table id="machines_table">
   <thead>
@@ -38,7 +41,6 @@
 
 <br />
 
-<%= link_to 'New Machine', new_machine_path %>
 <script>
     $(document).ready(function(){
         $("#machines_table").dataTable()
