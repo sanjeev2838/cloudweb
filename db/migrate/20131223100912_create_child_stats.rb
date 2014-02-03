@@ -4,7 +4,7 @@ class CreateChildStats < ActiveRecord::Migration
       t.integer :diapers
       t.integer :weight
       t.integer :height
-      t.string :meals
+      t.string  :meals
       t.integer :bottle
 
       t.references :parent_profile

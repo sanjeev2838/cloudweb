@@ -1,6 +1,14 @@
 class ChildStat < ActiveRecord::Base
   attr_accessible :diapers, :meals, :height, :weight ,:bottle ,:vaccine_id , :parent_profile_id
 
+  before_save :set_nil
+
+  def set_nil
+    [:meals].each do |att|
+      self[att] = nil if self[att].blank?
+    end
+  end
+
   belongs_to :child_profile
   has_one :vaccine
   belongs_to :parent_profile
