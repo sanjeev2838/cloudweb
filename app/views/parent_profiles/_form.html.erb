@@ -11,32 +11,29 @@
     </div>
   <% end %>
 
-
   <div class="field">
-    <%= f.label :devicetypeid %><br />
-    <%= f.select :devicetypeid, [['Andriod', 0], ['Iphone', 1],['blackberry',2]] %>
+     <div class="label_div"><%= f.label :name %></div>
+     <div class="value_div"><%= f.text_field :name,:size => 20 %></div>
   </div>
 
   <div class="field">
-    <%= f.label :token_id %><br />
-    <%= f.text_field :tokenid %>
+    <div class="label_div"><%= f.label :machine_serial_id %></div>
+    <div class="value_div"><%= f.number_field :serialid,:size => 20 %></div>
   </div>
 
     <div class="field">
-      <%= f.label :status %><br />
-      <%= f.select :status, [['Active', true], ['Inactive', false]] %>
-    </div>
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
+    <div class="label_div"> <%= f.label :devicetypeid %></div>
+    <div class="value_div"> <%= f.select :devicetypeid, [['Andriod', 0], ['Iphone', 1],['blackberry',2]] %></div>
+  </div>
 
-
-    <div class="field">
-      <%= f.label :machine_serial_id %><br />
-      <%= f.number_field :serialid %>
-    </div>
-
+  <div class="field">
+    <div class="label_div"><%= f.label :status %></div>
+    <div class="value_div"><%= f.select :status, [['Active', true], ['Inactive', false]] %></div>
+  </div>
+    <!--<div class="field">-->
+    <!--<div class="label_div"><%= f.label :token_id %></div>-->
+      <!--<div class="value_div"><%= f.text_field :tokenid %></div>-->
+  <!--</div>-->
   <div class="actions">
     <%= f.submit %>
   </div>

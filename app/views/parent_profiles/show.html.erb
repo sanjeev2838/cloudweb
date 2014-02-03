@@ -1,5 +1,9 @@
-<h3>User Manager > <%= @parent_profile.name %> </h3>
+<div class="heading">
+  <h1><%= @parent_profile.name %>'s Profile </h1>
+</div>
+<h3>Dashboard > <%=link_to "Parent Profile",parent_profiles_path %> </h3><br>
 
+<h2 class="heading_color">Profile Info</h2>
 <div class="content_row">
 <p class="left">
   <b>Registered On:</b>
@@ -26,7 +30,7 @@
 
 
 <div id="machines">
-  <h3> Machine</h3>
+  <h2 class="heading_color"> Machine</h2><br>
 <%unless @machine.nil?%>
   <table id="user_machine_table">
     <thead>
@@ -59,7 +63,7 @@
 
 
 <div id= "child_profiles">
-  <h3>Children total(<%=@parent_profile.child_profiles.count%>)</h3>
+  <h2 class="heading_color">Children total(<%=@parent_profile.child_profiles.count%>)</h2><br>
 
   <table id="parent_child_table">
     <thead>

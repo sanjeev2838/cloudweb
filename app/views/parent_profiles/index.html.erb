@@ -1,5 +1,8 @@
 <div class="heading">
-    <h1>Listing Parent Profiles</h1>
+    <h1>Parent Profiles </h1>
+  <div class="float_right">
+    <%= link_to 'New Parent profile', new_parent_profile_path %>
+  </div>
 </div>
 <table id="parent_profile_table">
   <thead>
@@ -41,7 +44,7 @@
 
 <br />
 
-<%= link_to 'New Parent profile', new_parent_profile_path %>
+
 <script>
     $(document).ready(function(){
         $("#parent_profile_table").dataTable()

@@ -1,5 +1,15 @@
-<h3>User Manager > <%= @parent_profile.name %> > <%=@child_profile.name%> </h3>
+<div class="heading">
+    <h1><%= @child_profile.name%>'s Profile</h1>
+  <h4>Dashboard > <%= link_to "Parent Profile",parent_profiles_path %> > <%= link_to @parent_profile.name,parent_profile_path(@parent_profile)%> </h4><br>
+</div>
 
+<div class="child_pic">
+
+  <%unless @child_profile.pictures.nil?%>
+      <%= link_to (image_tag @child_profile.pictures.first.image_url ,:height => 100,:width => 100),@child_profile.pictures.first.image_url,{ :class => "grouped_elements", :rel => "images"}  %>
+  <%end%>
+</div><br>
+<h3 class="heading_color">Profile Info</h3>
 <div class="content_row">
   <p class="left">
     <b>Registered On:</b>
@@ -7,40 +17,35 @@
   </p>
 
   <p class="center">
-    <b>Last Active On:</b>
-
-  </p>
-
-  <p class="right">
     <b>Machine:</b>
     <%= @machine.serialid %>
 
   </p>
-</div>
-<div class="content_row">
-  <p class="left">
+  <p class="right">
     <b>Status:</b>
     <%= @child_profile.status ? "active" : "inactive" %>
   </p>
-
-</div> <br>
-
-<h3>Preferences</h3>
+</div>
+<br>
+<h3 class="heading_color">Preferences</h3>
 <%unless @brewing_preference.nil?%>
-<h4> Milk  <%= @brewing_preference.milk %>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTemperature <%=@brewing_preference.temperature%></h4>
+    <div class="content_row">
+      <p class="left">
+        <b>Milk: </b>
+        <%= @brewing_preference.milk %> units
+      </p>
+
+      <p class="center">
+        <b>Temperature: </b>
+        <%= @brewing_preference.temperature %> cel
+      </p>
+      </div>
+
     <%end%>
    <br>
-<br>
 
-<h3>Pictures</h3>
-<%unless @child_profile.pictures.nil?%>
-    <%@child_profile.pictures.each do |pic|%>
-        <%= link_to (image_tag pic.image_url ,:height => 100,:width => 100) if pic.image? %>
-    <%end%>
-<%end%>
 <br>
-<br>
-<h3>Stats</h3>
+<h3 class="heading_color">Stats</h3>
 <% unless @child_state.nil? %>
 <table id="child_stat_table">
   <thead>
@@ -70,7 +75,7 @@
 <br>
 <br>
 <% unless @logs.nil? %>
-<h3>Log Book</h3>
+<h3 class="heading_color">Log Book</h3>
 <table id="child_log_table">
   <thead>
     <th>Date Time</th>
