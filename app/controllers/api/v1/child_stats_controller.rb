@@ -3,6 +3,14 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   before_filter :verify_token
   before_filter :find_child_profile, :only => [:index, :create, :child_meals, :child_vaccines,:child_half_bottles ,:child_full_bottles]
 
+  #todo refactor this by using
+  #def check_child_stats(nil_msg, method_symbol, method_args, empty_msg)
+  #  render json:{:status => false, :message => nil_msg} if params[:type].nil?
+  #  results = ChildStat.send(method, *method_args)
+  #  render json:{:status => false, :message => empty_msg}  if results.empty?
+  #  results
+  #end
+
   def index
     render json:{:status => false, :message => 'qw'} if params[:type].nil?
     @stats = ChildStat.get_child_stat(@child_profile.id,@profile.id,params[:type])
@@ -61,15 +69,6 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
       return  false
     end
   end
-
-  #def child_profile_id
-  #  begin
-  #
-  #  rescue ActiveRecord::RecordNotFound
-  #    render json:{:status => false, :message => "Unable to find child profile on cloud"}
-  #    return
-  #  end
-  #end
 
   def verify_token
   #  authtoken = request.headers['authtoken']

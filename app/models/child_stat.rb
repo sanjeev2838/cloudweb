@@ -100,8 +100,9 @@ class ChildStat < ActiveRecord::Base
     stat[:meals][user.to_sym] = 0
     stat[:diapers][user.to_sym] = 0
     records.each do |record|
-      stat[:graph][record.created_at.to_s][:weight] =  record.weight if record.weight
-      stat[:graph][record.created_at.to_s][:height] =  record.height if record.height
+      date = record.created_at.strftime("%e %b %Y")
+      stat[:graph][date][:weight] =  record.weight if record.weight
+      stat[:graph][date][:height] =  record.height if record.height
       stat[:vaccines][user.to_sym] += 1 if record.vaccine_id
       stat[:meals][user.to_sym]  += 1 if record.meals
       stat[:diapers][user.to_sym]  += 1 if record.diapers
