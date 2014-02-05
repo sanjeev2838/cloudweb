@@ -1,7 +1,7 @@
 class Api::V1::ChildStatsController < Api::V1::BaseController
 
   before_filter :verify_token
-  before_filter :find_child_profile, :only => [:index, :create, :child_meals, :child_vaccines,:child_half_bottles ,:child_full_bottles]
+  before_filter :find_child_profile, :only => [:index, :create, :child_meals, :child_diapers, :child_vaccines,:child_half_bottles ,:child_full_bottles]
 
   #todo refactor this by using
   #def check_child_stats(nil_msg, method_symbol, method_args, empty_msg)
@@ -12,37 +12,37 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   #end
 
   def index
-    render json:{:status => false, :message => 'qw'} if params[:type].nil?
+    check_type(params)
     @stats = ChildStat.get_child_stat(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => 'Child stats not found'}  if @stats.empty?
   end
 
   def child_vaccines
-    render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}  if params[:type].nil?
-    @vaccines = ChildStat.get_child_vaccine(@child_profile.id,@parent_profile.id,params[:type])
+    check_type(params)
+    @vaccines = ChildStat.get_child_vaccine(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => "Child Vaccines not found "}  if @vaccines.empty?
   end
 
   def child_meals
-    render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}  if params[:type].nil?
+    check_type(params)
     @meals = ChildStat.get_child_meals(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => "Child meals not found "} if @meals.empty?
   end
 
   def child_diapers
-    render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}  if params[:type].nil?
-    @diapers = ChildStat.get_child_diapers(@child_profle.id,@parent_profile.id,params[:type])
+    check_type(params)
+    @diapers = ChildStat.get_child_diapers(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => "Child diapers not found "}  if @diapers.empty?
   end
 
   def child_full_bottles
-    render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}  if params[:type].nil?
+    check_type(params)
     @child_full_bottles = ChildStat.get_child_bottle(@child_profile.id,@profile.id,params[:type],1)
     render json:{:status => false, :message => "Child full bottles not found "} if @child_full_bottles.empty?
   end
 
   def child_half_bottles
-    render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "} if params[:type].nil?
+    check_type(params)
     @child_half_bottles = ChildStat.get_child_bottle(@child_profile.id,@profile.id,params[:type],2)
     render json:{:status => false, :message => "Child half bottles not found "} if @child_half_bottles.empty?
   end
@@ -68,6 +68,13 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
       render json:{:status => false, :message => "Unable to find child profile on cloud"}
       return  false
     end
+  end
+
+  def check_type(params)
+    if params[:type].nil?
+      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+    end
+    return
   end
 
   def verify_token

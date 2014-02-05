@@ -104,6 +104,12 @@ curl -X POST -H "Content-type: application/json" -d '{"diapers":"2","weight":"10
  ----------------------------------------------------------------
  curl -X GET -H "Content-type: application/json"  http://localhost:3000/api/v1/vaccines?'serialid=1234&&authcode=5e7add11cb09a9e70061776727555f4c'
 
+  Get all diapers data
+  -----------------------
+  curl -X GETapplication/json"  http://localhost:3000/api/v1/profiles/16/children/28/diapers?type=daily
+
+
+
 8.) api for pictures
 ---------------------------------
  creating a new picture record:-
