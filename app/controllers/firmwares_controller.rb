@@ -41,20 +41,22 @@ class FirmwaresController < ApplicationController
   # POST /firmwares.json
   def create
     require 'fileutils'
-    original_filename =  params[:firmware][:binaryfile].original_filename.to_s
-    tmp = params[:firmware][:binaryfile].tempfile
-    file = File.join("public/firmware", params[:firmware][:binaryfile].original_filename)
-    FileUtils.cp tmp.path, file
-    params[:firmware].delete :binaryfile
     @firmware = Firmware.new(params[:firmware])
-    @firmware.binaryfile = "public/firmware/#{original_filename}"
     respond_to do |format|
+      unless params[:firmware][:binaryfile].nil?
+        original_filename =  params[:firmware][:binaryfile].original_filename.to_s
+        tmp = params[:firmware][:binaryfile].tempfile
+        file = File.join("public/firmware", params[:firmware][:binaryfile].original_filename)
+        FileUtils.cp tmp.path, file
+        params[:firmware].delete :binaryfile
+        @firmware.binaryfile = "public/firmware/#{original_filename}"
+      end
       if @firmware.save
-        format.html { redirect_to @firmware, notice: 'Firmware was successfully created.' }
-        format.json { render json: @firmware, status: :created, location: @firmware }
+          format.html { redirect_to @firmware, notice: 'Firmware was successfully created.' }
+          format.json { render json: @firmware, status: :created, location: @firmware }
       else
-        format.html { render action: "new" }
-        format.json { render json: @firmware.errors, status: :unprocessable_entity }
+          format.html { render action: "new" }
+          format.json { render json: @firmware.errors, status: :unprocessable_entity }
       end
     end
   end
