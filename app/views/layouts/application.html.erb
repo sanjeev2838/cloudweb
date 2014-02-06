@@ -49,14 +49,16 @@
         </div>
 
         <div id="container">
-            <div class="info_div">
-                <% flash.each do |key, value| %>
-                    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-                <% end %>
-            </div>
+            <!--<div class="info_div">-->
+                <!--<% flash.each do |key, value| %>-->
+                    <!--<%= content_tag(:div, value, class: "alert alert-#{key}") %>-->
+                <!--<% end %>-->
+            <!--</div>-->
             <%= yield %>
         </div>
+         <div class="clear">
 
+         </div>
         <div class ="footer">
 
             <p id="footer_text">Copyright @2014, Technogarden</p>
