@@ -63,7 +63,11 @@
 .alert{
     background-color: red;
     color: white;
-    float:left
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0px;
+
 }
 
 .footer_div{
@@ -208,7 +212,9 @@ html, body {
 
 #container{
     padding-top: 25px;
-    padding-bottom:100px; /* Height of the footer element */
+    padding-bottom: 100px;
+    float: left;
+    width: 100%;
 }
 .left{
     padding-right: 180px;
@@ -226,10 +232,14 @@ html, body {
 }
 .content_row{
     margin-top: 10px;
+    float:left;
+    width:100%;
 }
 
 #error_explanation{
     margin-top: 10px;
+    width:400px;
+    float:left;
 }
 
 .csv_format{
@@ -271,6 +281,7 @@ html, body {
 }
 .float_right{
     float: right;
+    margin-top: 11px;
 
 }
 .float_right a {
@@ -356,6 +367,7 @@ width: 100%;
     float:left;
     width:100%;
     margin:10px 0px;
+    border:1px solid #ccc;
 }
 .new_machine_head
 {
@@ -405,4 +417,158 @@ h3 a{
     height: 200px;
     width: 200px;
     background: lightgray;
+}
+.dms
+{
+    float:left;
+    width:100%;
+    margin: 10px 0px;
+}
+.left_div_dms
+{
+    float:left;
+    width: 250px;
+    background:#ccc;
+    padding:20px;
+}
+.left_div_dms h1
+{
+    float:left;
+    width:100%;
+    font-size:14px;
+    font-family: "Helvetica Neue";
+}
+.left_div_dms p
+{
+    float:left;
+    width:100%;
+    font-size:13px;
+    font-family: "Helvetica Neue";
+    font-weight:bold;
+    padding: 3px 0px;
+}
+.dms_box
+{
+    float:left;
+    width:100%;
+    margin: 5px 0px;
+}
+.left_show_machine
+{
+    display: table-cell;
+    width: 350px;
+    float: left;
+}
+.center_show_machine
+{
+    display: table-cell;
+    width: 350px;
+    float: left;
+}
+.right_show_machine
+{
+    display: table-cell;
+    width: 200px;
+    float: left;
+}
+.edito_machine
+{
+    float:left;
+    width:100%;
+}
+.edito_machine input
+{
+    width:200px;
+    float:left;
+}
+.edito_machine .field , .new_firm_ware
+{
+    width:100%;
+    float:left;
+}
+.edito_machine label   , .new_firm_ware label
+{
+   width:200px;
+    float:left ;
+}
+.edito_machine .actions
+{
+    float:left;
+    width:100%;
+    margin:10px 0px;
+}
+textarea
+{
+    border:1px solid #ccc;
+}
+.add_use .field
+{
+    width:100%;
+    float:left;
+}
+.add_use heading.field label
+{
+    width:200px;
+    float:left;
+}
+.add_use .field input
+{
+    width:250px;
+    float:left;
+}
+.add_form_submit
+{
+    float:left;
+}
+.back
+{
+    float:left;
+    width:100%;
+}
+.field_with_errors
+{
+    padding:0px !important;
+    float:left;
+    background:none !important;
+}
+.field_with_errors input
+{
+    border:1px snwo_firmolid red;
+
+}
+.list_mach_head
+{
+    margin: 10px 0px;
+    color: deepskyblue;
+    float: left;
+    width: 80%;
+}
+.clear
+{
+    clear:both;
+}
+.nwo_firm   , .nwo_firm .field ,.parent_form_new  ,.parent_form_new  .field , .parent_form_new .actions
+{
+    float:left;
+    width:100%;
+}
+.nwo_firm label
+{
+    float:left;
+    width: 200px;
+}
+.nwo_firm input
+{
+    float:left;
+
+}
+.add_use .field label , .parent_form_new .field label
+{
+    float:left;
+    width: 200px;
+}
+.add_use .field input , .parent_form_new  .field input
+{
+    float:left;
+    width: 200px;
 }

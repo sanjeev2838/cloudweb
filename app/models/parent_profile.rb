@@ -10,11 +10,10 @@ class ParentProfile < ActiveRecord::Base
 
   before_save :check_machine_serial_id
   before_create :generate_access_token
-  validates :devicetypeid, :tokenid,
-            :serialid,:name,:email,:password, :relation, :presence => true
+  validates :devicetypeid,:serialid,:name,:email,:password, :relation, :presence => true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence:   true,
+  validates :email,
             format:     { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
 

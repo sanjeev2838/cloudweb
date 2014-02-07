@@ -15,6 +15,7 @@
      <div class="label_div"><%= f.label :name %></div>
      <div class="value_div"><%= f.text_field :name,:size => 20 %></div>
   </div>
+
   <div class="field">
     <div class="label_div"> <%= f.label :email %></div>
     <div class="value_div"> <%= f.text_field :email, :size => 20 %></div>
@@ -23,6 +24,7 @@
     <div class="label_div"> <%= f.label :password %></div>
     <div class="value_div"> <%= f.text_field :password,:size => 20 %></div>
   </div>
+
 
   <div class="field">
     <div class="label_div"><%= f.label :machine_serial_id %></div>
@@ -39,10 +41,17 @@
     <div class="value_div"><%= f.select :status, [['Active', true], ['Inactive', false]] %></div>
   </div>
 
+
   <div class="field">
      <div class="label_div"> <%= f.label :relation %></div>
      <div class="value_div"> <%= f.select :devicetypeid, ParentProfile::RELATIONS.to_a %></div>
   </div>
+
+    <div class="field">
+      <div class="label_div"><%= f.label :language %></div>
+      <div class="value_div"><%= f.select :lang, ParentProfile::LANG.to_a %></div>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

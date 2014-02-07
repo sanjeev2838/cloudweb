@@ -1,13 +1,19 @@
-<h3> Welcome to Diluo Management System</h3><br>
+<h3 class="dms"> Welcome to Diluo Management System</h3>
 
-<div class="left_div">
-<h5>Total users : <%=@total_users.count%></h5>
-<h5>Total Child Profiles : <%=@total_childs.count%></h5><br>
-<h5>Total Registered Machines : <%=@total_registed_machines.count%></h5>
-<h5>Total Unregistered Machines : <%=@total_unregisted_machines.count%></h5><br>
-<h5>Avg. Time to make milk : 2 mins</h5>
-<h5>Avg. Time to change diaper : 10 mins</h5>
-<h5>Avg. Baby weight  : 12 pounds</h5>
-
+<div class="left_div_dms">
+ <h1>Quick Stats</h1>
+<div class="dms_box">
+<p>Total users : <%=@total_users.count%></p>
+ <p>Total Child Profiles : <%=@total_childs.count%></p>
+</div>
+<div class="dms_box">
+<p>Total Registered Machines : <%=@total_registed_machines.count%></p>
+<p>Total Unregistered Machines : <%=@total_unregisted_machines.count%></p>
+</div>
+ <div class="dms_box">
+<p>Avg. Time to make milk : 2 mins</p>
+<p>Avg. Time to change diaper : 10 mins</p>
+<p>Avg. Baby weight  : 12 pounds</p>
+</div>
 
 </div>

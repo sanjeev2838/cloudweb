@@ -1,6 +1,8 @@
 class Firmware < ActiveRecord::Base
   attr_accessible :binaryfile, :firmwareversion, :serialids
 
+  validates :binaryfile, :firmwareversion, :serialids , :presence => true
+
 
   #def self.save(upload)
   #  name =  upload['datafile'].original_filename

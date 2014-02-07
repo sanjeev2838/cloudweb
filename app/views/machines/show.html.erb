@@ -1,38 +1,39 @@
 
-<h3> Machine Manager > <%=@machine.serialid%></h3>
+<h2 class="heading_color">Machine Info</h2>
+<h3 class="breadcrum"> Machine Manager > <%= link_to @machine.serialid, machine_path(@machine)%></h3>
 
 <div class="content_row">
-<p class="left">
+<p class="left_show_machine">
   <b>Registered on:</b>
   <%= @machine.activated_on.strftime("%Y-%m-%d %H:%M") %>
 </p>
 
-<p class="center">
+<p class="center_show_machine">
   <b>Owner:</b>
   <%= @owner.name unless @owner.nil?%>
 
 </p>
 
-<p class="right">
+<p class="right_show_machine">
   <b>Status:</b>
   <%=  @machine.status ? "active" : "inactive"  %>
 </p>
 </div>
 
 <div class="content_row">
-<p class="left">
+<p class="left_show_machine">
   <b>Ip address:</b>
   <%= @machine.ipaddress %>
 
 </p>
 
-<p class="center">
+<p class="center_show_machine">
   <b>Firmware version:</b>
   <%= @machine.firmware %>
 
 </p>
 
-<p class="right">
+<p class="right_show_machine">
   <b>Hw config:</b>
   <%= @machine.hwconfig %>
  </p>
@@ -50,7 +51,7 @@
 
 <br><br>
 <div id="logs">
-         <h3>Machine logs</h3> <br>
+         <h3 class="heading_color">Machine logs</h3> <br>
 <% unless @machine_logs.empty? %>
       <table id= "machine_logs">
         <thead>
