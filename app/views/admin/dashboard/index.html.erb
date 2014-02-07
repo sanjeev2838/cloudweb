@@ -1,3 +1,8 @@
+<div class="info_div">
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+    <% end %>
+</div>
 <h3 class="dms"> Welcome to Diluo Management System</h3>
 
 <div class="left_div_dms">

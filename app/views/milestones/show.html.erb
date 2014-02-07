@@ -1,5 +1,18 @@
+<div class="heading">
+  <h1><%= @milestone.title %> info </h1>
+</div>
 <p id="notice"><%= notice %></p>
 
+<div class="content_row">
+  <p class="left">
+    <b>Title :</b>
+    <%= @milestone.title %>
+  </p>
+  <p class="center">
+    <b>Icon :</b>
+    <%= image_tag @milestone.image_url.to_s, :height => 100,:width => 100 %>
+  </p>
+</div>
 
 <%= link_to 'Edit', edit_milestone_path(@milestone) %> |
 <%= link_to 'Back', milestones_path %>

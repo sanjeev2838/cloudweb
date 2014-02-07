@@ -11,8 +11,6 @@ class SessionsController < ApplicationController
       user.update_attributes(:ip_address => request.remote_ip,:last_login=> Time.now)
       session[:current_user_id] = user.id
       sign_in user
-
-
       redirect_to admin_dashboard_index_path
     else
       redirect_to signin_path

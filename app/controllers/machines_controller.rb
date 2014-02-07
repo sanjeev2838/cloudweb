@@ -74,7 +74,12 @@ class MachinesController < ApplicationController
   # DELETE /machines/1.json
   def destroy
     @machine = Machine.find(params[:id])
+    @parent_profile= ParentProfile.find_all_by_machine_id(params[:id])
+    @parent_profile.each do |profile|
+      profile.update_column(:machine_id , nil)
+    end
     @machine.destroy
+
 
     respond_to do |format|
       format.html { redirect_to machines_url }
