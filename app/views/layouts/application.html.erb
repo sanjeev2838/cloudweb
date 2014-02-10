@@ -37,8 +37,9 @@
                         <li><a href="/machines/machines_import">Machine Import</a></li>
                     </ul>
                 </li>
-                <li><%= link_to "Staff Users", users_path%>
-                <% if current_user.admin? && !current_user?(@user) %>
+              <% if current_user.admin? && !current_user?(@user) %>
+                <li><%= link_to "Staff Users", users_path %>
+
                 <ul>
                     <li><%= link_to "Add New User", signup_path%> </li>
                     <li><%= link_to "All Users",users_path %></li>
@@ -49,11 +50,7 @@
         </div>
 
         <div id="container">
-            <!--<div class="info_div">-->
-                <!--<% flash.each do |key, value| %>-->
-                    <!--<%= content_tag(:div, value, class: "alert alert-#{key}") %>-->
-                <!--<% end %>-->
-            <!--</div>-->
+
             <%= yield %>
         </div>
          <div class="clear">

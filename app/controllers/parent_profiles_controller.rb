@@ -66,6 +66,7 @@ class ParentProfilesController < ApplicationController
     @parent_profile = ParentProfile.find(params[:id])
     @parent_profile.update_column(:status , false)
 
+
     respond_to do |format|
       format.html { redirect_to parent_profiles_url }
       format.json { head :no_content }

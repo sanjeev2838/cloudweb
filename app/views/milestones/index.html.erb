@@ -1,6 +1,11 @@
-<h1 class="new_machine_head">Listing milestones</h1>
+<div class="heading">
+  <h1 class="list_mach_head">MileStones  </h1>
+  <div class="float_right">
+    <%= link_to 'New Milestone', new_milestone_path %>
+  </div>
+</div>
  <%unless @milestones.nil?%>
-<table>
+<table id="milestone_table">
   <thead>
     <th>title</th>
     <th>icon</th>
@@ -8,7 +13,7 @@
     <th></th>
     <th></th>
   </thead>
-
+  <tbody>
 <% @milestones.each do |milestone| %>
   <tr>
     <td><%= milestone.title%></td>
@@ -20,6 +25,15 @@
 <% end %>
 </table>
 <%end%>
+</tbody>
 <br />
 
-<%= link_to 'New Milestone', new_milestone_path %>
+
+
+
+
+<script>
+    $(document).ready(function(){
+        $("#milestone_table").dataTable()
+    });
+</script>

@@ -10,8 +10,8 @@ class CreateMachines < ActiveRecord::Migration
       t.string :ipaddress
       t.string :bootloader
       t.string :color
-
       t.boolean :status
+
       t.datetime :activated_on
     end
   end

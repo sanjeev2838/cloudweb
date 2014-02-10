@@ -24,8 +24,17 @@ class Api::V1::MachinesController < Api::V1::BaseController
   end
 
   def create
-    params[:machine] = (params[:machine]).merge(:status => false)
-    @machine = Machine.create(params[:machine])
+    if params[:machine].nil?
+      params[:machine]= {}
+      params[:machine][:serialid] = params[:serialid]
+      params[:machine][:ipaddress] = params[:ipaddress]
+      params[:machine][:firmware] =  params[:firmware]
+      params[:machine][:bootloader] = params[:bootloader]
+      params[:machine][:hwconfig] = params[:hwconfig]
+      params[:machine][:macaddress] = params[:macaddress]
+    end
+   params[:machine] = (params[:machine]).merge(:status => false)
+   @machine = Machine.create(params[:machine])
     if @machine.valid?
       render json:{:status => true }
     else
