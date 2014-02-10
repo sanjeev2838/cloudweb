@@ -92,31 +92,6 @@ class ChildStat < ActiveRecord::Base
     stat
   end
 
-  def self.filter_data(stat,records, user)
-    count =  records.length
-    stat[:bottles_full][user.to_sym] = 0
-    stat[:bottles_half][user.to_sym] = 0
-    stat[:vaccines][user.to_sym] = 0
-    stat[:meals][user.to_sym] = 0
-    stat[:diapers][user.to_sym] = 0
-    records.each do |record|
-      date = record.created_at.strftime("%e %b %Y")
-      stat[:graph][date][:weight] =  record.weight if record.weight
-      stat[:graph][date][:height] =  record.height if record.height
-      stat[:vaccines][user.to_sym] += 1 if record.vaccine_id
-      stat[:meals][user.to_sym]  += 1 if record.meals
-      stat[:diapers][user.to_sym]  += 1 if record.diapers
-      if record.bottle
-       if  record.bottle== 1
-        stat[:bottles_full][user.to_sym] += 1
-       else
-        stat[:bottles_half][user.to_sym] += 1
-       end
-      end
-    end
-    stat
-  end
-
   def self.add_entry(list,date,entry)
     if list[date].empty?
       list[date] = Hash.new { |h, k| h[k] = Array.new }
@@ -129,6 +104,40 @@ class ChildStat < ActiveRecord::Base
     end
     list
   end
+
+  def self.filter_data(stat,records, user)
+    count =  records.length
+    stat[:bottles_full][user.to_sym] = 0
+    stat[:bottles_half][user.to_sym] = 0
+    stat[:vaccines][user.to_sym] = 0
+    stat[:meals][user.to_sym] = 0
+    stat[:diapers][user.to_sym] = 0
+    list =  Hash.new { |h, k| h[k] = Hash.new }
+    entry = {}
+    records.each do |record|
+      date = record.created_at.strftime("%e %b %Y")
+      entry[:weight] =  record.weight if record.weight
+      entry[:height] =  record.height if record.height
+      add_entry(list,date,entry)
+      stat[:vaccines][user.to_sym] += 1 if record.vaccine_id
+      stat[:meals][user.to_sym]  += 1 if record.meals
+      stat[:diapers][user.to_sym]  += 1 if record.diapers
+      if record.bottle
+       if  record.bottle== 1
+        stat[:bottles_full][user.to_sym] += 1
+       else
+        stat[:bottles_half][user.to_sym] += 1
+       end
+      end
+    end
+    if stat[:graph].empty?
+      stat[:graph] = list.values
+    else
+      stat[:graph].concat(list.values)
+    end
+    stat
+  end
+
   def self.extract_info(child_stats ,diaper_bottle=false, meals=false, vaccine=false)
     list =  Hash.new { |h, k| h[k] = Hash.new }
     child_stats.each do |stat|

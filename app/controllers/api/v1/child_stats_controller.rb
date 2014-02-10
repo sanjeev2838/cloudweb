@@ -74,6 +74,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     if params[:type].nil?
       render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
     end
+    #todo do this like returning false otherwise double rendering error
     return
   end
 
