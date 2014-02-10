@@ -12,37 +12,37 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   #end
 
   def index
-    check_type(params)
+    return unless  check_type(params)
     @stats = ChildStat.get_child_stat(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => 'Child stats not found'}  if @stats.empty?
   end
 
   def child_vaccines
-    check_type(params)
+    return unless  check_type(params)
     @vaccines = ChildStat.get_child_vaccine(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => "Child Vaccines not found "}  if @vaccines.empty?
   end
 
   def child_meals
-    check_type(params)
+    return unless  check_type(params)
     @meals = ChildStat.get_child_meals(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => "Child meals not found "} if @meals.empty?
   end
 
   def child_diapers
-    check_type(params)
+    return unless  check_type(params)
     @diapers = ChildStat.get_child_diapers(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false, :message => "Child diapers not found "}  if @diapers.empty?
   end
 
   def child_full_bottles
-    check_type(params)
+    return unless  check_type(params)
     @child_full_bottles = ChildStat.get_child_bottle(@child_profile.id,@profile.id,params[:type],1)
     render json:{:status => false, :message => "Child full bottles not found "} if @child_full_bottles.empty?
   end
 
   def child_half_bottles
-    check_type(params)
+    return unless  check_type(params)
     @child_half_bottles = ChildStat.get_child_bottle(@child_profile.id,@profile.id,params[:type],2)
     render json:{:status => false, :message => "Child half bottles not found "} if @child_half_bottles.empty?
   end
@@ -73,9 +73,10 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   def check_type(params)
     if params[:type].nil?
       render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      return false
+    else
+      return true
     end
-    #todo do this like returning false otherwise double rendering error
-    return
   end
 
   def verify_token
