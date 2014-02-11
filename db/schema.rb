@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20140128070026) do
     t.string   "dob"
     t.string   "gender"
     t.string   "status"
+    t.integer  "preference_id"
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false

@@ -5,6 +5,7 @@ class CreateChildProfiles < ActiveRecord::Migration
       t.string :dob
       t.string :gender
       t.string :status
+      t.integer :preference_id
       t.references :parent_profile, index: true
 
       t.timestamps
