@@ -3,6 +3,8 @@ class VaccinesController < ApplicationController
   # GET /vaccines.json
   def index
     @vaccines = Vaccine.all
+    I18n.locale = :en
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,10 +42,12 @@ class VaccinesController < ApplicationController
   # POST /vaccines
   # POST /vaccines.json
   def create
+    I18n.locale = params[:lang].to_sym
     @vaccine = Vaccine.new(params[:vaccine])
 
     respond_to do |format|
       if @vaccine.save
+        #I18n.locale = :en
         format.html { redirect_to @vaccine, notice: 'Vaccine was successfully created.' }
         format.json { render json: @vaccine, status: :created, location: @vaccine }
       else

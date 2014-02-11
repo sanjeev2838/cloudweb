@@ -1,0 +1,10 @@
+
+
+sv:
+  hello: "Hello123 world"
+  login:
+      not_registered: "User123 with this email not registered"
+      password : "email123 or password123 not matched"
+
+
+

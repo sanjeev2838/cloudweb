@@ -78,7 +78,7 @@ class MachinesController < ApplicationController
     @parent_profile.each do |profile|
       profile.update_column(:machine_id , nil)
     end
-    @machine.destroy
+    @machine.update_column(:status,false)
 
 
     respond_to do |format|
