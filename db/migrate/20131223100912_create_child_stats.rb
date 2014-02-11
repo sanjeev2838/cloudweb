@@ -6,6 +6,7 @@ class CreateChildStats < ActiveRecord::Migration
       t.integer :height
       t.string  :meals
       t.integer :bottle
+      t.datetime :datetime
 
       t.references :parent_profile
       t.references :child_profile, index: true

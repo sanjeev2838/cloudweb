@@ -1,7 +1,8 @@
 class ChildStat < ActiveRecord::Base
-  attr_accessible :diapers, :meals, :height, :weight ,:bottle ,:vaccine_id , :parent_profile_id
+  attr_accessible :diapers, :meals, :height, :weight ,:bottle ,:vaccine_id , :parent_profile_id, :datetime
 
   before_save :set_nil
+  before_create :set_date_time
 
   def set_nil
     [:meals].each do |att|
@@ -14,11 +15,19 @@ class ChildStat < ActiveRecord::Base
   belongs_to :parent_profile
 
   def self.perform_query_parent(child_id,time_range,parent_id)
-    where(:child_profile_id => child_id).where("parent_profile_id = ?", parent_id).where(:created_at => time_range).all
+    where(:child_profile_id => child_id).where("parent_profile_id = ?", parent_id).where(:datetime => time_range).all
   end
 
   def self.perform_query_other(child_id,time_range,parent_id)
-    where(:child_profile_id => child_id).where("parent_profile_id != ?", parent_id).where(:created_at => time_range).all
+    where(:child_profile_id => child_id).where("parent_profile_id != ?", parent_id).where(:datetime => time_range).all
+  end
+
+  def set_date_time
+      if self.datetime.nil?
+        self.datetime = DateTime.now
+      else
+         self.datetime
+      end
   end
 
   def self.get_child_stat(child_id, parent_id, type=nil)
@@ -115,7 +124,7 @@ class ChildStat < ActiveRecord::Base
     list =  Hash.new { |h, k| h[k] = Hash.new }
     entry = {}
     records.each do |record|
-      date = record.created_at.strftime("%e %b %Y")
+      date = record.datetime.strftime("%e %b %Y")
       entry[:weight] =  record.weight if record.weight
       entry[:height] =  record.height if record.height
       add_entry(list,date,entry)
@@ -142,10 +151,10 @@ class ChildStat < ActiveRecord::Base
     list =  Hash.new { |h, k| h[k] = Hash.new }
     child_stats.each do |stat|
       # for useful date format  %e %b %Y : for am and pm :-%I:%M %p""
-      date = stat.created_at.strftime("%e %b %Y")
+      date = stat.datetime.strftime("%e %b %Y")
       entry = {}
       entry[:name] = stat.parent_profile.name
-      entry[:time] = stat.created_at.strftime("%I:%M %p")
+      entry[:time] = stat.datetime.strftime("%I:%M %p")
       if meals && stat.meals.length > 1
         entry[:meals] = stat.meals
         add_entry(list,date,entry)
@@ -163,7 +172,7 @@ class ChildStat < ActiveRecord::Base
   end
 
   def self.perform_query_vaccine(child_id,time_range)
-    child_stats= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:created_at => time_range).all
+    child_stats= where(:child_profile_id=>child_id).where("vaccine_id IS NOT NULL").where(:datetime => time_range).all
     extract_info(child_stats ,false, false, true)
   end
 
@@ -188,7 +197,7 @@ class ChildStat < ActiveRecord::Base
 
 
   def self.meals_query(child_id,time_range)
-    child_stats= where(:child_profile_id=>child_id).where("meals NOT NULL").where(:created_at => time_range).all
+    child_stats= where(:child_profile_id=>child_id).where("meals NOT NULL").where(:datetime => time_range).all
     extract_info(child_stats , false,true)
   end
 
@@ -212,7 +221,7 @@ class ChildStat < ActiveRecord::Base
   end
 
   def self.perform_diaper_query(child_id,time_range)
-    child_stats= where(:child_profile_id=>child_id).where("diapers IS NOT NULL").where(:created_at => time_range).all
+    child_stats= where(:child_profile_id=>child_id).where("diapers IS NOT NULL").where(:datetime => time_range).all
     extract_info(child_stats,true)
   end
 
@@ -236,7 +245,7 @@ class ChildStat < ActiveRecord::Base
   end
 
   def self.perform_bottle_query(child_id,time_range, bottle)
-    child_stats= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where( :bottle=> bottle).where(:created_at => time_range).all
+    child_stats= where(:child_profile_id=>child_id).where("bottle IS NOT NULL").where( :bottle=> bottle).where(:datetime => time_range).all
     extract_info(child_stats,true)
   end
 
