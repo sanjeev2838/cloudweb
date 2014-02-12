@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20140211101609) do
     t.integer  "height"
     t.string   "meals"
     t.integer  "bottle"
+    t.datetime "datetime"
     t.integer  "parent_profile_id"
     t.integer  "child_profile_id"
     t.integer  "vaccine_id"
