@@ -1,8 +1,8 @@
 class Vaccine < ActiveRecord::Base
-  attr_accessible :title
+  attr_accessible :title,:age,:year_courses,:vaccination_against,:number_of_doses ,:status
 
   belongs_to :child_stat
 
-  translates :title
+  translates :title,:age,:year_courses,:vaccination_against,:number_of_doses
 
 end

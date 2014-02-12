@@ -24,8 +24,15 @@
 
 <p class="left">
   <b>MachineOwner:</b>
-  <td><%= @parent_profile.is_machine_owner %></td>
+  <%= @parent_profile.is_machine_owner %>
 </p>
+<% if !@parent_profile.is_machine_owner%>
+<p class="center">
+  <b><%= link_to "make machine owner",make_machine_owner_parent_profiles_path(@parent_profile.id)%></b>
+
+</p>
+<%end%>
+
 </div> <br>
 
 

@@ -4,6 +4,7 @@ class CreateFirmwares < ActiveRecord::Migration
       t.string :firmwareversion
       t.string :serialids
       t.string :binaryfile
+      t.boolean :status
 
       t.timestamps
     end

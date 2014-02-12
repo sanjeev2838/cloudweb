@@ -7,19 +7,19 @@ class Api::V1::MachinesController < Api::V1::BaseController
     if "5e7add11cb09a9e70061776727555f4c" == params[:authcode]
       render action: :show  unless @machine
     else
-      render json:{:status => false, :message=> "authcode not matched"}
+      render json:{:status => false ,:status_code=>2002, :message=> "authcode not matched"}
     end
   end
 
   def update
-    if params[:color].nil?
-      render json:{:status => false, :message=> "provide color as parameter to update "}
+    if params[:color].empty?
+      render json:{:status => false, :status_code=>2003,:message=> "provide color as parameter to update "}
       return
     end
     if "5e7add11cb09a9e70061776727555f4c" == params[:authcode]
       render action: :show   if  @machine.update_attributes(:color => params[:color])
     else
-      render json:{:status => false, :message=> "authcode not matched "}
+      render json:{:status => false,:status_code=>2002 ,:message=> "authcode not matched "}
     end
   end
 
@@ -36,17 +36,17 @@ class Api::V1::MachinesController < Api::V1::BaseController
    params[:machine] = (params[:machine]).merge(:status => false)
    @machine = Machine.create(params[:machine])
     if @machine.valid?
-      render json:{:status => true }
+      render json:{:status => true ,:status_code=>2004,:message=>"Machine created successfully"}
     else
-      render json:{:status => false, :message => @machine.errors.full_messages }
+      render json:{:status => false, :status_code => 2005 ,:message => @machine.errors.full_messages }
     end
   end
 
   def destroy
     if @machine.update_attributes(:status => false)
-      render json:{:status => true}
+      render json:{:status => true,:status_code=>2006,:message=> "Machine deleted successfully"}
     else
-      render json:{:status => false, :message => @machine.errors.full_messages }
+      render json:{:status => false, :status_code=>2007,:message => @machine.errors.full_messages }
     end
   end
 
@@ -56,7 +56,7 @@ class Api::V1::MachinesController < Api::V1::BaseController
       @machine = Machine.find_by_serialid(params[:serialid])
       raise  ActiveRecord::RecordNotFound if @machine.nil?
     rescue ActiveRecord::RecordNotFound  => exception
-      render json:{:status => false, :message => "Machine not Found"}
+      render json:{:status => false, :status_code=>2000,:message => "Machine not Found"}
     end
   end
 

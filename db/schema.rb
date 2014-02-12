@@ -11,11 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140128070026) do
+ActiveRecord::Schema.define(:version => 20140211101609) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
     t.integer  "milk"
+    t.integer  "child_profile_id"
+    t.integer  "parent_profile_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "child_parent_relationships", :force => true do |t|
     t.integer  "child_profile_id"
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
@@ -31,11 +38,6 @@ ActiveRecord::Schema.define(:version => 20140128070026) do
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-  end
-
-  create_table "child_profiles_parent_profiles", :force => true do |t|
-    t.integer "child_profile_id"
-    t.integer "parent_profile_id"
   end
 
   create_table "child_stats", :force => true do |t|
@@ -160,20 +162,28 @@ ActiveRecord::Schema.define(:version => 20140128070026) do
   end
 
   create_table "vaccine_translations", :force => true do |t|
-    t.integer  "vaccine_id", :null => false
-    t.string   "locale",     :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "vaccine_id",          :null => false
+    t.string   "locale",              :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "title"
+    t.string   "age"
+    t.string   "year_courses"
+    t.string   "vaccination_against"
+    t.string   "number_of_doses"
   end
 
   add_index "vaccine_translations", ["locale"], :name => "index_vaccine_translations_on_locale"
   add_index "vaccine_translations", ["vaccine_id"], :name => "index_vaccine_translations_on_vaccine_id"
 
   create_table "vaccines", :force => true do |t|
+    t.string   "age"
+    t.string   "year_courses"
+    t.string   "vaccination_against"
     t.string   "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "number_of_doses"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
 end

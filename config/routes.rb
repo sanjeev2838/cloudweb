@@ -114,6 +114,9 @@ Cloudweb::Application.routes.draw do
    # Api for milestones
       match '/milestones' => 'milestones#index',  :via => :get
 
+  # Api for firmware
+      match '/firmware/:machine_id' => 'firmwares#show' ,:via => :get
+
    # Api for languages
    #   match '/languages' => 'langages#index',  :via => :get
     end
@@ -121,6 +124,9 @@ Cloudweb::Application.routes.draw do
 
 
   resources :parent_profiles do
+    collection do
+      get :make_machine_owner
+    end
     resources :child_profiles
   end
 

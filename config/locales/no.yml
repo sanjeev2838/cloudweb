@@ -8,6 +8,12 @@
       not_registered: 'Use1111r with this email not registered'
       password : 'emai11111l or password not matched'
 
+  title: 'tittle'
+  age: 'alder'
+  year_courses: 'års kurs'
+  vaccination_against: 'vaccination mot'
+  number_of_doses: 'Antall doser'
+
 
 
 

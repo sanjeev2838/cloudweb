@@ -72,4 +72,14 @@ class ParentProfilesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def make_machine_owner
+    @parent_profile =  ParentProfile.find(params[:format])
+    if @parent_profile.update_attributes(:is_machine_owner=>true)
+       redirect_to  @parent_profile ,notice: 'Parent profile was successfully updated.'
+    else
+      redirect_to  @parent_profile ,notice: 'Parent profile was not  updated.'
+    end
+
+  end
 end

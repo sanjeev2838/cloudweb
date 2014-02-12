@@ -33,7 +33,6 @@
                 <li><a href="/machines">Machines</a>
                     <ul>
                         <li> <a href="/machines">Machines</a></li>
-                        <li> <a href="/firmwares">Firmware</a></li>
                         <li><a href="/machines/machines_import">Machine Import</a></li>
                     </ul>
                 </li>
@@ -45,7 +44,9 @@
                     <li><%= link_to "All Users",users_path %></li>
                 </ul>
                 <%end%>
-                <li><a href="">Profile</a>
+              <li><%= link_to "Firmware",firmwares_path%></li>
+              <li><%= link_to "Vaccines",vaccines_path%></li>
+              <li><a href="">Profile</a>
            </ul>
         </div>
 

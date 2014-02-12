@@ -1,4 +1,11 @@
-<h1 class="new_machine_head">Listing firmwares</h1>
+<div class="list_mach_head">
+  <h1>Listing firmwares</h1>
+</div>
+<div class="float_right">
+  <%= link_to 'New Firmware', new_firmware_path %>
+</div>
+
+
 
 <table id="firmware_table">
   <thead>
@@ -6,6 +13,8 @@
     <th>Firmwareversion</th>
     <th>Binaryfile</th>
     <th>Serialids</th>
+    <th></th>
+    <th></th>
     <th></th>
   </thead>
 
@@ -15,7 +24,9 @@
     <td><%= firmware.firmwareversion %></td>
     <td><%= firmware.binaryfile %></td>
     <td><%= firmware.serialids %></td>
-    <td></td>
+    <td><%= link_to "Show", firmware%></td>
+    <td><%= link_to "Edit",edit_firmware_path(firmware)%></td>
+    <td><%= link_to "Destroy", firmware, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
   </tbody>
@@ -23,7 +34,7 @@
 
 <br />
 
-<div class="new_firm"><%= link_to 'New Firmware', new_firmware_path %>   </div>
+
 <script>
     $(document).ready(function(){
         $("#firmware_table").dataTable()

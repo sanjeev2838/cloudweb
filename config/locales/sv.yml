@@ -6,5 +6,9 @@ sv:
       not_registered: "User123 with this email not registered"
       password : "email123 or password123 not matched"
 
-
+  title: 'titel'
+  age: 'okänd'
+  year_courses: 'års studier'
+  vaccination_against: 'vaccination mot'
+  number_of_doses: 'antal dos'
 

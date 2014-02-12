@@ -1,4 +1,6 @@
 json.set! :status ,true
+json.set! :status_code, 4004
+json.set! :message,"Child found"
 json.child do
      json.set! :id, @child_profile.id
      json.set! :name, @child_profile.name

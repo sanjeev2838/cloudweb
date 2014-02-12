@@ -7,5 +7,10 @@ en:
       not_registered: "User with this email not registered"
       password : "email or password not matched"
 
+  title: 'Title'
+  age: 'Age'
+  year_courses: 'Year course'
+  vaccination_against: 'Vaccination Against'
+  number_of_doses: 'Number of doses'
 
 

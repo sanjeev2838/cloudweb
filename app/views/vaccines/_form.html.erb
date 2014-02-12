@@ -12,12 +12,28 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
+    <div class="field">
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+    </div>
+    <div class="field">
+      <%= f.label :year_courses %>
+      <%= f.text_field :year_courses %>
+    </div>
+    <div class="field">
+      <%= f.label :vaccination_against %>
+      <%= f.text_field :vaccination_against %>
+    </div>
+    <div class="field">
+      <%= f.label :number_of_doses %>
+      <%= f.text_field :number_of_doses %>
+    </div>
   <div class="field">
     <%= f.label :language%>
-    <%= select_tag :lang, options_for_select([["Select One", ""], "en", "sv", "no"]) %>
+    <%= select_tag :lang, options_for_select([["Select One", ""], ["English","en"], ["Swedish","sv"], ["Norwegian","no"]]) %>
   </div>
   <div class="actions">
     <%= f.submit %>

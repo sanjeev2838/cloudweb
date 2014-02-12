@@ -1,19 +1,14 @@
 class VaccinesController < ApplicationController
-  # GET /vaccines
-  # GET /vaccines.json
+
   def index
-    @vaccines = Vaccine.all
-    I18n.locale = :en
 
-
+    @vaccines = Vaccine.where(:status=>true)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vaccines }
     end
   end
 
-  # GET /vaccines/1
-  # GET /vaccines/1.json
   def show
     @vaccine = Vaccine.find(params[:id])
 
@@ -23,8 +18,6 @@ class VaccinesController < ApplicationController
     end
   end
 
-  # GET /vaccines/new
-  # GET /vaccines/new.json
   def new
     @vaccine = Vaccine.new
 
@@ -34,31 +27,28 @@ class VaccinesController < ApplicationController
     end
   end
 
-  # GET /vaccines/1/edit
   def edit
     @vaccine = Vaccine.find(params[:id])
   end
 
-  # POST /vaccines
-  # POST /vaccines.json
   def create
     I18n.locale = params[:lang].to_sym
+    params[:vaccine]=(params[:vaccine]).merge(:status=>true)
     @vaccine = Vaccine.new(params[:vaccine])
 
     respond_to do |format|
       if @vaccine.save
-        #I18n.locale = :en
+        I18n.locale = :en
         format.html { redirect_to @vaccine, notice: 'Vaccine was successfully created.' }
         format.json { render json: @vaccine, status: :created, location: @vaccine }
       else
+        I18n.locale = :en
         format.html { render action: "new" }
         format.json { render json: @vaccine.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /vaccines/1
-  # PUT /vaccines/1.json
   def update
     @vaccine = Vaccine.find(params[:id])
 
@@ -73,11 +63,9 @@ class VaccinesController < ApplicationController
     end
   end
 
-  # DELETE /vaccines/1
-  # DELETE /vaccines/1.json
   def destroy
     @vaccine = Vaccine.find(params[:id])
-    @vaccine.destroy
+    @vaccine.update_attributes(:status=>false)
 
     respond_to do |format|
       format.html { redirect_to vaccines_url }

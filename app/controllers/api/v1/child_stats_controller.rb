@@ -14,37 +14,37 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   def index
     return unless  check_type(params)
     @stats = ChildStat.get_child_stat(@child_profile.id,@profile.id,params[:type])
-    render json:{:status => false, :message => 'Child stats not found'}  if @stats.empty?
+    render json:{:status => false,:status_code=>5003, :message => 'Child stats not found'}  if @stats.empty?
   end
 
   def child_vaccines
     return unless  check_type(params)
     @vaccines = ChildStat.get_child_vaccine(@child_profile.id,@profile.id,params[:type])
-    render json:{:status => false, :message => "Child Vaccines not found "}  if @vaccines.empty?
+    render json:{:status => false,:status_code=>5005, :message => "Child Vaccines not found "}  if @vaccines.empty?
   end
 
   def child_meals
     return unless  check_type(params)
     @meals = ChildStat.get_child_meals(@child_profile.id,@profile.id,params[:type])
-    render json:{:status => false, :message => "Child meals not found "} if @meals.empty?
+    render json:{:status => false,:status_code=>5007, :message => "Child meals not found "} if @meals.empty?
   end
 
   def child_diapers
     return unless  check_type(params)
     @diapers = ChildStat.get_child_diapers(@child_profile.id,@profile.id,params[:type])
-    render json:{:status => false, :message => "Child diapers not found "}  if @diapers.empty?
+    render json:{:status => false,:status_code=>5009, :message => "Child diapers not found "}  if @diapers.empty?
   end
 
   def child_full_bottles
     return unless  check_type(params)
     @child_full_bottles = ChildStat.get_child_bottle(@child_profile.id,@profile.id,params[:type],1)
-    render json:{:status => false, :message => "Child full bottles not found "} if @child_full_bottles.empty?
+    render json:{:status => false, :status_code=>5011, :message => "Child full bottles not found "} if @child_full_bottles.empty?
   end
 
   def child_half_bottles
     return unless  check_type(params)
     @child_half_bottles = ChildStat.get_child_bottle(@child_profile.id,@profile.id,params[:type],2)
-    render json:{:status => false, :message => "Child half bottles not found "} if @child_half_bottles.empty?
+    render json:{:status => false,:status_code=>5013, :message => "Child half bottles not found "} if @child_half_bottles.empty?
   end
 
   def create
@@ -52,9 +52,9 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
     params[:child_stat] = params[:child_stat].merge(:parent_profile_id => @profile.id)
     @child_stat = @child_profile.child_stats.new(params[:child_stat])
     if @child_stat.save
-      render json:{:status=>true ,:child_state=>@child_stat.as_json }
+      render json:{:status=>true ,:status_code=>5015,:message=>"child states created successfully",:child_state=>@child_stat.as_json }
     else
-      render json:{:status => false, :message => @child_stat.errors.full_messages}
+      render json:{:status => false,:status_code=>5016, :message => @child_stat.errors.full_messages}
     end
   end
 
@@ -65,14 +65,14 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
       @profile = ParentProfile.find(params[:profile_id])
       @child_profile = @profile.child_profiles.find(params[:child_id])
     rescue ActiveRecord::RecordNotFound
-      render json:{:status => false, :message => "Unable to find child profile on cloud"}
+      render json:{:status => false,:status_code=>5000, :message => "Unable to find child profile on cloud"}
       return  false
     end
   end
 
   def check_type(params)
     if params[:type].nil?
-      render json:{:status => false, :message => "Please specify type: weekly, monthly in parameters "}
+      render json:{:status => false, :status_code=>5001,:message => "Please specify type: weekly, monthly in parameters "}
       return false
     else
       return true
@@ -84,7 +84,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   #  @profile = ParentProfile.find(params[:profile_id])
   #  raise  if @profile.authtoken != authtoken
   #rescue Exception => e
-  #  render json:{:status => false, :message => "Auth token not verified"}
+  #  render json:{:status => false,:status_code=>5002, :message => "Auth token not verified"}
   end
 
 end

@@ -2,9 +2,19 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   before_filter :find_profile,:verify_token, :only => [:index,:show, :update,:destroy,:create]
 
   def index
-    @child_profiles = @profile.child_profiles.where(status: true)
+    @parents = ParentProfile.find_all_by_machine_id(@profile.machine_id)
+    @child_profiles=[]
+    @parents.each do |parent|
+      child = ChildParentRelationship.find_all_by_parent_profile_id(parent.id)
+      parent.child_profiles.each do |child|
+        unless child.nil?
+          @child_profiles << child unless @child_profiles.include?(child)
+        end
+      end
+    end
+    #@child_profiles = @profile.child_profiles.where(status: true)
     if @child_profiles.empty?
-       render json:{:status => false, :message => "Child not found for this id"}
+       render json:{:status => false,:status_code=>4003, :message => "Child not found for this id"}
     end
   end
 
@@ -14,7 +24,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
      @child_profile = @profile.child_profiles.find(params[:id])
      @picture = @child_profile.pictures.find(:conditions => {:profilepic=>true})
     rescue ActiveRecord::RecordNotFound
-      render json:{:status => false, :message => "Unable to find parent profile on cloud"}
+      render json:{:status => false,:status_code=>4005, :message => "Unable to find child profile on cloud"}
     end
   end
 
@@ -49,7 +59,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
       render action: :create
       #render json:{:status => true, :child_id => @child_profile.id,:picture=>@picture.image.path }
     else
-      render json:{:status => false, :message => @child_profile.errors.full_messages}
+      render json:{:status => false,:status_code=>4007, :message => @child_profile.errors.full_messages}
     end
   end
   #
@@ -62,7 +72,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     if @child_profile.update_attributes(params[:child_profile])
       render action: :create
     else
-      render json:{:status => false, :message => "Child not found for this id"}
+      render json:{:status => false,:status_code=>4008, :message => "Child not found for this id"}
     end
     #@child_profile.update_column(:status , false)
     #render json:{:status => true, :message => "Child Deleted successfully"}
@@ -74,9 +84,9 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     #todo add exception handler here for wrong id
     @child_profile = @profile.child_profiles.find(params[:id])
     if @child_profile.update_column(:status , false)
-      render json:{:status => true, :message => "Child Deleted successfully"}
+      render json:{:status => true,:status_code=>4009, :message => "Child Deleted successfully"}
     else
-      render json:{:status => false, :message => "Child not found for this id"}
+      render json:{:status => false,:status_code=>4010, :message => "Child not found for this id"}
     end
 
   end
@@ -85,7 +95,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   def find_profile
     @profile = ParentProfile.find(params[:profile_id])
   rescue ActiveRecord::RecordNotFound
-    render json:{:status => false, :message => "Unable to find parent profile on cloud"}
+    render json:{:status => false,:status_code=>4000, :message => "Unable to find parent profile on cloud"}
   end
 
    # todo refector later on by migrating a helper method
@@ -94,7 +104,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     #  @profile = ParentProfile.find(params[:profile_id])
     #  raise  if @profile.authtoken != authtoken
     #rescue Exception =>e
-    #  render json:{:status => false, :message => "Auth token not verified"}
+    #  render json:{:status => false,:status_code=> 4001, :message => "Auth token not verified"}
   end
 
 end

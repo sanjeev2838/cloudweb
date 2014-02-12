@@ -134,7 +134,76 @@ curl -X POST -H "Content-type: application/json" -d  '{"email":"usr@email.com","
 
 Error code description :-
 -------------------------
+ Machine error codes
  error_code: message
+
+ 2000 : Machine not found
+ 2001 : Machine found
+ 2002 : Authcode not matched
+ 2003 : Provide color for machine
+ 2004 : New machine created successfully
+ 2005 : Error in new machine creation
+ 2006 : Machine deleted successfully
+ 2007 : Error in machine deletion
+
+ Parent profile error codes
+ 3000 : Parent profile created successfully
+ 3001 : errors in parent profile
+ 3002 : Parent profile updated successfully
+ 3003 : errors in parent profile update
+ 3004 : Parent profile deleted successfully
+ 3005 : error in parent profile deletion
+ 3006 : Parent profile not found
+ 3007 : Parent profile found in show.
+
+ child profile error codes
+ 4000 : unable to find parent profile
+ 4001 : Auth token not verified
+ 4002 : childs found for this parent
+ 4003 : child not found for this parent id
+ 4004 : child profile found
+ 4005 : child profile not found
+ 4006 : Child profile created successfully
+ 4007 : error in child profile
+ 4008 : error in child profile updation
+ 4009 : child profile destroy successfully
+ 4010 : error in child destroy
+
+ child stats eror codes
+ 5000 : Unable to find child profile
+ 5001 : Please specify type
+ 5002 : Authtoken not verified
+ 5003 : child stats not found
+ 5004 : child stats found
+ 5005 : child vaccines not found
+ 5006 : child vaccines found
+ 5007 : child meals not found
+ 5008 : child meals found
+ 5009 : Child diapers not found
+ 5010 : child diapers found
+ 5011 : Child full bottles not found
+ 5012 : child full bottles found
+ 5013 : child half bottles not found
+ 5014 : child half bottles found
+ 5015 : child stats created successfully
+ 5016 : error in child stats
+
+
+child brewing preferences error codes
+6000 : child brewing preference found
+6001 : child brewing preference not found
+6002 : child brewing preference updated successfully
+6003 : child not found for this id
+
+session error codes
+7000 : login successfull
+7001 : Password not matched
+7002 : user with this email not registered
+
+ vaccines error codes
+ 8000 : vaccines found
+ 8001 : auth token not verified
+
 
 
 =====================================================

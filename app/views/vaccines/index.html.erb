@@ -1,23 +1,44 @@
-<h1>Listing vaccines</h1>
+<div class="heading">
+  <h1 class="list_mach_head">Vaccines </h1>
+  <div class="float_right">
+    <%= link_to 'New Vaccine', new_vaccine_path %>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>Title</th>
+<table id="vaccines_table">
+  <thead>
+    <th><%=I18n.t('title')%></th>
+    <th><%=I18n.t('age')%></th>
+    <th><%=I18n.t('year_courses')%></th>
+    <th><%=I18n.t('vaccination_against')%></th>
+    <th><%=I18n.t('number_of_doses')%></th>
     <th></th>
     <th></th>
     <th></th>
-  </tr>
-
+  </thead>
+  <tbody>
 <% @vaccines.each do |vaccine| %>
   <tr>
     <td><%= vaccine.title %></td>
+    <td><%= vaccine.age%></td>
+    <td><%= vaccine.year_courses%></td>
+    <td><%= vaccine.vaccination_against%></td>
+    <td><%= vaccine.number_of_doses%></td>
+
     <td><%= link_to 'Show', vaccine %></td>
     <td><%= link_to 'Edit', edit_vaccine_path(vaccine) %></td>
     <td><%= link_to 'Destroy', vaccine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Vaccine', new_vaccine_path %>
+<script>
+    $(document).ready(function(){
+        $("#vaccines_table").dataTable()
+    });
+</script>
+
+

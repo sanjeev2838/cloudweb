@@ -1,19 +1,23 @@
+<h1 class="new_machine_head">Firmware</h1>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Firmwareversion:</b>
-  <%= @firmware.firmwareversion %>
-</p>
-
-<p>
-  <b>Serialids:</b>
+<div class="content_row">
+  <p class="left">
+    <b>Firmware Version :</b>
+    <%= @firmware.firmwareversion %>
+  </p>
+  <p class="center">
+  <b>Serial Ids:</b>
   <%= @firmware.serialids %>
 </p>
-
-<p>
-  <b>Binaryfile:</b>
-  <%= @firmware.binaryfile %>
-</p>
+ </div>
+<div class="content_row">
+  <p style="padding-right: 180px; display: table-cell">
+    <b>Binaryfile:</b>
+    <%= @firmware.binaryfile %>
+  </p>
+</div>
+<br>
 
 
 <%= link_to 'Edit', edit_firmware_path(@firmware) %> |

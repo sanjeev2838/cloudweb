@@ -2,7 +2,7 @@ class FirmwaresController < ApplicationController
   # GET /firmwares
   # GET /firmwares.json
   def index
-    @firmwares = Firmware.all
+    @firmwares = Firmware.where(:status=>true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,7 @@ class FirmwaresController < ApplicationController
   # POST /firmwares.json
   def create
     require 'fileutils'
+    params[:firmware] = (params[:firmware]).merge(:status => true)
     @firmware = Firmware.new(params[:firmware])
     respond_to do |format|
       unless params[:firmware][:binaryfile].nil?
@@ -49,6 +50,7 @@ class FirmwaresController < ApplicationController
         file = File.join("public/firmware", params[:firmware][:binaryfile].original_filename)
         FileUtils.cp tmp.path, file
         params[:firmware].delete :binaryfile
+
         @firmware.binaryfile = "public/firmware/#{original_filename}"
       end
       if @firmware.save
@@ -81,7 +83,7 @@ class FirmwaresController < ApplicationController
   # DELETE /firmwares/1.json
   def destroy
     @firmware = Firmware.find(params[:id])
-    @firmware.destroy
+    @firmware.update_attributes(:status=> false)
 
     respond_to do |format|
       format.html { redirect_to firmwares_url }
