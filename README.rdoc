@@ -130,6 +130,12 @@ For parent log in
 curl -X POST -H "Content-type: application/json" -d  '{"email":"usr@email.com","password":"password"}' http://localhost:3000/api/v1/login
 
 
+10.)
+------------------------------------------------------------------
+for diary entry
+
+
+
 =====================================================
 
 Error code description :-

@@ -1,5 +1,5 @@
 class Milestone < ActiveRecord::Base
-  attr_accessible :title,:image
+  attr_accessible :title,:image,:lang
 
   #has_many :languages
   has_one :picture

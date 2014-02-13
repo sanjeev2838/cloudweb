@@ -33,7 +33,7 @@ class VaccinesController < ApplicationController
 
   def create
     I18n.locale = params[:lang].to_sym
-    params[:vaccine]=(params[:vaccine]).merge(:status=>true)
+    params[:vaccine]=(params[:vaccine]).merge(:status=>true,:locale=>params[:lang])
     @vaccine = Vaccine.new(params[:vaccine])
 
     respond_to do |format|

@@ -41,7 +41,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
       tempfile.binmode
       #get the file and decode it with base64 then write it to the tempfile
       tempfile.write(Base64.decode64(params[:picture]) )
-
       #create a new uploaded file
       uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>'image.png', :original_filename => 'old',:content_type=>"image/jpeg")
       #replace picture_path with the new uploaded file

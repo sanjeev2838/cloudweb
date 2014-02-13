@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-    <th>Diary</th>
+    <th>log</th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,7 +10,7 @@
 
 <% @diaries.each do |diary| %>
   <tr>
-    <td><%= diary.diary %></td>
+    <td><%= diary.log%></td>
     <td><%= link_to 'Show', diary %></td>
     <td><%= link_to 'Edit', edit_diary_path(diary) %></td>
     <td><%= link_to 'Destroy', diary, method: :delete, data: { confirm: 'Are you sure?' } %></td>

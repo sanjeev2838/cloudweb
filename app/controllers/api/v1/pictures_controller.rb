@@ -1,13 +1,13 @@
 class Api::V1::PicturesController < Api::V1::BaseController
 
   before_filter :find_child_profile, :only => [:create, :index, :destroy, :show]
+
   def index
     @pictures = @child_profile.pictures
     pics = []
     @pictures.each do |pic|
         pics << pic.image_url
     end
-
     if @pictures.empty?
       render json:{:status => false, :message => "Unable to find any picture attached with this profile"}
     else
@@ -29,13 +29,10 @@ class Api::V1::PicturesController < Api::V1::BaseController
     tempfile.binmode
     #get the file and decode it with base64 then write it to the tempfile
     tempfile.write(Base64.decode64(params[:picture]) )
-
     #create a new uploaded file
     uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>'new', :original_filename => 'old',:content_type=>"image/jpeg")
-
     #@picture = @child_profile.pictures.create(:image=>uploaded_file, :profilepic => params[:profilepic])
     @picture = @child_profile.pictures.create(:image=>uploaded_file)
-
     if @picture.valid?
       render json:{:status => true, :pictureid => @picture.id}
     else

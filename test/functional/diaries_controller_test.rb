@@ -18,10 +18,10 @@ class DiariesControllerTest < ActionController::TestCase
 
   test "should create diary" do
     assert_difference('Diary.count') do
-      post :create, diary: { diary: @diary.diary }
+      post :create, log: {  }
     end
 
-    assert_redirected_to diary_path(assigns(:diary))
+    assert_redirected_to diary_path(assigns(:log))
   end
 
   test "should show diary" do
@@ -35,8 +35,8 @@ class DiariesControllerTest < ActionController::TestCase
   end
 
   test "should update diary" do
-    put :update, id: @diary, diary: { diary: @diary.diary }
-    assert_redirected_to diary_path(assigns(:diary))
+    put :update, id: @diary, log: {  }
+    assert_redirected_to diary_path(assigns(:log))
   end
 
   test "should destroy diary" do

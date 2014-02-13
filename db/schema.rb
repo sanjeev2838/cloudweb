@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140211101609) do
+ActiveRecord::Schema.define(:version => 20140213085711) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20140211101609) do
   end
 
   create_table "diaries", :force => true do |t|
-    t.string   "diary"
+    t.string   "log"
     t.integer  "child_profile_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20140211101609) do
     t.string   "firmwareversion"
     t.string   "serialids"
     t.string   "binaryfile"
+    t.boolean  "status"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
@@ -115,11 +116,10 @@ ActiveRecord::Schema.define(:version => 20140211101609) do
 
   create_table "milestones", :force => true do |t|
     t.string   "title"
-    t.string   "icon"
+    t.string   "lang"
     t.string   "image"
-    t.integer  "language_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "parent_profiles", :force => true do |t|
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(:version => 20140211101609) do
     t.boolean  "profilepic"
     t.integer  "parent_profile_id"
     t.integer  "child_profile_id"
-    t.integer  "diary_id"
+    t.integer  "log_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
@@ -183,6 +183,8 @@ ActiveRecord::Schema.define(:version => 20140211101609) do
     t.string   "vaccination_against"
     t.string   "title"
     t.string   "number_of_doses"
+    t.string   "locale"
+    t.boolean  "status"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end

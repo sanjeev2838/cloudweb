@@ -1,7 +1,8 @@
 class Api::V1::DiariesController < Api::V1::BaseController
   before_filter :find_child_profile, :only => [:index, :show, :update,:destroy, :create]
   #before_filter :verify_token , :only => [:index, :show, :update,:destroy, :create]
-  respond_to :json
+
+  #wrap_parameters  :diary, format: [:json]
 
   def index
     @diaries = @child_profile.diaries

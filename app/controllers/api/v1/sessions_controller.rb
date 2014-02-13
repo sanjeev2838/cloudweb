@@ -1,8 +1,6 @@
 class Api::V1::SessionsController < Api::V1::BaseController
 
-
   def new
-
   end
 
   def create
@@ -22,7 +20,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def destroy
-
   end
 
 end

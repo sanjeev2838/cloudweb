@@ -6,6 +6,7 @@ class CreateVaccines < ActiveRecord::Migration
       t.string :vaccination_against
       t.string :title
       t.string :number_of_doses
+      t.string :locale
       t.boolean :status
 
       t.timestamps
