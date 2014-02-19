@@ -10,6 +10,12 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
 
   def create
     params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
+    object= ParentProfile.where(:tokenid => params[:tokenid])
+    unless object.nil?
+      object.each do |obj|
+        obj.update_attributes(:tokenid=>"")
+      end
+    end
     @parent_profile = ParentProfile.create(params[:parent_profile])
     if @parent_profile.valid?
          render action: :create

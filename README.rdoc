@@ -206,7 +206,7 @@ session error codes
 7001 : Password not matched
 7002 : user with this email not registered
 
- vaccines error codes
+vaccines error codes
  8000 : vaccines found
  8001 : auth token not verified
 

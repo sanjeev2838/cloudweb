@@ -16,6 +16,7 @@ class ParentProfile < ActiveRecord::Base
   validates :email,
             format:     { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
+  #validates :tokenid, :uniqueness => true ,:message=>"Device already registered"
 
   RELATIONS = {  mamma: 0, pappa: 1, gaurdian: 2 }
   DEVICES = { iphone: 0 , android: 1 , blackberry: 2}

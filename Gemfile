@@ -21,6 +21,10 @@ gem 'strong_parameters'
 
 gem 'jbuilder'
 gem 'globalize3'
+gem 'apns'
+gem 'gcm_on_rails'
+gem 'pushmeup'
+#gem 'gcm'
 # gem 'active_model_serializers'
 
 # Gems used only for assets and not required
