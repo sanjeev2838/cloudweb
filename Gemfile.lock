@@ -51,6 +51,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    commander (4.1.6)
+      highline (~> 1.6.11)
     configatron (3.0.1)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
@@ -69,7 +71,11 @@ GEM
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       paper_trail (~> 2)
+    highline (1.6.20)
     hike (1.2.3)
+    houston (2.0.0)
+      commander (~> 4.1)
+      json
     httparty (0.13.0)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -92,6 +98,7 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.4)
     multi_xml (0.5.5)
+    mysql2 (0.3.15)
     orm_adapter (0.5.0)
     paper_trail (2.7.2)
       activerecord (~> 3.0)
@@ -175,10 +182,12 @@ DEPENDENCIES
   fancybox-rails
   gcm_on_rails
   globalize3
+  houston (~> 2.0.0)
   jbuilder
   jquery-datatables-rails!
   jquery-rails
   kaminari
+  mysql2
   pushmeup
   rails (= 3.2.16)
   rmagick

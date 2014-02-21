@@ -64,7 +64,7 @@
         <% @machine_logs.each do |machine_log| %>
             <tr>
               <td><%= machine_log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-              <td><%= machine_log.data %></td>
+              <td><%= machine_log.log_type %>(<%= machine_log.data%>)</td>
               <!--<td><%= link_to 'Edit', edit_machine_log_path(machine_log) %></td>-->
               <!--<td><%= link_to 'Destroy', machine_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
             </tr>

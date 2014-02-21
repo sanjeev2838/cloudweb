@@ -3,8 +3,9 @@ class ParentProfile < ActiveRecord::Base
                   :serialid, :authtoken, :email, :password, :relation, :lang
 
   attr_accessor   :serialid
-  has_many :child_parent_relationships
-  has_many :child_profiles ,:through => :child_parent_relationships
+  #has_many :child_parent_relationships
+  #has_many :child_profiles ,:through => :child_parent_relationships
+  has_many :child_profiles
   has_many :logbooks
   belongs_to :machine
 

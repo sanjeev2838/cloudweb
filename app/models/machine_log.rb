@@ -1,9 +1,17 @@
 class MachineLog < ActiveRecord::Base
+
   attr_accessible :data , :machine_id
 
   belongs_to :machine
 
   validates :data, :machine_id ,:presence => true
+
+  LOGS = { ResetWps: 128, Start_clean: 64, Start_half: 32, Start_full: 16,Powder_not_present: 8, Bottle_not_fitted: 4,Water_low: 2,Case_opened: 1 }
+
+  def log_type
+    MachineLog::LOGS.key(self.data).to_s
+  end
+
 
   def self.android_notifications(token_id,notification)
     GCM.host = 'https://android.googleapis.com/gcm/send'
@@ -16,21 +24,27 @@ class MachineLog < ActiveRecord::Base
   end
 
   def self.iphone_notifications(token_id,notification)
-    APNS.host = 'gateway.push.apple.com'
+    APNS.host = 'gateway.sandbox.push.apple.com'
     # gateway.sandbox.push.apple.com is default
 
     APNS.port = 2195
     # this is also the default. Shouldn't ever have to set this, but just in case Apple goes crazy, you can.
 
-    APNS.pem  = '/path/to/pem/file'
+    APNS.pem  = 'config/cert.pem'
     # this is the file you just created
 
     #APNS.pass = ''
     # Just in case your pem need a password
-    data= {:message => notification}
+    data= {:message => "notification"}
 
-    destination = token_id
-    APNS.send_notification(destination, data )
+    destination = "458765478874587686578657685765bbbffgjfjgjghjg"
+    APNS.send_notification(destination, 'Hello iPhone!' )
+    APNS.send_notification(destination, :alert => 'Hello iPhone!', :badge => 1, :sound => 'default')
+    #puts APNS.send_notification(destination, data )
     #APNS.send_notification(device_token, :alert => 'Hello iPhone!', :badge => 1, :sound => 'default')
+
+
+
+
   end
 end

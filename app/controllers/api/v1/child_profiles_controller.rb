@@ -5,7 +5,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     @parents = ParentProfile.find_all_by_machine_id(@profile.machine_id)
     @child_profiles=[]
     @parents.each do |parent|
-      child = ChildParentRelationship.find_all_by_parent_profile_id(parent.id)
+    child = ChildProfile.find_all_by_parent_profile_id(parent.id)
       parent.child_profiles.each do |child|
         unless child.nil?
           @child_profiles << child unless @child_profiles.include?(child)
@@ -64,9 +64,9 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   #
 
   def update
-    @child_profile = @profile.child_profiles.find(params[:id])
+    @child_profile = ChildProfile.find(params[:id])
     @picture = Picture.where(:child_profile_id => @child_profile.id).first
-    @picture.destroy
+    @picture.destroy unless @picture.nil?
     create_picture(params)
     if @child_profile.update_attributes(params[:child_profile])
       render action: :create

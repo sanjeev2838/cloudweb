@@ -8,6 +8,7 @@ gem 'rails', '3.2.16'
 gem 'sqlite3'
 gem 'devise'
 gem 'kaminari'
+gem 'mysql2'
 
 gem 'fancybox-rails'
 
@@ -24,6 +25,7 @@ gem 'globalize3'
 gem 'apns'
 gem 'gcm_on_rails'
 gem 'pushmeup'
+gem 'houston', '~> 2.0.0'
 #gem 'gcm'
 # gem 'active_model_serializers'
 

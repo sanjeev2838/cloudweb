@@ -14,15 +14,16 @@
   </div>
 <!--<hr style="color: deepskyblue">-->
     <div class="signo_in">
+      <div class="info_div">
+        <% flash.each do |key, value| %>
+            <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+        <% end %>
+      </div>
 <div class="sign_in_div">
   <h3 style="color: deepskyblue">Login</h3><br>
   <!--<hr style="color: deepskyblue">-->
   <div class="sing_in_inner_div">
-    <div class="info_div">
-      <% flash.each do |key, value| %>
-          <%= content_tag(:div, value, class: "alert alert-#{key}") %>
-      <% end %>
-    </div>
+
 <%= yield %>
 </div>
 </div>

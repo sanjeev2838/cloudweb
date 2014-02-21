@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       sign_in user
       redirect_to admin_dashboard_index_path
     else
+      flash[:notice]="Invalid user"
       redirect_to signin_path
     end
   end

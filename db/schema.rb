@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140217085507) do
+ActiveRecord::Schema.define(:version => 20140213085711) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -70,28 +70,6 @@ ActiveRecord::Schema.define(:version => 20140217085507) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "gcm_devices", :force => true do |t|
-    t.string   "registration_id",    :null => false
-    t.datetime "last_registered_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
-  add_index "gcm_devices", ["registration_id"], :name => "index_gcm_devices_on_registration_id", :unique => true
-
-  create_table "gcm_notifications", :force => true do |t|
-    t.integer  "device_id",        :null => false
-    t.string   "collapse_key"
-    t.text     "data"
-    t.boolean  "delay_while_idle"
-    t.datetime "sent_at"
-    t.integer  "time_to_live"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "gcm_notifications", ["device_id"], :name => "index_gcm_notifications_on_device_id"
-
   create_table "languages", :force => true do |t|
     t.string   "title"
     t.datetime "created_at", :null => false
@@ -107,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20140217085507) do
   end
 
   create_table "machine_logs", :force => true do |t|
-    t.string   "data"
+    t.integer  "data"
     t.integer  "machine_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
