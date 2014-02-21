@@ -122,8 +122,8 @@ class ChildStat < ActiveRecord::Base
     stat[:meals][user.to_sym] = 0
     stat[:diapers][user.to_sym] = 0
     list =  Hash.new { |h, k| h[k] = Hash.new }
-    entry = {}
     records.each do |record|
+      entry = {}
       date = record.datetime.strftime("%e %b %Y")
       entry[:weight] =  record.weight if record.weight
       entry[:height] =  record.height if record.height

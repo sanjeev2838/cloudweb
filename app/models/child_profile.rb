@@ -3,7 +3,7 @@ class ChildProfile < ActiveRecord::Base
 
   has_one :child_brewing_preference
   has_many :pictures
-
+  has_many :child_stats
   belongs_to :parent_profile
   #has_many :child_parent_relationships
   #has_many :parent_profiles,:through => :child_parent_relationships
