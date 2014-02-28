@@ -127,7 +127,9 @@ class ChildStat < ActiveRecord::Base
       date = record.datetime.strftime("%e %b %Y")
       entry[:weight] =  record.weight if record.weight
       entry[:height] =  record.height if record.height
-      add_entry(list,date,entry)
+      unless entry[:weight].nil? || entry[:height].nil?
+        add_entry(list,date,entry)
+      end
       stat[:vaccines][user.to_sym] += 1 if record.vaccine_id
       stat[:meals][user.to_sym]  += 1 if record.meals
       stat[:diapers][user.to_sym]  += 1 if record.diapers
@@ -197,7 +199,7 @@ class ChildStat < ActiveRecord::Base
 
 
   def self.meals_query(child_id,time_range)
-    child_stats= where(:child_profile_id=>child_id).where("meals NOT NULL").where(:datetime => time_range).all
+    child_stats= where(:child_profile_id=>child_id).where("meals IS NOT NULL").where(:datetime => time_range).all
     extract_info(child_stats , false,true)
   end
 

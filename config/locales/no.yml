@@ -16,6 +16,17 @@
 
 
 
+  ResetWps: "Tilbakestill/WPS"
+  Start_clean: "Begynn ren"
+  Start_half: "Begynn halv"
+  Start_full: "Begynn fullt"
+  Powder_not_present: "Pulver ikke tilstede"
+  Bottle_not_fitted: "Bottle ikke montert"
+  Water_low: "vann lav"
+  Case_opened: "saken åpnet"
+
+
+
 
 
 

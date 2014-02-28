@@ -1,18 +1,18 @@
 class Api::V1::ChildProfilesController < Api::V1::BaseController
   before_filter :find_profile,:verify_token, :only => [:index,:show, :update,:destroy,:create]
+  include TokenValidation
 
   def index
     @parents = ParentProfile.find_all_by_machine_id(@profile.machine_id)
     @child_profiles=[]
     @parents.each do |parent|
-    child = ChildProfile.find_all_by_parent_profile_id(parent.id)
-      parent.child_profiles.each do |child|
+      parent.child_profiles.find_all_by_status(true).each do |child|
         unless child.nil?
           @child_profiles << child unless @child_profiles.include?(child)
         end
       end
     end
-    #@child_profiles = @profile.child_profiles.where(status: true)
+    @child_profiles = @child_profiles.sort! { |a,b| b[:created_at] <=> a[:created_at] }
     if @child_profiles.empty?
        render json:{:status => false,:status_code=>4003, :message => "Child not found for this id"}
     end
@@ -22,7 +22,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   def show
     begin
      @child_profile = @profile.child_profiles.find(params[:id])
-     @picture = @child_profile.pictures.find(:all,:conditions => {:profilepic=>true}).first
+     @picture = @child_profile.pictures.all(:conditions => {:profilepic=>true}).first
     rescue ActiveRecord::RecordNotFound
       render json:{:status => false,:status_code=>4005, :message => "Unable to find child profile on cloud"}
     end
@@ -35,7 +35,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   def create_picture(params)
     unless params[:picture].nil?
-      #----------------picture upload----------------
       #create a new tempfile named fileupload
       tempfile = Tempfile.new("fileupload")
       tempfile.binmode
@@ -44,24 +43,30 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
       #create a new uploaded file
       uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>'image.png', :original_filename => 'old',:content_type=>"image/jpeg")
       #replace picture_path with the new uploaded file
-      #params[:picture][:image] =  uploaded_file
       @picture = @child_profile.pictures.create(:image=>uploaded_file, :profilepic => true)
     end
   end
 
   def create
-    params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
-    params[:child_profile]= params[:child_profile].merge :status=>true
-    @child_profile = @profile.child_profiles.create(params[:child_profile])
-    create_picture(params)
-    if @child_profile.valid?
-      render action: :create
-      #render json:{:status => true, :child_id => @child_profile.id,:picture=>@picture.image.path }
+    @parents = ParentProfile.find_all_by_machine_id(@profile.machine_id)
+    childes=[]
+    @parents.each do |parent|
+        childes << parent.child_profiles
+    end
+    if childes.count == 5 || childes.count > 5
+      render json:{:status => false, :message => "You can't add more child with this machine" }
     else
-      render json:{:status => false,:status_code=>4007, :message => @child_profile.errors.full_messages}
+      params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
+      params[:child_profile]= params[:child_profile].merge :status=>true
+      @child_profile = @profile.child_profiles.create(params[:child_profile])
+      create_picture(params)
+      if @child_profile.valid?
+        render action: :create
+      else
+        render json:{:status => false,:status_code=>4007, :message => @child_profile.errors.full_messages}
+      end
     end
   end
-  #
 
   def update
     @child_profile = ChildProfile.find(params[:id])
@@ -73,15 +78,12 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     else
       render json:{:status => false,:status_code=>4008, :message => "Child not found for this id"}
     end
-    #@child_profile.update_column(:status , false)
-    #render json:{:status => true, :message => "Child Deleted successfully"}
-    #@profile.update_attributes(params[:profile])
-    #respond_with(@profile)
+
   end
   #
   def destroy
     #todo add exception handler here for wrong id
-    @child_profile = @profile.child_profiles.find(params[:id])
+    @child_profile = ChildProfile.find(params[:id])
     if @child_profile.update_column(:status , false)
       render json:{:status => true,:status_code=>4009, :message => "Child Deleted successfully"}
     else
@@ -98,12 +100,10 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   end
 
    # todo refector later on by migrating a helper method
+
+
   def verify_token
-    #  authtoken = request.headers['authtoken']
-    #  @profile = ParentProfile.find(params[:profile_id])
-    #  raise  if @profile.authtoken != authtoken
-    #rescue Exception =>e
-    #  render json:{:status => false,:status_code=> 4001, :message => "Auth token not verified"}
+    check_auth_token(request.headers['authtoken'],params[:profile_id])
   end
 
 end

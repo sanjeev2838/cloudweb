@@ -12,3 +12,12 @@ sv:
   vaccination_against: 'vaccination mot'
   number_of_doses: 'antal dos'
 
+  ResetWps: "Återställ/WPS"
+  Start_clean: "Börja ren"
+  Start_half: "Börja halv"
+  Start_full: "starta fullständig"
+  Powder_not_present: "Pulver inte närvarande"
+  Bottle_not_fitted: "Bottle inte försedda"
+  Water_low: "vatten låg"
+  Case_opened: "Ärende öppnat"
+

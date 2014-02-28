@@ -49,6 +49,7 @@ class ChildProfilesController < ApplicationController
 
 
   def create
+
     @child_profile = @parent_profile.child_profiles.create(params[:child_profile])
 
     respond_to do |format|

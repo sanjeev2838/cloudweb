@@ -149,4 +149,8 @@ Cloudweb::Application.routes.draw do
   end
 
 
+
+  match "*path", :to => "application#routing_error"
+
+
 end

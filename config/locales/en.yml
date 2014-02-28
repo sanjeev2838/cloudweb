@@ -13,4 +13,21 @@ en:
   vaccination_against: 'Vaccination Against'
   number_of_doses: 'Number of doses'
 
+  2000: 'machine not found'
+  2001: 'Machine found'
+  2002: 'authcode not matched'
+  2003: 'provide color as parameter to update'
+  2004: 'Machine created successfully'
+
+
+
+  ResetWps: "Reset/Wps"
+  Start_clean: "Start Clean"
+  Start_half: "Start Half"
+  Start_full: "Start Full"
+  Powder_not_present: "Powder_not_present"
+  Bottle_not_fitted: "Bottle not Fitted"
+  Water_low: "Water Low"
+  Case_opened: "case opened"
+
 

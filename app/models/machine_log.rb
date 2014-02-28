@@ -23,6 +23,7 @@ class MachineLog < ActiveRecord::Base
     puts GCM.send_notification(destination, data)
   end
 
+
   def self.iphone_notifications(token_id,notification)
     APNS.host = 'gateway.sandbox.push.apple.com'
     # gateway.sandbox.push.apple.com is default
@@ -33,18 +34,10 @@ class MachineLog < ActiveRecord::Base
     APNS.pem  = 'config/cert.pem'
     # this is the file you just created
 
-    #APNS.pass = ''
-    # Just in case your pem need a password
-    data= {:message => "notification"}
-
-    destination = "458765478874587686578657685765bbbffgjfjgjghjg"
-    APNS.send_notification(destination, 'Hello iPhone!' )
-    APNS.send_notification(destination, :alert => 'Hello iPhone!', :badge => 1, :sound => 'default')
-    #puts APNS.send_notification(destination, data )
-    #APNS.send_notification(device_token, :alert => 'Hello iPhone!', :badge => 1, :sound => 'default')
-
-
-
+    device_token = token_id
+    data= {:message => notification}
+    APNS.send_notification(device_token, 'Hello iPhone!' )
+    APNS.send_notification(device_token, :alert => 'Hello iPhone!', :badge => 1, :sound => 'default')
 
   end
 end

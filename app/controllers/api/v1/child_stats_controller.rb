@@ -2,6 +2,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
 
   before_filter :verify_token
   before_filter :find_child_profile, :only => [:index, :create, :child_meals, :child_diapers, :child_vaccines,:child_half_bottles ,:child_full_bottles]
+  include TokenValidation
 
   #todo refactor this by using
   #def check_child_stats(nil_msg, method_symbol, method_args, empty_msg)
@@ -82,11 +83,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   end
 
   def verify_token
-  #  authtoken = request.headers['authtoken']
-  #  @profile = ParentProfile.find(params[:profile_id])
-  #  raise  if @profile.authtoken != authtoken
-  #rescue Exception => e
-  #  render json:{:status => false,:status_code=>5002, :message => "Auth token not verified"}
+     #check_auth_token(request.headers['authtoken'],params[:profile_id])
   end
 
 end
