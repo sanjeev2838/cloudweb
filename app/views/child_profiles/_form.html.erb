@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :child_name %><br />
+    <%= f.label :child_name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :dob %><br />
+    <%= f.label :dob %>
     <%= f.text_field :dob %>
   </div>
   <div class="field">
-    <%= f.label :gender %><br />
+    <%= f.label :gender %>
     <%= f.text_field :gender %>
   </div>
 
 
   <%= f.fields_for :child_brewing_preference do |builder| %>
         <div class="field">
-            <%= builder.label :temperature %><br />
+            <%= builder.label :temperature %>
             <%= builder.number_field :temperature %>
         </div>
         <div class="field">
-            <%= builder.label :milk_qty %><br />
+            <%= builder.label :milk_qty %>
             <%= builder.number_field :milk %>
         </div>
 

@@ -45,6 +45,7 @@ class ParentProfile < ActiveRecord::Base
         self.is_machine_owner = false
       else
         self.is_machine_owner = true
+        @machine.update_attributes(:status=>true)
       end
     end
   end
