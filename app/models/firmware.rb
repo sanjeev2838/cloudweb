@@ -3,6 +3,8 @@ class Firmware < ActiveRecord::Base
 
   validates :binaryfile, :firmwareversion, :serialids , :presence => true
 
+  serial_id_regex = /[1-9]\d*(,\d+)?$/
+  validates :serialids ,format:     { with: serial_id_regex }
 
 
 end

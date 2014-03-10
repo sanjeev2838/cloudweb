@@ -4,7 +4,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def create
-    user = ParentProfile.find_by_email(params[:session][:email])
+    user = ParentProfile.find_by_email_and_status(params[:session][:email],true)
     I18n.locale = :en.to_sym
     unless user.nil?
       @machine = Machine.find(user.machine_id) unless user.machine_id.nil?
