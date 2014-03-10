@@ -2,7 +2,7 @@ class MachinesController < ApplicationController
   ## GET /machines
   ## GET /machines.json
   def index
-    @machines = Machine.all
+    @machines = Machine.where(:status=>true)
 
     respond_to do |format|
       format.html # index.html.erb

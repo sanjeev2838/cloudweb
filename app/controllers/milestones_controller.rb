@@ -1,7 +1,6 @@
 class MilestonesController < ApplicationController
 
   def index
-    I18n.locale = :no
     @milestones = Milestone.all
 
     respond_to do |format|

@@ -7,7 +7,7 @@ server 'dev.wermlandsoftware.com', user: 'pardeep', roles: %w{web app}, my_prope
 set :branch, 'master'
 set :rails_env, "staging"
 
-set :deploy_to, "/var/www/clowdweb"
+set :deploy_to, "/home/sanjeev/cloudweb1"
 
 set :domain, "staging.dev.wermlandsoftware.com"
 

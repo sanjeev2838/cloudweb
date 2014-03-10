@@ -1,3 +1,3 @@
-class LogbookSerializer < ActiveModel::Serializer
-  attributes :id
-end
+#class LogbookSerializer < ActiveModel::Serializer
+#  attributes :id
+#end

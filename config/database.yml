@@ -24,3 +24,4 @@ production:
   database: cloudweb_production
   pool: 5
   timeout: 5000
+  user: "root"

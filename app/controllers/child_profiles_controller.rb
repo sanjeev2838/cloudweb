@@ -17,7 +17,7 @@ class ChildProfilesController < ApplicationController
     @child_profile = @parent_profile.child_profiles.find(params[:id])
     @brewing_preference = @child_profile.child_brewing_preference
     @machine = Machine.find(@parent_profile.machine_id)
-    @child_state = ChildStat.find_all_by_id(params[:id])
+    @child_state = ChildStat.find_all_by_child_profile_id(params[:id])
     @logs = Logbook.find_all_by_child_profile_id(params[:id])
     respond_to do |format|
       format.html # show.html.erb

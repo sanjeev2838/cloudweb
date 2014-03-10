@@ -1,7 +1,7 @@
 class VaccinesController < ApplicationController
 
   def index
-
+    I18n.locale = :en
     @vaccines = Vaccine.where(:status=>true)
     respond_to do |format|
       format.html # index.html.erb
