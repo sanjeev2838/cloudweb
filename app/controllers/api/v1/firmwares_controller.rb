@@ -24,8 +24,11 @@ class Api::V1::FirmwaresController <  Api::V1::BaseController
       end
       @all_firmware
     end
+    @binary_file = ""
+    unless @all_firmware.nil?
      latest_firmware=@all_firmware.sort!{|a,b| a.created_at <=> b.created_at}
      @binary_file = latest_firmware.map { |x| x[:binaryfile] }.join(',')
+    end
 
     unless @binary_file == ""
       render action: :show

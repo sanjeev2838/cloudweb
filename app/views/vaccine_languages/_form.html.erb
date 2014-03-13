@@ -1,0 +1,17 @@
+<%= form_for(@vaccine_language) do |f| %>
+  <% if @vaccine_language.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vaccine_language.errors.count, "error") %> prohibited this vaccine_language from being saved:</h2>
+
+      <ul>
+      <% @vaccine_language.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

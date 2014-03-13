@@ -1,41 +1,37 @@
-<%= form_for(@vaccine) do |f| %>
-  <% if @vaccine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vaccine.errors.count, "error") %> prohibited this vaccine from being saved:</h2>
+<%= form_tag(vaccines_path, :method=>'post', :multipart => true) do %>
 
-      <ul>
-      <% @vaccine.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <div class="field">
+      <%= label_tag :title %>
+      <%= text_field_tag :title %>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
     <div class="field">
-      <%= f.label :age %>
-      <%= f.text_field :age %>
+      <%= label_tag "Age Count" %>
+      <%= text_field_tag :count %>
     </div>
-    <div class="field">
-      <%= f.label :year_courses %>
-      <%= f.text_field :year_courses %>
-    </div>
-    <div class="field">
-      <%= f.label :vaccination_against %>
-      <%= f.text_field :vaccination_against %>
-    </div>
-    <div class="field">
-      <%= f.label :number_of_doses %>
-      <%= f.text_field :number_of_doses %>
-    </div>
-  <div class="field">
-    <%= f.label :language%>
-    <%= select_tag :lang, options_for_select([["Select One", ""], ["English","en"], ["Swedish","sv"], ["Norwegian","no"]]) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    <div class="field">Languages</div>
+    <%@languages.each do |lang|%>
+      <div class="field">
+        <%= label_tag lang%>
+        <%= text_field_tag lang%>
+      </div>
+    <%end%>
+
+    <%= submit_tag :submit,:id=>"submit_button"%>
 <% end %>
+<script>
+    //    "<div class='field' style='margin-left: 200px'><input id='age' size='30' type='text'> </div>"
+    $('#count').change(function(){
+        $('.age').remove() ;
+        console.log($(this).val());
+        $("input[id~='age']")
+        var value = parseInt($(this).val());
+        console.log(value);
+        for ( var i = 0; i < value; i++ ) {
+            var string = '<div class="field age" style="margin-left: 200px"><input name='+"age"+i+" "+' id='+"age"+i+" "+ ' type="text"> </div>'
+            $(this).closest('div').after(string);
+        }
+    })
+
+</script>

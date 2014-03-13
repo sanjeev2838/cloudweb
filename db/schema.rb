@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140213085711) do
+ActiveRecord::Schema.define(:version => 20140311113356) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -162,20 +162,20 @@ ActiveRecord::Schema.define(:version => 20140213085711) do
     t.datetime "updated_at",      :null => false
   end
 
-  create_table "vaccine_translations", :force => true do |t|
-    t.integer  "vaccine_id",          :null => false
-    t.string   "locale",              :null => false
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "title"
-    t.string   "age"
-    t.string   "year_courses"
-    t.string   "vaccination_against"
-    t.string   "number_of_doses"
+  create_table "vaccine_ages", :force => true do |t|
+    t.integer  "age"
+    t.integer  "vaccine_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "vaccine_translations", ["locale"], :name => "index_vaccine_translations_on_locale"
-  add_index "vaccine_translations", ["vaccine_id"], :name => "index_vaccine_translations_on_vaccine_id"
+  create_table "vaccine_languages", :force => true do |t|
+    t.string   "title"
+    t.string   "locale"
+    t.integer  "vaccine_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "vaccines", :force => true do |t|
     t.string   "age"

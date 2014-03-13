@@ -1,0 +1,7 @@
+<p class="fields">
+  <%= f.label :age, "Age" %><br />
+  <%= f.text_field :age%><br />
+  <%= f.hidden_field :_destroy %>
+  <%= link_to_function "remove","remove_fields(this)" %>
+</p>
+<p><%= link_to_add_fields "Add Age", f, :vaccine_ages %></p>

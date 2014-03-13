@@ -51,9 +51,11 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     @parents = ParentProfile.find_all_by_machine_id(@profile.machine_id)
     childes=[]
     @parents.each do |parent|
+      unless parent.child_profiles.empty?
         childes << parent.child_profiles
+      end
     end
-    if childes.count == 5 || childes.count > 5
+    if childes.count >= 5
       render json:{:status => false, :message => "You can't add more child with this machine" }
     else
       params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
@@ -91,6 +93,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     end
 
   end
+
 
   private
   def find_profile

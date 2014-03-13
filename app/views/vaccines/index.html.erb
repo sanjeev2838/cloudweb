@@ -7,11 +7,8 @@
 
 <table id="vaccines_table">
   <thead>
-    <th><%=I18n.t('title')%></th>
-    <th><%=I18n.t('age')%></th>
-    <th><%=I18n.t('year_courses')%></th>
-    <th><%=I18n.t('vaccination_against')%></th>
-    <th><%=I18n.t('number_of_doses')%></th>
+    <th>Title</th>
+    <th>Age</th>
     <th></th>
     <th></th>
     <th></th>
@@ -20,11 +17,7 @@
 <% @vaccines.each do |vaccine| %>
   <tr>
     <td><%= vaccine.title %></td>
-    <td><%= vaccine.age%></td>
-    <td><%= vaccine.year_courses%></td>
-    <td><%= vaccine.vaccination_against%></td>
-    <td><%= vaccine.number_of_doses%></td>
-
+    <td><%= vaccine.age %></td>
     <td><%= link_to 'Show', vaccine %></td>
     <td><%= link_to 'Edit', edit_vaccine_path(vaccine) %></td>
     <td><%= link_to 'Destroy', vaccine, method: :delete, data: { confirm: 'Are you sure?' } %></td>

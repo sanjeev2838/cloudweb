@@ -1,5 +1,11 @@
 Cloudweb::Application.routes.draw do
 
+  resources :vaccine_languages
+
+
+  resources :vaccine_ages
+
+
   resources :diaries
 
 

@@ -1,0 +1,21 @@
+<h1>Listing vaccine_languages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vaccine_languages.each do |vaccine_language| %>
+  <tr>
+    <td><%= link_to 'Show', vaccine_language %></td>
+    <td><%= link_to 'Edit', edit_vaccine_language_path(vaccine_language) %></td>
+    <td><%= link_to 'Destroy', vaccine_language, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vaccine language', new_vaccine_language_path %>

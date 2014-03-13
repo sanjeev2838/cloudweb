@@ -7,7 +7,7 @@
 
 <%unless @child_profile.pictures.nil?%>
     <%@child_profile.pictures.each do |pic|%>
-        <%= image_tag pic.image_url  if pic.image? %><br>
+        <%= image_tag pic.image_url ,:height => 150,:width => 150  if pic.image? %><br>
         <%= link_to "Remove", pic,:method => "delete"%>
 
     <%end%>

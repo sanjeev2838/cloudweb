@@ -1,8 +1,7 @@
 class VaccinesController < ApplicationController
 
   def index
-    I18n.locale = :en
-    @vaccines = Vaccine.where(:status=>true)
+    @vaccines = Vaccine.where(:status => true)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vaccines }
@@ -20,6 +19,9 @@ class VaccinesController < ApplicationController
 
   def new
     @vaccine = Vaccine.new
+    @languages = Vaccine::LANG
+    @vaccine_ages = @vaccine.vaccine_ages.build
+    3.times {@vaccine.vaccine_ages.build}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -29,20 +31,25 @@ class VaccinesController < ApplicationController
 
   def edit
     @vaccine = Vaccine.find(params[:id])
+    @languages = Vaccine::LANG
   end
 
   def create
-    I18n.locale = params[:lang].to_sym
-    params[:vaccine]=(params[:vaccine]).merge(:status=>true,:locale=>params[:lang])
-    @vaccine = Vaccine.new(params[:vaccine])
+    @languages = Vaccine::LANG
+    @vaccine = Vaccine.create(:title=>params[:title],:status=>true)
 
     respond_to do |format|
       if @vaccine.save
-        I18n.locale = :en
+        @vaccine_languge = VaccineLanguage.create(:title=>params[:sv],:vaccine_id=>@vaccine.id,:locale=>"sv") unless params[:sv].nil?
+        @vaccine_languge = VaccineLanguage.create(:title=>params[:no],:vaccine_id=>@vaccine.id,:locale=>"no") unless params[:no].nil?
+        @vaccine_languge = VaccineLanguage.create(:title=>params[:en],:vaccine_id=>@vaccine.id,:locale=>"en") unless params[:en].nil?
+        params[:count].to_i.times do |i|
+          age = params["age#{i}"]
+          @vaccine_age = VaccineAge.create(:age=>age,:vaccine_id=>@vaccine.id)
+        end
         format.html { redirect_to @vaccine, notice: 'Vaccine was successfully created.' }
         format.json { render json: @vaccine, status: :created, location: @vaccine }
       else
-        I18n.locale = :en
         format.html { render action: "new" }
         format.json { render json: @vaccine.errors, status: :unprocessable_entity }
       end

@@ -1,0 +1,21 @@
+<h1>Listing vaccine_ages</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vaccine_ages.each do |vaccine_age| %>
+  <tr>
+    <td><%= link_to 'Show', vaccine_age %></td>
+    <td><%= link_to 'Edit', edit_vaccine_age_path(vaccine_age) %></td>
+    <td><%= link_to 'Destroy', vaccine_age, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vaccine age', new_vaccine_age_path %>

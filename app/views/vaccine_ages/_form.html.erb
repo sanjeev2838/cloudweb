@@ -1,0 +1,17 @@
+<%= form_for(@vaccine_age) do |f| %>
+  <% if @vaccine_age.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vaccine_age.errors.count, "error") %> prohibited this vaccine_age from being saved:</h2>
+
+      <ul>
+      <% @vaccine_age.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

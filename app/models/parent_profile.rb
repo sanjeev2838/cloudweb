@@ -43,6 +43,7 @@ class ParentProfile < ActiveRecord::Base
     # set machine owner
       if ParentProfile.where(:machine_id => @machine.id).first
         self.is_machine_owner = false
+        @machine.update_attributes(:status=>true)
       else
         self.is_machine_owner = true
         @machine.update_attributes(:status=>true)

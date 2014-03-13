@@ -1,0 +1,2 @@
+module VaccineLanguagesHelper
+end
