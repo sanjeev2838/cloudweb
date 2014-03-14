@@ -1,8 +1,4 @@
-//$(doucment).on("click","#submit_button",function(e){
-//   alert("hello")
-//    e.preventDefault();
-//
-//})
+
 $(document).on("click","#submit_button", function(e) {
 
     var intRegex = /^\d+$/;

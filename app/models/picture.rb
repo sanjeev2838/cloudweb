@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  attr_accessible :filepath , :image, :profilepic
+  attr_accessible :filepath , :image, :profilepic,:child_profile_id
 
   belongs_to :child_profile
   #belongs_to :parent_profile

@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(:version => 20140311113356) do
     t.integer  "log_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.integer  "diary_id"
   end
 
   create_table "users", :force => true do |t|

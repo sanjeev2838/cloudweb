@@ -21,9 +21,11 @@ class Api::V1::DiariesController < Api::V1::BaseController
   end
 
   def create
-    @diary = @child_profile.diaries.create(params[:diary])
-    create_pictures(params) if params[:filescount] > 0
-    if @diary.valid?
+    p params
+    @diary = @child_profile.diaries.create(:log=>params[:log])
+    files_count = params[:filescount].to_i
+    create_pictures(params,@diary) if files_count > 0
+    if @diary
       render json:{:status => true, :logid => @diary.id}
     else
       render json:{:status => false, :message => @diary.errors.full_messages }
@@ -58,14 +60,16 @@ class Api::V1::DiariesController < Api::V1::BaseController
   #    params.require(:diary).permit(:diary)
   # end
 
-  def create_pictures(params)
-    for i in 1..params[:filescount]
-      unless params["file{i}".to_sym].empty?
+  def create_pictures(params,diary)
+    files_count = params[:filescount].to_i
+    for i in 1..files_count
+      file = params["file#{i}"]
+      unless file.nil?
         tempfile = Tempfile.new("fileupload")
         tempfile.binmode
-        tempfile.write(Base64.decode64(params["file{i}".to_sym]) )
+        tempfile.write(Base64.decode64(file))
         uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>'image.png', :original_filename => 'old',:content_type=>"image/jpeg")
-        @picture = @child_profile.diaries.pictures.create(:image=>uploaded_file)
+        @picture = diary.pictures.create(:image=>uploaded_file,:child_profile_id=>@child_profile.id)
         #todo add validation if unable to create picture record
         #todo return picture id hash for updation of each picture
       end
