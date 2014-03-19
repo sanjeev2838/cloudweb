@@ -19,6 +19,7 @@ class ChildProfilesController < ApplicationController
     @machine = Machine.find(@parent_profile.machine_id)
     @child_state = ChildStat.find_all_by_child_profile_id(params[:id])
     @logs = Logbook.find_all_by_child_profile_id(params[:id])
+    @dairy = Diary.find_all_by_child_profile_id(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @child_profile }

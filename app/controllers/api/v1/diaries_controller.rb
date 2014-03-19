@@ -22,7 +22,7 @@ class Api::V1::DiariesController < Api::V1::BaseController
 
   def create
     p params
-    @diary = @child_profile.diaries.create(:log=>params[:log])
+    @diary = @child_profile.diaries.create(:log=>params[:log],:milestone_id=>params[:milestone_id])
     files_count = params[:filescount].to_i
     create_pictures(params,@diary) if files_count > 0
     if @diary

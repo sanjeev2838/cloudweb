@@ -15,6 +15,7 @@ gem 'fancybox-rails'
 
 gem 'rmagick'
 gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'spreadsheet'
 gem 'bcrypt-ruby', '~> 3.0.0'

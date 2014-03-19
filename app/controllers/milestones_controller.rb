@@ -22,8 +22,7 @@ class MilestonesController < ApplicationController
 
   def new
     @milestone = Milestone.new
-
-    puts "the languages are #{@languages}"
+    @languages = Milestone::LANG
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,16 +37,14 @@ class MilestonesController < ApplicationController
 
 
   def create
-    I18n.locale = params[:milestone][:lang].to_sym
+    params[:milestone].merge!(:en=>params[:en],:sv=>params[:sv],:no=>params[:no])
     @milestone = Milestone.new(params[:milestone])
 
     respond_to do |format|
       if @milestone.save
-        I18n.locale = :en
         format.html { redirect_to @milestone, notice: 'Milestone was successfully created.' }
         format.json { render json: @milestone, status: :created, location: @milestone }
       else
-        I18n.locale = en
         format.html { render action: "new" }
         format.json { render json: @milestone.errors, status: :unprocessable_entity }
       end
@@ -72,6 +69,7 @@ class MilestonesController < ApplicationController
 
   def destroy
     @milestone = Milestone.find(params[:id])
+    @milestone.remove_image!
     @milestone.destroy
 
     respond_to do |format|

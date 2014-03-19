@@ -17,7 +17,7 @@
 <% @milestones.each do |milestone| %>
   <tr>
     <td><%= milestone.title%></td>
-    <td><%= image_tag milestone.image_url.to_s, :height => 100,:width => 100 %></td>
+    <td><%= image_tag milestone.image_url, :height => 100,:width => 100 %></td>
     <td><%= link_to 'Show', milestone %></td>
     <td><%= link_to 'Edit', edit_milestone_path(milestone) %></td>
     <td><%= link_to 'Destroy', milestone, method: :delete, data: { confirm: 'Are you sure?' } %></td>

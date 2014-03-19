@@ -1,11 +1,15 @@
 class Milestone < ActiveRecord::Base
-  attr_accessible :title,:image,:lang
+  attr_accessible :title,:image,:lang ,:en,:sv,:no
 
-  #has_many :languages
+  belongs_to :diary
   has_one :picture
   validates :title,:image ,:presence => true
 
   mount_uploader :image, ImageUploader
 
-  translates :title
+  LANG = %w(sv no en)
+
+
+
+
 end
