@@ -1,2 +1,3 @@
 module ChildProfilesHelper
+
 end

@@ -110,22 +110,27 @@
         <th>Image</th>
         <th>Action</th>
         </thead>
-        <% @dairy.each do |diary|%>
+        <% @dairy[0..1].each do |diary|%>
             <tbody>
             <tr>
-              <td><%= diary.log %></td>
+
               <%pictures = Picture.find_all_by_diary_id(diary.id)%>
               <td>
-                <%pictures.each do |pic|%>
-                    <%= image_tag (pic.image_url)%>
-                <%end%>
+                 <%unless diary.log.nil?%>
+                 <p>
+                   <%= diary.log %>
+                   <% pictures.each do |i|%>
+                       <%= image_tag i.image_url,:height => 30%>
+                 </p>
+                   <%end%>
+                 <%end%>
               </td>
               <td></td>
             </tr>
             </tbody>
         <%end%>
     </table>
-  <%end%>
+<%end%>
 
 
 <script>
