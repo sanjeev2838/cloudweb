@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311113356) do
+ActiveRecord::Schema.define(:version => 20140320113816) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -60,6 +60,11 @@ ActiveRecord::Schema.define(:version => 20140311113356) do
     t.integer  "child_profile_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "diaries_milestone_join", :id => false, :force => true do |t|
+    t.integer "diary_id"
+    t.integer "milestone_id"
   end
 
   create_table "firmwares", :force => true do |t|

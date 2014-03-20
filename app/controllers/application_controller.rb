@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include MachinesHelper
   include SessionsHelper
   include ApplicationHelper
-
+  include ChildProfilesHelper
 
   def routing_error
     raise ActionController::RoutingError.new(params[:path])

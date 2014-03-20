@@ -1,7 +1,8 @@
 json.set! :status ,true
 json.diary do |json|
     json.array!(@diaries) do |diary|
-      json.extract! log_book, :diary
-      json.set! "datetime", log_book.created_at
+      json.extract! diary, :log
+      json.set! "pictures" , get_pictures(diary.pictures)
+      json.set! "datetime", diary.created_at
     end
 end

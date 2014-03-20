@@ -111,7 +111,7 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:profile_id/children/:children_id/pictures' => 'pictures#index', :via => :get
 
    # Api for diary
-   #   match  '/profiles/:profile_id/children/:children_id/logbook' => 'logbooks#index', :via => :get
+       match  '/profiles/:profile_id/children/:children_id/diaries' => 'diaries#index', :via => :get
        match  '/profiles/:profile_id/children/:children_id/diary' => 'diaries#create', :via => :post
       #match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#show', :via => :get
       #match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#destroy', :via => :delete

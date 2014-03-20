@@ -107,25 +107,20 @@
     <table id="child_diary_table">
         <thead>
         <th>Log</th>
-        <th>Image</th>
         <th>Action</th>
         </thead>
         <% @dairy.each do |diary|%>
             <tbody>
             <tr>
-              <td><%= diary.log %></td>
-              <%pictures = Picture.find_all_by_diary_id(diary.id)%>
-              <td>
-                <%pictures.each do |pic|%>
-                    <%= image_tag (pic.image_url)%>
-                <%end%>
-              </td>
+               <td>
+                 <%=  get_child_dairy_log(diary).html_safe %>
+               </td>
               <td></td>
             </tr>
             </tbody>
         <%end%>
     </table>
-  <%end%>
+<%end%>
 
 
 <script>
