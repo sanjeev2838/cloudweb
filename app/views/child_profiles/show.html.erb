@@ -107,24 +107,14 @@
     <table id="child_diary_table">
         <thead>
         <th>Log</th>
-        <th>Image</th>
         <th>Action</th>
         </thead>
         <% @dairy[0..1].each do |diary|%>
             <tbody>
             <tr>
-
-              <%pictures = Picture.find_all_by_diary_id(diary.id)%>
-              <td>
-                 <%unless diary.log.nil?%>
-                 <p>
-                   <%= diary.log %>
-                   <% pictures.each do |i|%>
-                       <%= image_tag i.image_url,:height => 30%>
-                 </p>
-                   <%end%>
-                 <%end%>
-              </td>
+               <td>
+                 <%=  get_child_dairy_log(diary).html_safe %>
+               </td>
               <td></td>
             </tr>
             </tbody>
