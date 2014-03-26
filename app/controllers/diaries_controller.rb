@@ -1,7 +1,7 @@
 class DiariesController < ApplicationController
   # GET /diaries
   # GET /diaries.json
-
+   include DiariesHelper
   def index
     @diaries = Diary.all
 

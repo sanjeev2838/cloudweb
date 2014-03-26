@@ -102,27 +102,25 @@
 </table>
 <%end%>
 
-
+<% unless @dairy.nil? %>
 <h3 class="heading_color">Diary</h3>
     <table id="child_diary_table">
         <thead>
-            <tr>
-            <th>Log</th>
-            <th>Action</th>
-            </tr>
+        <th>Log</th>
+        <th>Action</th>
         </thead>
-        <tbody>
-            <% @dairy.each do |diary|%>
-                <tr>
-                    <td><%=  get_child_dairy_log(diary).html_safe %></td>
-                    <td></td>
-                </tr>
-            <%end%>
-        </tbody>
-
-
+        <% @dairy[0..1].each do |diary|%>
+            <tbody>
+            <tr>
+               <td>
+                 <%=  get_child_dairy_log(diary).html_safe %>
+               </td>
+              <td></td>
+            </tr>
+            </tbody>
+        <%end%>
     </table>
-
+<%end%>
 
 
 <script>
