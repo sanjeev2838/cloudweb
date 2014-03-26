@@ -8,7 +8,7 @@ json.children do |json|
        json.set! :dob,child_profile.dob
        json.set! :gender,child_profile.gender
        json.set! :preference_id, child_profile.preference_id
-       if childprofile.pictures.empty?
+       if child_profile.pictures.empty?
         json.set! :filepath ,'https://'
        else
         json.set! :filepath, request.protocol + request.host_with_port + child_profile.pictures.first.image_url unless child_profile.pictures.empty?
