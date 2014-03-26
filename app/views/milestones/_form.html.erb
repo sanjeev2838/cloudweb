@@ -17,10 +17,13 @@
       <%= f.text_field :title%>
       </p>
     </div>
-    <div class="field">
-      <%= f.label :language%>
-      <%= f.select :lang, options_for_select([["Select One", ""], ["English","en"], ["Swedish","sv"], ["Norwegian","no"]]) %>
-    </div>
+    <div class="field">Languages</div>
+    <%@languages.each do |lang|%>
+        <div class="field">
+          <%= label_tag lang%>
+          <%= text_field_tag lang%>
+        </div>
+    <%end%>
 
     <div class="field">
       <p>

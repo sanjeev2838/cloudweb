@@ -43,7 +43,7 @@ class VaccinesController < ApplicationController
         @vaccine_languge = VaccineLanguage.create(:title=>params[:sv],:vaccine_id=>@vaccine.id,:locale=>"sv") unless params[:sv].nil?
         @vaccine_languge = VaccineLanguage.create(:title=>params[:no],:vaccine_id=>@vaccine.id,:locale=>"no") unless params[:no].nil?
         @vaccine_languge = VaccineLanguage.create(:title=>params[:en],:vaccine_id=>@vaccine.id,:locale=>"en") unless params[:en].nil?
-        params[:count].to_i.times do |i|
+        (1..params[:count].to_i).each do |i|
           age = params["age#{i}"]
           @vaccine_age = VaccineAge.create(:age=>age,:vaccine_id=>@vaccine.id)
         end

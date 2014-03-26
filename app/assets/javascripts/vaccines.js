@@ -8,15 +8,15 @@ $(document).on("click","#submit_button", function(e) {
         e.preventDefault()
     }
 
-    for (i=0; i < count;){
-
-      var age = $("#age"+i).val()
-        if(!intRegex.test(age)) {
-            alert("Age Field must be numeric")
-            e.preventDefault()
-        }
-       i++
-    }
+//    for (i=0; i < count;){
+//
+//      var age = $("#age"+i).val()
+//        if(!intRegex.test(age)) {
+//            alert("Age Field must be numeric")
+//            e.preventDefault()
+//        }
+//       i++
+//    }
 
 
 });

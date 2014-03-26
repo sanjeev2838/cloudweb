@@ -13,6 +13,20 @@
     <%= image_tag @milestone.image_url.to_s, :height => 100,:width => 100 %>
   </p>
 </div>
+<div class="content_row">
+  <p class="left">
+    <b>English:</b>
+    <%=@milestone.en%>
+  </p>
+  <p class="center">
+    <b>norwegian:</b>
+    <%=@milestone.no%>
+  </p>
+  <p class="right">
+    <b>Swedish:</b>
+    <%=@milestone.sv%>
+  </p>
+</div>
 
 <%= link_to 'Edit', edit_milestone_path(@milestone) %> |
 <%= link_to 'Back', milestones_path %>

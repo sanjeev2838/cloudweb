@@ -28,8 +28,8 @@
         $("input[id~='age']")
         var value = parseInt($(this).val());
         console.log(value);
-        for ( var i = 0; i < value; i++ ) {
-            var string = '<div class="field age" style="margin-left: 200px"><input name='+"age"+i+" "+' id='+"age"+i+" "+ ' type="text"> </div>'
+        for ( var i = value; i >= 1; i-- ) {
+            var string = '<div class="field age" ><label for="age">'+i+'</label><input name='+"age"+i+" "+' id='+"age"+i+" "+ ' type="text"> </div>'
             $(this).closest('div').after(string);
         }
     })

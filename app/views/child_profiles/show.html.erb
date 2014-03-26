@@ -28,7 +28,7 @@
   </p>
   <p class="right">
     <b>Status:</b>
-    <%= @child_profile.status ? "inactive" : "active" %>
+    <%= @child_profile.status ? "active" : "inactive" %>
   </p>
 </div>
 <br>
@@ -101,6 +101,30 @@
     <%end%>
 </table>
 <%end%>
+
+
+<h3 class="heading_color">Diary</h3>
+    <table id="child_diary_table">
+        <thead>
+            <tr>
+            <th>Log</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @dairy.each do |diary|%>
+                <tr>
+                    <td><%=  get_child_dairy_log(diary).html_safe %></td>
+                    <td></td>
+                </tr>
+            <%end%>
+        </tbody>
+
+
+    </table>
+
+
+
 <script>
     $(document).ready(function(){
         $("#child_stat_table").dataTable()
@@ -111,3 +135,9 @@
         $("#child_log_table").dataTable()
     });
 </script>
+
+  <script>
+      $(document).ready(function(){
+          $("#child_diary_table").dataTable()
+      });
+  </script>

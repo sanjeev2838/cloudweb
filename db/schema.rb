@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311113356) do
+ActiveRecord::Schema.define(:version => 20140320113816) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -56,9 +56,15 @@ ActiveRecord::Schema.define(:version => 20140311113356) do
 
   create_table "diaries", :force => true do |t|
     t.string   "log"
+    t.integer  "milestone_id"
     t.integer  "child_profile_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "diaries_milestone_join", :id => false, :force => true do |t|
+    t.integer "diary_id"
+    t.integer "milestone_id"
   end
 
   create_table "firmwares", :force => true do |t|
@@ -103,21 +109,12 @@ ActiveRecord::Schema.define(:version => 20140311113356) do
     t.datetime "activated_on"
   end
 
-  create_table "milestone_translations", :force => true do |t|
-    t.integer  "milestone_id", :null => false
-    t.string   "locale",       :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "title"
-  end
-
-  add_index "milestone_translations", ["locale"], :name => "index_milestone_translations_on_locale"
-  add_index "milestone_translations", ["milestone_id"], :name => "index_milestone_translations_on_milestone_id"
-
   create_table "milestones", :force => true do |t|
     t.string   "title"
-    t.string   "lang"
     t.string   "image"
+    t.string   "en"
+    t.string   "no"
+    t.string   "sv"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -146,9 +143,9 @@ ActiveRecord::Schema.define(:version => 20140311113356) do
     t.integer  "parent_profile_id"
     t.integer  "child_profile_id"
     t.integer  "log_id"
+    t.integer  "diary_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.integer  "diary_id"
   end
 
   create_table "users", :force => true do |t|
