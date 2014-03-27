@@ -1,5 +1,6 @@
 class MilestonesController < ApplicationController
-
+  # GET /milestones
+  # GET /milestones.json
   def index
     @milestones = Milestone.all
 
@@ -9,7 +10,8 @@ class MilestonesController < ApplicationController
     end
   end
 
-
+  # GET /milestones/1
+  # GET /milestones/1.json
   def show
     @milestone = Milestone.find(params[:id])
 
@@ -19,10 +21,10 @@ class MilestonesController < ApplicationController
     end
   end
 
-
+  # GET /milestones/new
+  # GET /milestones/new.json
   def new
     @milestone = Milestone.new
-    @languages = Milestone::LANG
 
     respond_to do |format|
       format.html # new.html.erb
@@ -30,16 +32,15 @@ class MilestonesController < ApplicationController
     end
   end
 
-
+  # GET /milestones/1/edit
   def edit
     @milestone = Milestone.find(params[:id])
-    @languages = Milestone::LANG
   end
 
-
+  # POST /milestones
+  # POST /milestones.json
   def create
-    params[:milestone].merge!(:en=>params[:en],:sv=>params[:sv],:no=>params[:no])
-    @milestone = Milestone.new(params[:milestone])
+    @milestone = Milestone.new(milestone_params)
 
     respond_to do |format|
       if @milestone.save
@@ -52,12 +53,13 @@ class MilestonesController < ApplicationController
     end
   end
 
-
+  # PATCH/PUT /milestones/1
+  # PATCH/PUT /milestones/1.json
   def update
     @milestone = Milestone.find(params[:id])
 
     respond_to do |format|
-      if @milestone.update_attributes(params[:milestone])
+      if @milestone.update_attributes(milestone_params)
         format.html { redirect_to @milestone, notice: 'Milestone was successfully updated.' }
         format.json { head :no_content }
       else
@@ -67,10 +69,10 @@ class MilestonesController < ApplicationController
     end
   end
 
-
+  # DELETE /milestones/1
+  # DELETE /milestones/1.json
   def destroy
     @milestone = Milestone.find(params[:id])
-    @milestone.remove_image!
     @milestone.destroy
 
     respond_to do |format|
@@ -78,4 +80,13 @@ class MilestonesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    # Use this method to whitelist the permissible parameters. Example:
+    # params.require(:person).permit(:name, :age)
+    # Also, you can specialize this method with per-user checking of permissible attributes.
+    def milestone_params
+      params.require(:milestone).permit(:en, :image, :no, :sv, :title)
+    end
 end

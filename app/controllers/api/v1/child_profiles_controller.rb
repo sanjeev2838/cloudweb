@@ -4,7 +4,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   def index
     @parents = ParentProfile.find_all_by_machine_id(@profile.machine_id)
-    @child_profiles=[]
+    @child_profiles = []
     @parents.each do |parent|
       parent.child_profiles.find_all_by_status(true).each do |child|
         unless child.nil?
@@ -103,8 +103,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
   end
 
    # todo refector later on by migrating a helper method
-
-
   def verify_token
     #check_auth_token(request.headers['authtoken'],params[:profile_id])
   end

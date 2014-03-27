@@ -1,5 +1,8 @@
 Cloudweb::Application.routes.draw do
 
+  resources :milestones
+
+
   resources :vaccine_languages
 
 
@@ -11,9 +14,6 @@ Cloudweb::Application.routes.draw do
 
   #get "users/new"
   resources :users
-
-  resources :milestones
-
 
   resources :languages
 

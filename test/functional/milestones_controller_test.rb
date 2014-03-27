@@ -18,7 +18,7 @@ class MilestonesControllerTest < ActionController::TestCase
 
   test "should create milestone" do
     assert_difference('Milestone.count') do
-      post :create, milestone: {  }
+      post :create, milestone: { en: @milestone.en, image: @milestone.image, no: @milestone.no, sv: @milestone.sv, title: @milestone.title }
     end
 
     assert_redirected_to milestone_path(assigns(:milestone))
@@ -35,7 +35,7 @@ class MilestonesControllerTest < ActionController::TestCase
   end
 
   test "should update milestone" do
-    put :update, id: @milestone, milestone: {  }
+    put :update, id: @milestone, milestone: { en: @milestone.en, image: @milestone.image, no: @milestone.no, sv: @milestone.sv, title: @milestone.title }
     assert_redirected_to milestone_path(assigns(:milestone))
   end
 

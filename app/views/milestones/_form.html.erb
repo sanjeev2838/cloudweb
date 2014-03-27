@@ -1,4 +1,4 @@
-<%= form_for(@milestone,:multipart=> true) do |f| %>
+<%= form_for(@milestone) do |f| %>
   <% if @milestone.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@milestone.errors.count, "error") %> prohibited this milestone from being saved:</h2>
@@ -9,29 +9,28 @@
       <% end %>
       </ul>
     </div>
-  <% end %><br>
+  <% end %>
 
-    <div class="field">
-      <p>
-      <%= f.label :title %>
-      <%= f.text_field :title%>
-      </p>
-    </div>
-    <div class="field">Languages</div>
-    <%@languages.each do |lang|%>
-        <div class="field">
-          <%= label_tag lang%>
-          <%= text_field_tag lang%>
-        </div>
-    <%end%>
-
-    <div class="field">
-      <p>
-        <%=f.label :image%>
-        <%= f.file_field :image%>
-      </p>
-    </div>
-
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :en %><br />
+    <%= f.text_field :en %>
+  </div>
+  <div class="field">
+    <%= f.label :no %><br />
+    <%= f.text_field :no %>
+  </div>
+  <div class="field">
+    <%= f.label :sv %><br />
+    <%= f.text_field :sv %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

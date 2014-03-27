@@ -7,6 +7,6 @@ User.create!(:name=>"admin",:email=>"admin@email.com",:password=>"password",:pas
  end
 
 10.times do |vac|
-  Vaccine.create!(:title=>"vac#{vac}")
+  Vaccine.create!(:title=>"vac#{vac}", status: true)
 end
 
