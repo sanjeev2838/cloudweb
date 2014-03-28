@@ -21,7 +21,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 #todo   BUT ABOUT THE STATUS HERE
   def show
     begin
-     @child_profile = @profile.child_profiles.find(params[:id])
+     @child_profile = ChildProfile.find(params[:id])
      @picture = @child_profile.pictures.all(:conditions => {:profilepic=>true}).first
     rescue ActiveRecord::RecordNotFound
       render json:{:status => false,:status_code=>4005, :message => "Unable to find child profile on cloud"}
