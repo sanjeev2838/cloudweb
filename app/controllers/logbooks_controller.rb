@@ -74,10 +74,7 @@ class LogbooksController < ApplicationController
   def destroy
     @logbook = Logbook.find(params[:id])
     @logbook.destroy
+    redirect_to :back
 
-    respond_to do |format|
-      format.html { redirect_to logbooks_url }
-      format.json { head :no_content }
-    end
   end
 end

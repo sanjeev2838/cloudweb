@@ -75,11 +75,7 @@ class DiariesController < ApplicationController
   def destroy
     @diary = Diary.find(params[:id])
     @diary.destroy
-
-    respond_to do |format|
-      format.html { redirect_to diaries_url }
-      format.json { head :no_content }
-    end
+    redirect_to :back
   end
 
   private

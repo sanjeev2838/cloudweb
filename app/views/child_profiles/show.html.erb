@@ -71,8 +71,14 @@
           <td><%=stat.height%></td>
           <td><%=stat.diapers%></td>
           <td><%=stat.meals %></td>
-          <td></td>
-          <td></td>
+          <% unless stat.vaccine_id.nil?%>
+            <% vaccine = VaccineLanguage.find_by_vaccine_id(stat.vaccine_id)%>
+              <td><%= vaccine.title%></td>
+          <%else%>
+              <td></td>
+          <%end%>
+
+          <td><%= link_to 'Destroy', stat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
      <%end%>
     </tbody>
@@ -95,7 +101,7 @@
         <td><%= log.created_at%></td>
         <td><%= log.parent_profile.name%></td>
         <td><%= log.log%></td>
-        <td></td>
+      <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   </tbody>
     <%end%>
@@ -109,16 +115,17 @@
         <th>Log</th>
         <th>Action</th>
         </thead>
-        <% @dairy[0..1].each do |diary|%>
-            <tbody>
+        <tbody>
+        <% @dairy.each do |diary|%>
             <tr>
                <td>
                  <%=  get_child_dairy_log(diary).html_safe %>
                </td>
-              <td></td>
+              <td><%= link_to 'Destroy', diary, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
-            </tbody>
         <%end%>
+        </tbody>
+
     </table>
 <%end%>
 

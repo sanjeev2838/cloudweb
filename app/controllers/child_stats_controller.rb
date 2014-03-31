@@ -62,10 +62,7 @@ class ChildStatsController < ApplicationController
   def destroy
     @child_stat = ChildStat.find(params[:id])
     @child_stat.destroy
+    redirect_to :back
 
-    respond_to do |format|
-      format.html { redirect_to child_stats_url }
-      format.json { head :no_content }
-    end
   end
 end

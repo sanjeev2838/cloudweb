@@ -2,6 +2,7 @@ module ChildProfilesHelper
   def get_child_dairy_log(diary)
     pictures = Picture.find_all_by_diary_id(diary.id)
     log_str = diary.log
+    milestones = diary.milestones
     unless diary.log.nil?
       (pictures).each_with_index do |item, index|
         if log_str.include?("@image#{index+1}@")
