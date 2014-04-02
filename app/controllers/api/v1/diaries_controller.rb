@@ -68,12 +68,8 @@ class Api::V1::DiariesController < Api::V1::BaseController
     render json:{:status => false, :message => "Unable to find child profile on cloud"}
   end
 
-  #def verify_token
-  #  authtoken = request.headers['authtoken']
-  #  @parent_profile = ParentProfile.find(params[:profile_id])
-  #  raise  if @parent_profile.authtoken != authtoken
-  #rescue Exception => e
-  #  render json:{:status => false, :message => "Auth token not verified"}
-  #end
+  def verify_token
+   # check_auth_token(request.headers['authtoken'],params[:profile_id])
+  end
 
 end

@@ -104,7 +104,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
    # todo refector later on by migrating a helper method
   def verify_token
-    #check_auth_token(request.headers['authtoken'],params[:profile_id])
+    check_auth_token(request.headers['authtoken'],params[:profile_id])
   end
 
 end

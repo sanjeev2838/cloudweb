@@ -83,7 +83,7 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   end
 
   def verify_token
-     #check_auth_token(request.headers['authtoken'],params[:profile_id])
+     check_auth_token(request.headers['authtoken'],params[:profile_id])
   end
 
 end

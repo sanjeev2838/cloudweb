@@ -73,7 +73,7 @@
           <td><%=stat.meals %></td>
           <% unless stat.vaccine_id.nil?%>
             <% vaccine = VaccineLanguage.find_by_vaccine_id(stat.vaccine_id)%>
-              <td><%= vaccine.title%></td>
+              <td><%= vaccine.title unless vaccine.nil?%></td>
           <%else%>
               <td></td>
           <%end%>

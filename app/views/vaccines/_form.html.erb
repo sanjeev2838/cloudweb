@@ -1,37 +1,51 @@
-<%= form_tag(vaccines_path, :method=>'post', :multipart => true) do %>
+<%= form_for(@vaccine) do |f| %>
 
     <div class="field">
-      <%= label_tag :title %>
-      <%= text_field_tag :title %>
+      <%= f.label :title%>
+      <%= f.text_field :title%>
     </div>
-
-    <div class="field">
-      <%= label_tag "Age Count" %>
-      <%= text_field_tag :count %>
-    </div>
-
-    <div class="field">Languages</div>
-    <%@languages.each do |lang|%>
-      <div class="field">
-        <%= label_tag lang%>
-        <%= text_field_tag lang%>
-      </div>
+    <%=f.fields_for :vaccine_ages do |builder|%>
+          <div class="field">
+            <%= builder.label :age ,"Child Age" %>
+            <%= builder.text_field :age%>
+            <%= builder.hidden_field :_destroy %>
+            <%= link_to_function "remove","remove_fields(this)" %>
+          </div>
     <%end%>
-
-    <%= submit_tag :submit,:id=>"submit_button"%>
+    <p><%= link_to_add_fields "Add Age", f, :vaccine_ages %></p><br>
+    <p>Languages</p><br>
+    <%= f.fields_for :vaccine_languages do |builder|%>
+        <div class="field">
+          <%=builder.label :english%>
+          <%=builder.text_field :title%>
+        </div>
+        <div class="field">
+          <%=builder.label :swedish%>
+          <%=builder.text_field :title%>
+        </div>
+        <div class="field">
+          <%=builder.label :norvegion%>
+          <%=builder.text_field :title%>
+        </div>
+    <%end%>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>
 <script>
-    //    "<div class='field' style='margin-left: 200px'><input id='age' size='30' type='text'> </div>"
-    $('#count').change(function(){
-        $('.age').remove() ;
-        console.log($(this).val());
-        $("input[id~='age']")
-        var value = parseInt($(this).val());
-        console.log(value);
-        for ( var i = value; i >= 1; i-- ) {
-            var string = '<div class="field age" ><label for="age">'+i+'</label><input name='+"age"+i+" "+' id='+"age"+i+" "+ ' type="text"> </div>'
-            $(this).closest('div').after(string);
-        }
-    })
+
+    function add_fields(link, association, content) {
+        console.log (link)
+        var new_id = new Date().getTime();
+        var regexp = new RegExp("new_" + association, "g")
+        $(link).parent().before(content.replace(regexp, new_id));
+    }
+
+    function remove_fields(link) {
+        $(link).prev("input[type=hidden]").val("true");
+        alert($(link).prev("input[type=hidden]").val())
+        $(link).closest(".field").hide();
+    }
+
 
 </script>

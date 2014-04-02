@@ -1,7 +1,7 @@
 class VaccinesController < ApplicationController
 
   def index
-    @vaccines = Vaccine.where(:status => true)
+    @vaccines = Vaccine.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vaccines }
@@ -18,10 +18,10 @@ class VaccinesController < ApplicationController
   end
 
   def new
-    @vaccine = Vaccine.new
     @languages = Vaccine::LANG
-    @vaccine_ages = @vaccine.vaccine_ages.build
-    3.times {@vaccine.vaccine_ages.build}
+    @vaccine = Vaccine.new
+    vaccine_ages = @vaccine.vaccine_ages.build
+    vaccine_language = @vaccine.vaccine_languages.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,18 +35,10 @@ class VaccinesController < ApplicationController
   end
 
   def create
-    @languages = Vaccine::LANG
-    @vaccine = Vaccine.create(:title=>params[:title],:status=>true)
+   @vaccine = Vaccine.new(params[:vaccine])
 
     respond_to do |format|
       if @vaccine.save
-        @vaccine_languge = VaccineLanguage.create(:title=>params[:sv],:vaccine_id=>@vaccine.id,:locale=>"sv") unless params[:sv].nil?
-        @vaccine_languge = VaccineLanguage.create(:title=>params[:no],:vaccine_id=>@vaccine.id,:locale=>"no") unless params[:no].nil?
-        @vaccine_languge = VaccineLanguage.create(:title=>params[:en],:vaccine_id=>@vaccine.id,:locale=>"en") unless params[:en].nil?
-        (1..params[:count].to_i).each do |i|
-          age = params["age#{i}"]
-          @vaccine_age = VaccineAge.create(:age=>age,:vaccine_id=>@vaccine.id)
-        end
         format.html { redirect_to @vaccine, notice: 'Vaccine was successfully created.' }
         format.json { render json: @vaccine, status: :created, location: @vaccine }
       else

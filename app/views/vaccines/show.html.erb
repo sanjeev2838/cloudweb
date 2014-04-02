@@ -4,27 +4,20 @@
   <p class="left">
     <b>Title:</b>
     <%= @vaccine.title %>
-  </p>
-  <p style="padding-right: 180px; display: table-cell">
-    <b>Age:</b>
-    <%= @vaccine.age %>
-  </p>
-  <p class="right">
-    <b>Year couses:</b>
-    <%= @vaccine.year_courses %>
-  </p>
-</div>
-<div class="content_row">
-  <p class="left">
-    <b>Vaccination Against:</b>
-    <%= @vaccine.vaccination_against %>
-  </p>
-  <p class="center">
-    <b>Number of Doses:</b>
-    <%= @vaccine.number_of_doses %>
-  </p>
-</div>
+ </p>
 
+  <%@vaccine.vaccine_ages.each do |age|%>
+     <p>
+      <b>Age:</b>
+      <%=age.age%>
+     </p>
+  <%end%>
+
+  <%= @vaccine.vaccine_languages.each do |language|%>
+
+  <%end%>
+
+</div>
 
 <%= link_to 'Edit', edit_vaccine_path(@vaccine) %> |
 <%= link_to 'Back', vaccines_path %>
