@@ -1,7 +1,7 @@
 class Api::V1::VaccinesController < Api::V1::BaseController
 
   def index
-    @vaccines = VaccineLanguage.where(:locale => params[:lang])
+    @vaccines = Vaccine.where(:status =>true)
     render json:{:status=>true ,:status_code=>8000,:message=> "vaccines found",:vaccines=>@vaccines }
   end
 

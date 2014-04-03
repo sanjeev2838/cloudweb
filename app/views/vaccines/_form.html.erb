@@ -5,29 +5,27 @@
       <%= f.text_field :title%>
     </div>
     <%=f.fields_for :vaccine_ages do |builder|%>
-          <div class="field">
+          <div class="field image">
             <%= builder.label :age ,"Child Age" %>
             <%= builder.text_field :age%>
             <%= builder.hidden_field :_destroy %>
-            <%= link_to_function "remove","remove_fields(this)" %>
+            <%= link_to_add_fields (image_tag("/..//assets/plus.png")), f, :vaccine_ages %>
           </div>
     <%end%>
-    <p><%= link_to_add_fields "Add Age", f, :vaccine_ages %></p><br>
-    <p>Languages</p><br>
-    <%= f.fields_for :vaccine_languages do |builder|%>
-        <div class="field">
-          <%=builder.label :english%>
-          <%=builder.text_field :title%>
-        </div>
-        <div class="field">
-          <%=builder.label :swedish%>
-          <%=builder.text_field :title%>
-        </div>
-        <div class="field">
-          <%=builder.label :norvegion%>
-          <%=builder.text_field :title%>
-        </div>
-    <%end%>
+
+    <div class="field">
+      <%= f.label :en %>
+      <%= f.text_field :en %>
+    </div>
+    <div class="field">
+      <%= f.label :no %>
+      <%= f.text_field :no %>
+    </div>
+    <div class="field">
+      <%= f.label :sv %>
+      <%= f.text_field :sv %>
+    </div>
+
     <div class="actions">
       <%= f.submit %>
     </div>
@@ -43,7 +41,6 @@
 
     function remove_fields(link) {
         $(link).prev("input[type=hidden]").val("true");
-        alert($(link).prev("input[type=hidden]").val())
         $(link).closest(".field").hide();
     }
 

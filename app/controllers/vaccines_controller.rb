@@ -1,7 +1,8 @@
 class VaccinesController < ApplicationController
 
   def index
-    @vaccines = Vaccine.all
+    @vaccines = Vaccine.where(:status => true)
+    #@vaccines = Vaccine.all
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @vaccines }
@@ -18,10 +19,10 @@ class VaccinesController < ApplicationController
   end
 
   def new
-    @languages = Vaccine::LANG
+
     @vaccine = Vaccine.new
     vaccine_ages = @vaccine.vaccine_ages.build
-    vaccine_language = @vaccine.vaccine_languages.build
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -31,10 +32,11 @@ class VaccinesController < ApplicationController
 
   def edit
     @vaccine = Vaccine.find(params[:id])
-    @languages = Vaccine::LANG
+
   end
 
   def create
+   params[:vaccine] = (params[:vaccine]).merge(:status => true)
    @vaccine = Vaccine.new(params[:vaccine])
 
     respond_to do |format|

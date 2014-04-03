@@ -576,3 +576,7 @@ textarea
     padding-left: 270px;
     padding-top: 20px;
 }
+.image img{
+    height: 20px;
+    padding-left: 10px;
+}
