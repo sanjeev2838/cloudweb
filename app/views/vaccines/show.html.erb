@@ -13,6 +13,19 @@
      </p>
   <%end%>
 
+  <p class="left">
+    <b>English :</b>
+    <%=@vaccine.en%>
+  </p>
+  <p class="center">
+    <b>Swedish :</b>
+    <%=@vaccine.sv%>
+  </p>
+  <p class="right">
+    <b>norwegian :</b>
+    <%=@vaccine.no%>
+  </p>
+
 </div>
 
 <%= link_to 'Edit', edit_vaccine_path(@vaccine) %> |

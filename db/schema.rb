@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327113140) do
+ActiveRecord::Schema.define(:version => 20140403125118) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -185,6 +185,9 @@ ActiveRecord::Schema.define(:version => 20140327113140) do
     t.boolean  "status"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "en"
+    t.string   "sv"
+    t.string   "no"
   end
 
 end
