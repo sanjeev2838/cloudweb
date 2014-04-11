@@ -6,15 +6,15 @@
     </div>
     <%=f.fields_for :vaccine_ages do |builder|%>
         <div class="field image">
-          <%= builder.label :age ,"Vaccination Age" %>
+          <%= builder.label :age ,"Child Age" %>
           <%= builder.text_field :age%>
           <%= builder.hidden_field :_destroy %>
-          <%= link_to_function (image_tag("/../assets/remove.png")),"remove_fields(this)", :id => 'remove' %>
+          <%= link_to_function (image_tag("/../assets/minus.png")),"remove_fields(this)", :id => 'remove' %>
         </div>
     <%end%>
 
     <div class="field image" id='add_iamge'>
-      <%= f.label :age,"Add Vaccination Age" %>
+      <%= f.label :add_age %>
       <%= link_to_add_fields (image_tag("/../assets/plus.png")), f, :vaccine_ages %>
     </div>
 

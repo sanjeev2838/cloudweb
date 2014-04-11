@@ -25,4 +25,21 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def destroy
   end
 
+  def update
+    email = ParentProfile.find_by_email(params[:session][:email])
+    if email.nil?
+      render json:{:status => false, :message => "User not found for this email"}
+    else
+      input = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+      random_string = (0...10).map { input[rand(input.length)] }.join
+
+      email.update_attributes(:password => random_string)
+      @subject = "Password changed"
+      @body =  "new password is #{random_string}"
+      UserMailer.registration_confirmation(email,@subject,@body).deliver
+      render json:{:status => true, :message => "Password changed successfully"}
+    end
+
+  end
+
 end

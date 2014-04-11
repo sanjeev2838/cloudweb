@@ -3,6 +3,11 @@ module ApplicationHelper
     date.strftime("%d/%m/%Y")
   end
 
+  #def generate_string
+  #  input = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+  #  output = (0...10).map { input[rand(input.length)] }.join
+  #end
+
   def link_to_add_fields(name, f, association)
     unless f.object.class== VaccineAge
     new_object = f.object.class.reflect_on_association(association).klass.new

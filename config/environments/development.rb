@@ -14,13 +14,13 @@ Cloudweb::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
   # devise configurations
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3002' }
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
@@ -36,7 +36,20 @@ Cloudweb::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587,
+      :domain => "gmail.com",
+      :user_name => "testing.testing055@gmail.com",
+      :password => "pardeep_123",
+      #:user_name => "saini.pardeep87@live.com",
+      #:password => "",
+      :authentication => "plain",
+      :enable_starttls_auto => true
+  }
 
 
 end

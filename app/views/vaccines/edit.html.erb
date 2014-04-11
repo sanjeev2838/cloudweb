@@ -1,53 +1,6 @@
 <h1 class="new_machine_head">Edit vaccine</h1>
 <div class="nwo_firm">
-  <%= form_for(@vaccine) do |f| %>
-
-      <div class="field">
-        <%= f.label :title%>
-        <%= f.text_field :title%>
-      </div>
-      <%=f.fields_for :vaccine_ages do |builder|%>
-          <div class="field image">
-            <%= builder.label :age ,"Child Age" %>
-            <%= builder.text_field :age%>
-            <%= builder.hidden_field :_destroy %>
-            <%= link_to_function (image_tag("/../assets/minus.png")),"remove_fields(this)" %><%= link_to_add_fields (image_tag("/..//assets/plus.png")), f, :vaccine_ages %><br />
-          </div>
-      <%end%>
-
-      <div class="field">
-        <%= f.label :en %>
-        <%= f.text_field :en %>
-      </div>
-      <div class="field">
-        <%= f.label :no %>
-        <%= f.text_field :no %>
-      </div>
-      <div class="field">
-        <%= f.label :sv %>
-        <%= f.text_field :sv %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit %>
-      </div>
-  <% end %>
-  <script>
-
-      function add_fields(link, association, content) {
-          console.log (link)
-          var new_id = new Date().getTime();
-          var regexp = new RegExp("new_" + association, "g")
-          $(link).parent().before(content.replace(regexp, new_id));
-      }
-
-      function remove_fields(link) {
-          $(link).prev("input[type=hidden]").val("true");
-          $(link).closest(".field").hide();
-      }
-
-
-  </script>
+  <%= render 'form' %>
 </div>
 
 <%= link_to 'Show', @vaccine %> |

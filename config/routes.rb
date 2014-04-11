@@ -38,6 +38,7 @@ Cloudweb::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
+
   namespace :api do
     namespace :v1 do
       resources :child_stats  do
@@ -60,6 +61,7 @@ Cloudweb::Application.routes.draw do
 # for login and logout for user
       match  '/login'  => 'sessions#create', :via => :post
       match  '/logout' => 'sessions#destroy', :via => :delete
+      match '/forgot'  => 'sessions#update', :via=>:put
 
 # for adding parent profile
 
