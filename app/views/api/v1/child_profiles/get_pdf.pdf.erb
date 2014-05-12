@@ -1,0 +1,9 @@
+<div id="content">
+  <%debugger%>
+  <% @dairy.each do |diary|%>
+      <p>
+         <%=  get_child_dairy_log(diary).html_safe %>
+      <p>
+  <%end%>
+
+</div>

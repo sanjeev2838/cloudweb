@@ -42,3 +42,12 @@ group :production do
   gem 'mysql2'
 end
 
+gem "chartkick"
+gem 'debugger'
+
+group :development, :test do
+  gem "rspec-rails", "~> 3.0.0.beta"
+end
+
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
