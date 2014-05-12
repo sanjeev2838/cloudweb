@@ -94,6 +94,16 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   end
 
+  def get_pdf
+    @dairy = Diary.find_all_by_child_profile_id(params[:id])
+    respond_to do |format|
+      format.pdf do
+        render :pdf => "mypdf",
+               :template => "/api/v1/child_profiles/get_pdf.pdf.erb"
+      end
+    end
+  end
+
 
   private
   def find_profile
