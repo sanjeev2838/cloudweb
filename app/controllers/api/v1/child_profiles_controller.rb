@@ -99,7 +99,8 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     respond_to do |format|
       format.pdf do
         render :pdf => "mypdf",
-               :template => "/api/v1/child_profiles/get_pdf.pdf.erb"
+               :template => "/api/v1/child_profiles/get_pdf.pdf.erb" ,
+               :page_height => '2in', :page_width => '1.67in'
       end
     end
   end

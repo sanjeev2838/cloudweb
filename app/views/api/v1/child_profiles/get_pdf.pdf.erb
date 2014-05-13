@@ -1,7 +1,7 @@
 <div id="content">
   <% @dairy.each do |diary|%>
       <p>
-         <%=  get_child_dairy_log(diary).html_safe %>
+         <%=  get_child_dairy_log(diary, for_api=true).html_safe %>
       <p>
   <%end%>
 
