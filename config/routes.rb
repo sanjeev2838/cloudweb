@@ -86,7 +86,7 @@ Cloudweb::Application.routes.draw do
       match  '/profiles/:profile_id/children/:children_id/logbook/:id' => 'logbooks#update', :via => :put
 
       match  '/profiles/:profile_id/children/:id/get_pdf' => 'child_profiles#get_pdf', :via => :get
-
+      match  '/profiles/:profile_id/children/:id/email_dairy_pdf' => 'child_profiles#email_diary_records', :via => :get
     # for child brewing preferences
 
       match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#index', :via => :get
