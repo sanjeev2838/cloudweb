@@ -45,11 +45,8 @@ Cloudweb::Application.configure do
       :domain => "gmail.com",
       :user_name => "testing.testing055@gmail.com",
       :password => "pardeep_123",
-      #:user_name => "saini.pardeep87@live.com",
-      #:password => "",
       :authentication => "plain",
       :enable_starttls_auto => true
   }
-
 
 end

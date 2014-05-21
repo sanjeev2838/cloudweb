@@ -28,11 +28,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     end
   end
 
-  #http://stackoverflow.com/questions/845366/nested-object-creation-with-json-in-rails
-  #If u feel something strange in the following loc because our  team lead wants exact naming
-  # convention as in Api document he is written .
-  # listening his developers.
-
   def create_picture(params)
     unless params[:picture].nil?
       #create a new tempfile named fileupload
@@ -94,17 +89,24 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   end
 
+  #def get_pdf
+  #  @dairy = Diary.find_all_by_child_profile_id(params[:id])
+  #  UserMailer.send_pdf(@dairy).deliver
+  #  respond_to do |format|
+  #    format.pdf do
+  #      render :pdf => "mypdf",
+  #             :template => "/api/v1/child_profiles/get_pdf.pdf.erb" ,
+  #             :page_height => '2in', :page_width => '2in',
+  #             :save_to_file => Rails.root.join('public/pdf', "#{params[:id]}_diary.pdf")
+  #    end
+  #  end
+  #end
+
   def get_pdf
     @dairy = Diary.find_all_by_child_profile_id(params[:id])
-    respond_to do |format|
-      format.pdf do
-        render :pdf => "mypdf",
-               :template => "/api/v1/child_profiles/get_pdf.pdf.erb" ,
-               :page_height => '2in', :page_width => '1.67in'
-      end
-    end
+    UserMailer.send_pdf(@dairy).deliver
+    render :nothing => true, :status => 200
   end
-
 
   private
   def find_profile
