@@ -1,5 +1,6 @@
 class Api::V1::ChildProfilesController < Api::V1::BaseController
-  before_filter :find_profile,:verify_token, :only => [:index,:show, :update,:destroy,:create]
+  before_filter :find_profile,:verify_token, :only => [:index, :show, :update, :destroy, :create]
+  before_filter :find_profile, :only => [:get_pdf]
   include TokenValidation
 
   def index
@@ -106,7 +107,14 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     @dairy = Diary.find_all_by_child_profile_id(params[:id])
     @email_id =  @profile.email
     UserMailer.send_pdf(@dairy, @email_id).deliver
-    render :nothing => true, :status => 200
+    respond_to do |format|
+      format.pdf do
+        render :pdf => "mypdf",
+               :template => "/api/v1/child_profiles/get_pdf.pdf.erb" ,
+               :page_height => '2in', :page_width => '2in',
+               :save_to_file => Rails.root.join('public/pdf', "#{params[:id]}_diary.pdf")
+        end
+    end
   end
 
   private
