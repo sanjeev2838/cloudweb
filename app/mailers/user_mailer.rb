@@ -13,14 +13,14 @@ class UserMailer < ActionMailer::Base
 
   end
 
-  def send_pdf(dairy)
+  def send_pdf(dairy, email_id)
     @dairy = dairy
-    mail(from: "d1.diluo.nu", :to => "sanjeevk.impinge@gmail.com", :subject => "awesome pdf, check it")  do |format|
+    mail(from: "d1.diluo.nu", :to => email_id, :subject => "awesome pdf, check it")  do |format|
       format.html
       format.pdf do
         attachments["attachement_name.pdf"] =   WickedPdf.new.pdf_from_string( render_to_string(  :pdf => "mypdf",
                                                                     :template => "user_mailer/send_pdf") ,
-                                                                    :page_height => '2in', :page_width => '2in'
+                                                                    :page_height => '2.7in', :page_width => '2.5in'
         )
       end
     end

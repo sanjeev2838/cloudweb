@@ -104,7 +104,8 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
   def get_pdf
     @dairy = Diary.find_all_by_child_profile_id(params[:id])
-    UserMailer.send_pdf(@dairy).deliver
+    @email_id =  @profile.email
+    UserMailer.send_pdf(@dairy, @email_id).deliver
     render :nothing => true, :status => 200
   end
 
