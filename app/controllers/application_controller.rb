@@ -4,8 +4,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::RoutingError, :with => :render_not_found
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
 
-
-
   include MachinesHelper
   include SessionsHelper
   include ApplicationHelper
@@ -20,10 +18,9 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_auth_token(authtoken)
-    #authtoken = request.headers['authtoken']
     @profile = ParentProfile.find(params[:profile_id])
     raise  if @profile.authtoken != authtoken
-  rescue Exception =>e
+  rescue Exception => e
     render json:{:status => false,:status_code=> 4001, :message => "Auth token not verified"}
   end
 

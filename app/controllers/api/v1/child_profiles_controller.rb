@@ -19,7 +19,6 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     end
   end
 
-#todo   BUT ABOUT THE STATUS HERE
   def show
     begin
      @child_profile = ChildProfile.find(params[:id])
@@ -76,9 +75,8 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     else
       render json:{:status => false,:status_code=>4008, :message => "Child not found for this id"}
     end
-
   end
-  #
+
   def destroy
     #todo add exception handler here for wrong id
     @child_profile = ChildProfile.find(params[:id])

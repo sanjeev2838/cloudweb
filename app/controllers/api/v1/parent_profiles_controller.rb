@@ -3,20 +3,21 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
   before_filter :find_profile, :only => [:update, :destroy, :show]
   before_filter :verify_token , :only => [:update,:destroy, :show]
   include TokenValidation
-# if you see strange view names it is because of our team_lead
+
   def show
     render json:{:status => true, :status_code=>3007,:message=>"parent profile found",profile: @parent_profile }
   end
 
   def create
-    params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
-    object= ParentProfile.where(:tokenid => params[:tokenid])
-    # unless object.nil?
-    #   object.each do |obj|
-    #     obj.update_attributes(:tokenid=>"")
-    #   end
-    # end
-    @parent_profile = ParentProfile.create(params[:parent_profile])
+    @parent_profile = ParentProfile.where(:email =>  params[:parent_profile][:email]).first
+    if @parent_profile.nil?
+      params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
+      @parent_profile = ParentProfile.create(params[:parent_profile])
+    else
+      @parent_profile.status = true
+      @parent_profile.save!
+    end
+
     if @parent_profile.valid?
          render action: :create
     else
@@ -48,8 +49,8 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
     render json:{:status => false,:status_code=>3006, :message => "Unable to find parent profile on cloud"}
   end
 
-  def verify_token
-    check_auth_token(request.headers['authtoken'],params[:profile_id])
-  end
+  #def verify_token
+  #  check_auth_token(request.headers['authtoken'],params[:profile_id])
+  #end
 
 end

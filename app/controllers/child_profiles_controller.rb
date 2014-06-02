@@ -1,4 +1,3 @@
-
 class ChildProfilesController < ApplicationController
   before_filter :find_profile, :only => [:new, :create,:show,:edit,:index,:update, :destroy]
 
@@ -11,7 +10,7 @@ class ChildProfilesController < ApplicationController
     @logs = Logbook.find_all_by_child_profile_id(params[:id])
     @dairy = Diary.find_all_by_child_profile_id(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @child_profile }
     end
   end
@@ -21,7 +20,7 @@ class ChildProfilesController < ApplicationController
     @child_profile.child_brewing_preference = ChildBrewingPreference.new
     @child_profile.pictures.build
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @child_profile }
     end
   end

@@ -10,9 +10,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
       @machine = Machine.find(user.machine_id) unless user.machine_id.nil?
       I18n.locale = user.lang.to_sym
       if user.password == params[:session][:password]
-        #unless user.tokenid.nil?
-          user.update_attributes(:tokenid=>params[:tokenid])
-        #end
+        user.update_attributes(:tokenid=>params[:tokenid])
         render json:{:status => true,:status_code=>7000,:message=>"Login successfull" ,:authtoken => user.authtoken, :profile=> user,:machine=> @machine}
       else
         render json:{:status => false,:status_code=>7001, :message => I18n.t('login.password')}
@@ -32,7 +30,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
     else
       input = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
       random_string = (0...10).map { input[rand(input.length)] }.join
-
       email.update_attributes(:password => random_string)
       @subject = "Password changed"
       @body =  "new password is #{random_string}"

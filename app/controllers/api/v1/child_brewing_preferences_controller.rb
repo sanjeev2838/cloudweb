@@ -1,6 +1,5 @@
 class Api::V1::ChildBrewingPreferencesController < Api::V1::BaseController
-  # GET /child_brewing_preferences
-  # GET /child_brewing_preferences.json
+
   before_filter :find_profile, :only => [:update,:index]
 
   def index
@@ -26,7 +25,6 @@ class Api::V1::ChildBrewingPreferencesController < Api::V1::BaseController
        render json:{:status => false,:status_code=>6003, :message => "Child not found for this id"}
     end
   end
-
 
   private
   def find_profile

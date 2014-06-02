@@ -4,7 +4,7 @@ class ChildStatsController < ApplicationController
     @child_stats = ChildStat.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @child_stats }
     end
   end
@@ -13,7 +13,7 @@ class ChildStatsController < ApplicationController
     @child_stat = ChildStat.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @child_stat }
     end
   end
@@ -22,7 +22,7 @@ class ChildStatsController < ApplicationController
     @child_stat = ChildStat.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @child_stat }
     end
   end
@@ -63,6 +63,5 @@ class ChildStatsController < ApplicationController
     @child_stat = ChildStat.find(params[:id])
     @child_stat.destroy
     redirect_to :back
-
   end
 end

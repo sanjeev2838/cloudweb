@@ -2,9 +2,8 @@ class VaccinesController < ApplicationController
 
   def index
     @vaccines = Vaccine.where(:status => true)
-    #@vaccines = Vaccine.all
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @vaccines }
     end
   end
@@ -13,7 +12,7 @@ class VaccinesController < ApplicationController
     @vaccine = Vaccine.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @vaccine }
     end
   end
@@ -23,9 +22,8 @@ class VaccinesController < ApplicationController
     @vaccine = Vaccine.new
     vaccine_ages = @vaccine.vaccine_ages.build
 
-
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @vaccine }
     end
   end

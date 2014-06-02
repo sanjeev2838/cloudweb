@@ -12,7 +12,6 @@ class Api::V1::LogbooksController <  Api::V1::BaseController
   def show
     begin
      @logbook = Logbook.find(params[:id])
-    # render json:@logbook.to_json
      rescue ActiveRecord::RecordNotFound
        render json:{:status => false, :message => "Unable to find log_record on cloud"}
      end
@@ -39,14 +38,8 @@ class Api::V1::LogbooksController <  Api::V1::BaseController
       render json:{:status => false, :message => @log_book.errors.full_messages }
     end
   end
-#
-##TODO check api of this method with davinder
-#  def destroy
-#    render json:{:status => true}
-#  end
 
   private
-
   def find_child_profile
     @child_profile = ChildProfile.find(params[:children_id])
   rescue ActiveRecord::RecordNotFound

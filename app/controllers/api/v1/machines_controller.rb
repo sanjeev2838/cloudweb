@@ -1,8 +1,6 @@
 class Api::V1::MachinesController < Api::V1::BaseController
   before_filter :find_machine, :only => [:show, :update, :destroy]
 
-  #require "digest"
-  #auth_code = Digest::MD5.hexdigest("techno$garden")
   def show
     if "5e7add11cb09a9e70061776727555f4c" == params[:authcode]
       render action: :show  unless @machine

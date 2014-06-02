@@ -2,9 +2,8 @@ class ParentProfilesController < ApplicationController
 
   def index
     @parent_profiles = ParentProfile.where(:status => true)
-
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @parent_profiles }
     end
   end
@@ -12,10 +11,8 @@ class ParentProfilesController < ApplicationController
   def show
     @parent_profile = ParentProfile.find(params[:id])
     @machine = Machine.find_by_id(@parent_profile.machine_id) unless @parent_profile.nil?
-    #@child_profiles = ChildProfile.find_all_by_parent_profile_id(params[:id])
-
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @parent_profile }
     end
   end
@@ -24,7 +21,7 @@ class ParentProfilesController < ApplicationController
     @parent_profile = ParentProfile.new
     @languages = ParentProfile::LANG
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @parent_profile }
     end
   end
@@ -65,7 +62,6 @@ class ParentProfilesController < ApplicationController
   def destroy
     @parent_profile = ParentProfile.find(params[:id])
     @parent_profile.update_column(:status , false)
-
 
     respond_to do |format|
       format.html { redirect_to parent_profiles_url }

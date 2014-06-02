@@ -23,7 +23,6 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-
   private
   def user_logged_in
     if current_user.present?
