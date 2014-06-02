@@ -14,6 +14,7 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
       params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
       @parent_profile = ParentProfile.create(params[:parent_profile])
     else
+      @parent_profile.password = params[:parent_profile][:password]
       @parent_profile.status = true
       @parent_profile.save!
     end
