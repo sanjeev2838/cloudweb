@@ -1,44 +1,36 @@
 class PicturesController < ApplicationController
-  # GET /pictures
-  # GET /pictures.json
+
   def index
     @pictures = Picture.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @pictures }
     end
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
   def show
     @picture = Picture.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @picture }
     end
   end
 
-  # GET /pictures/new
-  # GET /pictures/new.json
   def new
     @picture = Picture.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @picture }
     end
   end
 
-  # GET /pictures/1/edit
   def edit
     @picture = Picture.find(params[:id])
   end
 
-  # POST /pictures
-  # POST /pictures.json
   def create
     @picture = Picture.new(params[:picture])
 
@@ -53,8 +45,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # PUT /pictures/1
-  # PUT /pictures/1.json
   def update
     @picture = Picture.find(params[:id])
 
@@ -69,8 +59,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  # DELETE /pictures/1
-  # DELETE /pictures/1.json
   def destroy
     @picture = Picture.find(params[:id])
     @picture.destroy

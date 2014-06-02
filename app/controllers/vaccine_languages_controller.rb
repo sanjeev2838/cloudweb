@@ -1,44 +1,36 @@
 class VaccineLanguagesController < ApplicationController
-  # GET /vaccine_languages
-  # GET /vaccine_languages.json
+
   def index
     @vaccine_languages = VaccineLanguage.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @vaccine_languages }
     end
   end
 
-  # GET /vaccine_languages/1
-  # GET /vaccine_languages/1.json
   def show
     @vaccine_language = VaccineLanguage.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @vaccine_language }
     end
   end
 
-  # GET /vaccine_languages/new
-  # GET /vaccine_languages/new.json
   def new
     @vaccine_language = VaccineLanguage.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @vaccine_language }
     end
   end
 
-  # GET /vaccine_languages/1/edit
   def edit
     @vaccine_language = VaccineLanguage.find(params[:id])
   end
 
-  # POST /vaccine_languages
-  # POST /vaccine_languages.json
   def create
     @vaccine_language = VaccineLanguage.new(vaccine_language_params)
 
@@ -53,8 +45,6 @@ class VaccineLanguagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /vaccine_languages/1
-  # PATCH/PUT /vaccine_languages/1.json
   def update
     @vaccine_language = VaccineLanguage.find(params[:id])
 
@@ -69,8 +59,6 @@ class VaccineLanguagesController < ApplicationController
     end
   end
 
-  # DELETE /vaccine_languages/1
-  # DELETE /vaccine_languages/1.json
   def destroy
     @vaccine_language = VaccineLanguage.find(params[:id])
     @vaccine_language.destroy
@@ -82,10 +70,6 @@ class VaccineLanguagesController < ApplicationController
   end
 
   private
-
-    # Use this method to whitelist the permissible parameters. Example:
-    # params.require(:person).permit(:name, :age)
-    # Also, you can specialize this method with per-user checking of permissible attributes.
     def vaccine_language_params
       params.require(:vaccine_language).permit()
     end

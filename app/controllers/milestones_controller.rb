@@ -1,44 +1,36 @@
 class MilestonesController < ApplicationController
-  # GET /milestones
-  # GET /milestones.json
+
   def index
     @milestones = Milestone.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @milestones }
     end
   end
 
-  # GET /milestones/1
-  # GET /milestones/1.json
   def show
     @milestone = Milestone.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @milestone }
     end
   end
 
-  # GET /milestones/new
-  # GET /milestones/new.json
   def new
     @milestone = Milestone.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @milestone }
     end
   end
 
-  # GET /milestones/1/edit
   def edit
     @milestone = Milestone.find(params[:id])
   end
 
-  # POST /milestones
-  # POST /milestones.json
   def create
     @milestone = Milestone.new(milestone_params)
 
@@ -53,8 +45,6 @@ class MilestonesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /milestones/1
-  # PATCH/PUT /milestones/1.json
   def update
     @milestone = Milestone.find(params[:id])
 
@@ -69,8 +59,6 @@ class MilestonesController < ApplicationController
     end
   end
 
-  # DELETE /milestones/1
-  # DELETE /milestones/1.json
   def destroy
     @milestone = Milestone.find(params[:id])
     @milestone.destroy
@@ -82,10 +70,6 @@ class MilestonesController < ApplicationController
   end
 
   private
-
-    # Use this method to whitelist the permissible parameters. Example:
-    # params.require(:person).permit(:name, :age)
-    # Also, you can specialize this method with per-user checking of permissible attributes.
     def milestone_params
       params.require(:milestone).permit(:en, :image, :no, :sv, :title)
     end

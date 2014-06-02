@@ -13,8 +13,6 @@ class Api::V1::ChildStatsController < Api::V1::BaseController
   #end
 
   def index
-    #@profile = ParentProfile.find(params[:profile_id])
-    #@child_profile = ChildProfile.find(params[:child_id])
     return unless  check_type(params)
     @stats = ChildStat.get_child_stat(@child_profile.id,@profile.id,params[:type])
     render json:{:status => false,:status_code=>5003, :message => 'Child stats not found'}  if @stats.empty?

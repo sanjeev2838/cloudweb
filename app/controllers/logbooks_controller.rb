@@ -1,44 +1,36 @@
 class LogbooksController < ApplicationController
-  # GET /logbooks
-  # GET /logbooks.json
+
   def index
     @logbooks = Logbook.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @logbooks }
     end
   end
 
-  # GET /logbooks/1
-  # GET /logbooks/1.json
   def show
     @logbook = Logbook.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @logbook }
     end
   end
 
-  # GET /logbooks/new
-  # GET /logbooks/new.json
   def new
     @logbook = Logbook.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @logbook }
     end
   end
 
-  # GET /logbooks/1/edit
   def edit
     @logbook = Logbook.find(params[:id])
   end
 
-  # POST /logbooks
-  # POST /logbooks.json
   def create
     @logbook = Logbook.new(params[:logbook])
 
@@ -53,8 +45,6 @@ class LogbooksController < ApplicationController
     end
   end
 
-  # PUT /logbooks/1
-  # PUT /logbooks/1.json
   def update
     @logbook = Logbook.find(params[:id])
 
@@ -69,12 +59,9 @@ class LogbooksController < ApplicationController
     end
   end
 
-  # DELETE /logbooks/1
-  # DELETE /logbooks/1.json
   def destroy
     @logbook = Logbook.find(params[:id])
     @logbook.destroy
     redirect_to :back
-
   end
 end

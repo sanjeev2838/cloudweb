@@ -1,44 +1,36 @@
 class FirmwaresController < ApplicationController
-  # GET /firmwares
-  # GET /firmwares.json
+
   def index
     @firmwares = Firmware.where(:status=>true)
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @firmwares }
     end
   end
 
-  # GET /firmwares/1
-  # GET /firmwares/1.json
   def show
     @firmware = Firmware.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @firmware }
     end
   end
 
-  # GET /firmwares/new
-  # GET /firmwares/new.json
   def new
     @firmware = Firmware.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @firmware }
     end
   end
 
-  # GET /firmwares/1/edit
   def edit
     @firmware = Firmware.find(params[:id])
   end
 
-  # POST /firmwares
-  # POST /firmwares.json
   def create
     require 'fileutils'
     params[:firmware] = (params[:firmware]).merge(:status => true)
@@ -63,8 +55,6 @@ class FirmwaresController < ApplicationController
     end
   end
 
-  # PUT /firmwares/1
-  # PUT /firmwares/1.json
   def update
     @firmware = Firmware.find(params[:id])
 
@@ -79,8 +69,6 @@ class FirmwaresController < ApplicationController
     end
   end
 
-  # DELETE /firmwares/1
-  # DELETE /firmwares/1.json
   def destroy
     @firmware = Firmware.find(params[:id])
     @firmware.update_attributes(:status=> false)

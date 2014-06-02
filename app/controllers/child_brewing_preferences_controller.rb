@@ -1,44 +1,36 @@
 class ChildBrewingPreferencesController < ApplicationController
-  # GET /child_brewing_preferences
-  # GET /child_brewing_preferences.json
+
   def index
     @child_brewing_preferences = ChildBrewingPreference.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @child_brewing_preferences }
     end
   end
 
-  # GET /child_brewing_preferences/1
-  # GET /child_brewing_preferences/1.json
   def show
     @child_brewing_preference = ChildBrewingPreference.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @child_brewing_preference }
     end
   end
 
-  # GET /child_brewing_preferences/new
-  # GET /child_brewing_preferences/new.json
   def new
     @child_brewing_preference = ChildBrewingPreference.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @child_brewing_preference }
     end
   end
 
-  # GET /child_brewing_preferences/1/edit
   def edit
     @child_brewing_preference = ChildBrewingPreference.find(params[:id])
   end
 
-  # POST /child_brewing_preferences
-  # POST /child_brewing_preferences.json
   def create
     @child_brewing_preference = ChildBrewingPreference.new(params[:child_brewing_preference])
 
@@ -53,8 +45,6 @@ class ChildBrewingPreferencesController < ApplicationController
     end
   end
 
-  # PUT /child_brewing_preferences/1
-  # PUT /child_brewing_preferences/1.json
   def update
     @child_brewing_preference = ChildBrewingPreference.find(params[:id])
 
@@ -69,8 +59,6 @@ class ChildBrewingPreferencesController < ApplicationController
     end
   end
 
-  # DELETE /child_brewing_preferences/1
-  # DELETE /child_brewing_preferences/1.json
   def destroy
     @child_brewing_preference = ChildBrewingPreference.find(params[:id])
     @child_brewing_preference.destroy
