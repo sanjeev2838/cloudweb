@@ -36,6 +36,9 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
 
   def destroy
     if @parent_profile.update_column(:status , false)
+      @parent_profile.child_profiles.each do |child|
+        child.update_column(:status, false)
+      end
       render json:{:status => true,:status_code=>3004,:message=>"Profile deleted successfully"}
     else
       render json:{:status => false, :status_code=>3005,:message => "Unable to destroy parent profile on cloud"}
@@ -50,8 +53,8 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
     render json:{:status => false,:status_code=>3006, :message => "Unable to find parent profile on cloud"}
   end
 
-  #def verify_token
-  #  check_auth_token(request.headers['authtoken'],params[:profile_id])
-  #end
+  def verify_token
+    check_auth_token(request.headers['authtoken'],params[:profile_id])
+  end
 
 end
