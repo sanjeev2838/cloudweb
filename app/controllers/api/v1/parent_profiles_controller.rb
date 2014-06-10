@@ -19,6 +19,15 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
       @parent_profile.save!
     end
 
+    @parents = ParentProfile.find_all_by_machine_id( params[:parent_profile][:machine_id])
+
+    @have_child = false
+    @parents.each do |parent|
+      unless parent.child_profiles.empty?
+        @have_child = true
+      end
+    end
+
     if @parent_profile.valid?
          render action: :create
     else
