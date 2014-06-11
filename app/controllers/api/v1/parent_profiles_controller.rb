@@ -37,6 +37,9 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
 
   def update
     if @parent_profile.update_attributes(params[:parent_profile])
+       @parent_profile.child_profiles.each do |child|
+         child.update_column(:status, false)
+       end
       render action: :update
     else
       render json:{:status => false,:status_code=>3003, :message => @parent_profile.errors.full_messages }
