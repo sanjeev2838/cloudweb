@@ -25,4 +25,10 @@ class UserMailer < ActionMailer::Base
       end
     end
   end
+
+  def password_reset(user, type)
+    @user = user
+    @type = type
+    mail(from: "d1.diluo.nu", :to => user.email, :subject => "Password Reset")
+  end
 end

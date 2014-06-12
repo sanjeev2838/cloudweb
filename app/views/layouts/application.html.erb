@@ -14,8 +14,13 @@
                 <img src="/..//assets/logo_blue.png">
             </div>
             <br>
-
-            <div class="users">You are signed in as <b><%= current_user.name%> </b>&nbsp <%= link_to "LogOut", signout_path, method: "delete"%> </div>
+            <div class="users">
+              <% if current_user.nil?%>
+                 <%= link_to "LogIn", signin_path, method: "get"%>
+              <% else %>
+                You are signed in as <b><%= current_user.name %> </b>&nbsp <%= link_to "LogOut", signout_path, method: "delete" %>
+              <%end%>
+            </div>
 
             <!--<div class="search_div">Search-->
             <!--<div class="search"><input type="text" id="search_field" placeholder="search" /></div>-->
@@ -23,6 +28,7 @@
         </div>
 
         <div class="nav_div">
+          <% if current_user%>
             <ul id="menu">
                 <li> <%= link_to "Dashboard", admin_dashboard_index_path%></li>
                 <li><a href="">Users</a>
@@ -36,7 +42,7 @@
                         <li><a href="/machines/machines_import">Machine Import</a></li>
                     </ul>
                 </li>
-              <% if current_user.admin?  %>
+              <% if current_user && current_user.admin?  %>
                 <li><%= link_to "Staff Users", users_path %>
 
                 <ul>
@@ -48,6 +54,7 @@
               <li><%= link_to "Vaccines",vaccines_path%></li>
                <li><a href="/milestones">Milestones</a></li>
            </ul>
+          <%end%>
         </div>
 
         <div id="container">

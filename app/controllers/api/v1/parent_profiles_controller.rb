@@ -10,21 +10,31 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
 
   def create
     @parent_profile = ParentProfile.where(:email =>  params[:parent_profile][:email]).first
+    @machine  = Machine.where("serialid = ?", params[:parent_profile][:serialid]).first
+
     if @parent_profile.nil?
       params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
       @parent_profile = ParentProfile.create(params[:parent_profile])
     else
-      @parent_profile.password = params[:parent_profile][:password]
-      @parent_profile.status = true
-      @parent_profile.save!
+      if @parent_profile.machine_id ==  @machine.id
+        @parent_profile.password = params[:parent_profile][:password]
+        @parent_profile.status = true
+        @parent_profile.save!
+      else
+        render json:{:status => false, :status_code=>3001,:message => "You cant login on this machine"}
+        return
+      end
     end
 
-    @parents = ParentProfile.find_all_by_machine_id( params[:parent_profile][:machine_id])
-
     @have_child = false
-    @parents.each do |parent|
-      unless parent.child_profiles.empty?
-        @have_child = true
+
+    if @machine
+      @parents = ParentProfile.find_all_by_machine_id(@machine.id)
+      @parents.each do |parent|
+        unless parent.child_profiles.empty?
+          @have_child = true
+          break
+        end
       end
     end
 
@@ -65,8 +75,8 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
     render json:{:status => false,:status_code=>3006, :message => "Unable to find parent profile on cloud"}
   end
 
-  def verify_token
-    check_auth_token(request.headers['authtoken'],params[:profile_id])
-  end
+  #def verify_token
+  #  check_auth_token(request.headers['authtoken'],params[:profile_id])
+  #end
 
 end

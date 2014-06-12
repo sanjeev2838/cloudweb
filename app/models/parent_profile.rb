@@ -11,7 +11,7 @@ class ParentProfile < ActiveRecord::Base
   belongs_to :machine
 
   before_save :check_machine_serial_id
-  before_create :generate_access_token
+  #before_create :generate_access_token
   validates :devicetypeid,:serialid,:name,:email,:password, :relation, :presence => true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -58,7 +58,12 @@ class ParentProfile < ActiveRecord::Base
     end
   end
 
-
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    UserMailer.password_reset(self,"profile").deliver
+  end
 
   private
   def check_machine_serial_id
@@ -68,6 +73,16 @@ class ParentProfile < ActiveRecord::Base
     else
       true
     end
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
+
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
   end
 
   def generate_access_token

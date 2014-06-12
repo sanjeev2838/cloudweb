@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140403125118) do
+ActiveRecord::Schema.define(:version => 20140611130716) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -131,8 +131,10 @@ ActiveRecord::Schema.define(:version => 20140403125118) do
     t.string   "lang"
     t.integer  "relation"
     t.integer  "machine_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "pictures", :force => true do |t|
@@ -156,8 +158,11 @@ ActiveRecord::Schema.define(:version => 20140403125118) do
     t.boolean  "admin"
     t.string   "ip_address"
     t.datetime "last_login"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "vaccine_ages", :force => true do |t|

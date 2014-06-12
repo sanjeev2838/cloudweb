@@ -1,5 +1,7 @@
 Cloudweb::Application.routes.draw do
 
+  get "password_resets/new"
+
   resources :milestones
 
 
@@ -158,7 +160,7 @@ Cloudweb::Application.routes.draw do
     end
   end
 
-
+  resources :password_resets
 
   match "*path", :to => "application#routing_error"
 
