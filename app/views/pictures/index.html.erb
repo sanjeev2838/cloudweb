@@ -10,7 +10,7 @@
 
 <% @pictures.each do |picture| %>
   <tr>
-    <td><%= picture.filepath %></td>
+    <td><%= image_tag picture.image_url(:thumb) %></td>
     <td><%= link_to 'Show', picture %></td>
     <td><%= link_to 'Edit', edit_picture_path(picture) %></td>
     <td><%= link_to 'Destroy', picture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
