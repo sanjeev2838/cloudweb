@@ -1,8 +1,8 @@
 #todo Better to write jbuilder template later on
 class Api::V1::ParentProfilesController < Api::V1::BaseController
   before_filter :find_profile, :only => [:update, :destroy, :show]
-  before_filter :verify_token , :only => [:update,:destroy, :show]
-  include TokenValidation
+  #before_filter :verify_token , :only => [:update,:destroy, :show]
+  #include TokenValidation
 
   def show
     render json:{:status => true, :status_code=>3007,:message=>"parent profile found",profile: @parent_profile }

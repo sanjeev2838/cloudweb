@@ -11,7 +11,7 @@ class ParentProfile < ActiveRecord::Base
   belongs_to :machine
 
   before_save :check_machine_serial_id
-  #before_create :generate_access_token
+  before_create :generate_access_token
   validates :devicetypeid,:serialid,:name,:email,:password, :relation, :presence => true
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
