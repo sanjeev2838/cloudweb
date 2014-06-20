@@ -24,6 +24,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     if @child_profiles.count >= 5
       render json:{:status => false, :message => "You can't add more child with this machine" }
     else
+      params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
       params[:child_profile]= params[:child_profile].merge :status=>true
       @child_profile = @profile.child_profiles.new(params[:child_profile])
       if @child_profile.save
