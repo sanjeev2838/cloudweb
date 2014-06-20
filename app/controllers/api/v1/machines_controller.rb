@@ -36,10 +36,6 @@ class Api::V1::MachinesController < Api::V1::BaseController
     if @machine.valid?
       render json:{:status => true ,:status_code=>2004,:message=>"Machine created successfully"}
     else
-      @errors=[]
-      @codes=[]
-      error = {"serialid"=>2000,"ipaddress"=>2001,"firmware"=>2002,"bootloader"=>2003,"hwconfig"=>2004,"macaddress"=>2005}
-
       render json:{:status => false, :status_code => 2005 ,:message => @errors }
     end
   end

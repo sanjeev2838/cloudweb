@@ -1,28 +1,14 @@
 class Api::V1::BaseController < ActionController::Base
   respond_to :json
 
-  #before_filter :authenticate_user
-  #
-  #private
-  #def authenticate_user
-  #  @current_user = User.find_by_authentication_token(params[:token])
-  #  unless @current_user
-  #    respond_with({:error => "Token is invalid." })
-  #  end
-  #end
-  #
-  #def authorize_admin!
-  #  if !@current_user.admin?
-  #    if !@current_user.admin?
-  #      error = { :error => "You must be an admin to do that." }
-  #      # warden.custom_failure!
-  #      render params[:format].to_sym => error, :status => 401
-  #    end
-  #  end
-  #end
-  #
-  #def current_user
-  #  @current_user
-  #end
+  # for validating each api request with token stored in parent_profile
+  def check_auth_token
+    authtoken = request.headers['authtoken']
+    profile_id = params[:profile_id]
+    @profile = ParentProfile.find(profile_id)
+    raise  if @profile.authtoken != authtoken
+  rescue Exception =>e
+    render json:{:status => false,:status_code=> 4001, :message => "Auth token not verified"}
+  end
 
 end

@@ -1,8 +1,9 @@
 #todo Better to write jbuilder template later on
+# I am not responsible of this code.
+# They made me write it, against my will
 class Api::V1::ParentProfilesController < Api::V1::BaseController
+  before_filter :check_auth_token , :only => [:update,:destroy, :show]
   before_filter :find_profile, :only => [:update, :destroy, :show]
-  #before_filter :verify_token , :only => [:update,:destroy, :show]
-  #include TokenValidation
 
   def show
     render json:{:status => true, :status_code=>3007,:message=>"parent profile found",profile: @parent_profile }
@@ -74,9 +75,5 @@ class Api::V1::ParentProfilesController < Api::V1::BaseController
   rescue ActiveRecord::RecordNotFound
     render json:{:status => false,:status_code=>3006, :message => "Unable to find parent profile on cloud"}
   end
-
-  #def verify_token
-  #  check_auth_token(request.headers['authtoken'],params[:profile_id])
-  #end
 
 end

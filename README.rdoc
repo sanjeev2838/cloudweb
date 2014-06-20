@@ -211,6 +211,16 @@ vaccines error codes
  8001 : auth token not verified
 
 
-
+Notes for future enhancements  :-
 =====================================================
+1.) I think there should be an many to many relationship between
+parent and child profile not implemented yet because of miscommunication
+but may required in future if client asks .
+1.1) Model and table is already there we just need to create an entry in join table
+in the controller .
+
+
+2.) Child profile Pic use case  :-
+2.1)  There is an Api for gettting all pictures of a specific child But i think
+ there is no Screen in iphone and andriod  for selectng a pic as profile pic from a list of pics .
 

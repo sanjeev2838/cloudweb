@@ -20,8 +20,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
         end
       end
     else
-      flash.now.alert = "Invalid email or password"
-      render "new"
+      render json:{:status => false,:status_code=>7002, :message => "user with this email not registered" }
     end
 
     #user = ParentProfile.find_by_email_and_status(params[:session][:email],true)
