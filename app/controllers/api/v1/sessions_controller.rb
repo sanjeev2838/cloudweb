@@ -6,8 +6,8 @@ class Api::V1::SessionsController < Api::V1::BaseController
   def create
     user = ParentProfile.find_by_email_and_status(params[:session][:email],true)
     I18n.locale = :en.to_sym
-    if user && user.authenticate(params[:session][:password])
-      cookies[:auth_token] = user.auth_token
+    if user 
+      cookies[:auth_token] = user.authtoken
       @machine = Machine.find(user.machine_id) unless user.machine_id.nil?
       I18n.locale = user.lang.to_sym
       if @machine.id != user.machine_id

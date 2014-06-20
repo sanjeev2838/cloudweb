@@ -65,10 +65,26 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     end
   end
 
-  def update
+ def update_picture(params,picture)
+    unless params[:picture].nil?
+      #create a new tempfile named fileupload
+      tempfile = Tempfile.new("fileupload")
+      tempfile.binmode
+      #get the file and decode it with base64 then write it to the tempfile
+      tempfile.write(Base64.decode64(params[:picture]) )
+      #create a new uploaded file
+      uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>'image.png',
+                                                             :original_filename => 'old',:content_type=>"image/jpeg")
+      #replace picture_path with the new uploaded file
+      @picture = picture.update_attributes(:image=>uploaded_file, :profilepic => true)
+    end
+  end
+
+ 
+ def update
     @child_profile = ChildProfile.find(params[:id])
     @picture = Picture.where(:child_profile_id => @child_profile.id).first
-    @picture.destroy unless @picture.nil?
+    update_picture(params, @picture) unless @picture.nil?
     create_picture(params)
     if @child_profile.update_attributes(params[:child_profile])
       render action: :create
