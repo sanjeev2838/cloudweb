@@ -8,6 +8,10 @@ json.children do |json|
        json.set! :dob,child_profile.dob
        json.set! :gender,child_profile.gender
        json.set! :preference_id, child_profile.preference_id
+       json.brewingpreference do |json|
+          json.set! :milk,child_profile.child_brewing_preference.milk
+          json.set! :temperature,child_profile.child_brewing_preference.temperature
+       end
        if child_profile.pictures.empty?
         json.set! :filepath ,'https://'
        else
