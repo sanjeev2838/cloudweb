@@ -38,6 +38,7 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
 
  def update
     @child_profile = ChildProfile.find(params[:id])
+    params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
     if @child_profile.update_attributes(params[:child_profile])
       @picture = create_picture(params[:picture]) unless params[:picture].nil?
       render action: :create
