@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.16'
 
-gem 'sqlite3'
+gem 'mysql2'
+
 gem 'devise'
 gem 'kaminari'
 
@@ -32,21 +33,19 @@ end
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-rails'
 
-
-# gem 'bcrypt-ruby', '~> 3.0.0'
-# gem 'unicorn'
-
 gem 'capistrano'
 
-group :production do
-  gem 'mysql2'
-end
 
 gem "chartkick"
-gem 'debugger'
 
 group :development, :test do
-  gem "rspec-rails", "~> 3.0.0.beta"
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'ffaker'
+  gem 'database_cleaner'
 end
 
 gem 'wkhtmltopdf-binary'
