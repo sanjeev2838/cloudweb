@@ -40,6 +40,10 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
     @child_profile = ChildProfile.find(params[:id])
     params[:child_profile][:child_brewing_preference_attributes] = params[:preferences]
     if @child_profile.update_attributes(params[:child_profile])
+      @old_pic =  @child_profile.pictures.where(:profilepic=> true).first
+      @old_pic.profilepic = false
+      @old_pic.save!
+
       @picture = create_picture(params[:picture]) unless params[:picture].nil?
       render action: :create
     else
@@ -103,12 +107,13 @@ class Api::V1::ChildProfilesController < Api::V1::BaseController
      tempfile = Tempfile.new("fileupload")
      tempfile.binmode
      tempfile.write(Base64.decode64(picture) )
-     uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>'image.png', :original_filename => 'old',:content_type=>"image/jpeg")
+     uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename =>"#{@child_profile.id}_image.png", :original_filename => 'old',:content_type=>"image/jpeg")
    end
 
    def create_picture(picture)
        uploaded_file =  image_action_dispatch_object(picture)
-       @child_profile.pictures.create(:image=>uploaded_file, :profilepic => true)
+       picture  =  @child_profile.pictures.create!(:image=>uploaded_file, :profilepic => true)
+       return picture
    end
 
 end

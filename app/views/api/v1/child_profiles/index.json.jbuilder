@@ -15,7 +15,7 @@ json.children do |json|
        if child_profile.pictures.empty?
         json.set! :filepath ,'https://'
        else
-        json.set! :filepath, request.protocol + request.host_with_port + child_profile.pictures.first.image_url unless child_profile.pictures.empty?
+        json.set! :filepath, request.protocol + request.host_with_port + child_profile.pictures.where(:profilepic=> true).last.image_url unless child_profile.pictures.empty?
        end
     end
 end
