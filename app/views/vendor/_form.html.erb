@@ -1,4 +1,5 @@
-<%= form_for(@vendor, url: vendor_index_path()) do |f| %>
+<%debugger%>
+<%= form_for(@vendor, url: path, type: type) do |f| %>
   <% if @vendor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this milestone from being saved:</h2>

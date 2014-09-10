@@ -57,6 +57,7 @@ class VendorController < ApplicationController
   end
 
   def update
+    debugger
     @vendor = Vendor.find(params[:id])
 
     respond_to do |format|

@@ -1,5 +1,5 @@
 <h1>Editing Vendor</h1>
 
-<%= render 'form' %>
+<%= render 'form', :path => vendor_index_path(:vendor_id => params[:id]), :type => 'put' %>
 
 <%= link_to 'Back', vendor_index_path %>

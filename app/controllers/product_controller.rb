@@ -1,4 +1,14 @@
 class ProductController < ApplicationController
+  def index
+    @vendor = Vendor.find(params[:vendor_id])
+    @vendor_products = @vendor.products
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @vendor_products }
+    end
+  end
+
   def show
     @product = Product.find(params[:id])
 
@@ -32,12 +42,13 @@ class ProductController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @vendor = Vendor.find(params[:vendor_id])
+    @product = @vendor.products.new(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_index_path, notice: 'Product was successfully created.' }
-        format.json { render json: product_index_path, status: :created, location: @product }
+        format.html { redirect_to vendor_product_index_path, notice: 'Product was successfully created.' }
+        format.json { render json: vendor_product_index_path, status: :created, location: @product }
       else
         format.html { render action: "new" }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -50,7 +61,7 @@ class ProductController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(product_params)
-        format.html { redirect_to product_index_path, notice: 'Product was successfully updated.' }
+        format.html { redirect_to vendor_product_index_path, notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
