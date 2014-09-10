@@ -1,6 +1,8 @@
 Cloudweb::Application.routes.draw do
 
   get "password_resets/new"
+  resources :vendor
+  resources :product
 
   resources :milestones
 

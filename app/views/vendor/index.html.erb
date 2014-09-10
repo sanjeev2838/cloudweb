@@ -1,0 +1,35 @@
+<div class="heading">
+  <h1 class="list_mach_head">Vendor  </h1>
+  <div class="float_right">
+    <%= link_to 'New Vendor', new_vendor_path %>
+  </div>
+</div>
+<%unless @vendors.nil?%>
+    <table id="vendor_table">
+      <thead>
+      <th>title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <% @vendors.each do |vendor| %>
+          <tr>
+            <td><%= vendor.name%></td>
+            <td><%= link_to 'Show', vendor %></td>
+            <td><%= link_to 'Edit', edit_vendor_path(vendor) %></td>
+            <td><%= link_to 'Destroy', vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<%end%>
+
+<br />
+
+
+<script>
+    $(document).ready(function(){
+        $("#vendor_table").dataTable()
+    });
+</script>
