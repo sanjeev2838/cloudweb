@@ -1,4 +1,4 @@
-class Api::V1::DiariesController < Api::V1::BaseController
+class Api::V1::DiariesController < Api::Default::BaseController
   before_filter :find_child_profile, :only => [:index, :show, :update,:destroy, :create]
   include DiariesHelper
 

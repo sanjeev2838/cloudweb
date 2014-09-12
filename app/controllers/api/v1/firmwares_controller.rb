@@ -1,4 +1,4 @@
-class Api::V1::FirmwaresController <  Api::V1::BaseController
+class Api::V1::FirmwaresController <  Api::Default::BaseController
   before_filter :find_machine
 
   def show

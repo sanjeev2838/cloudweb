@@ -1,0 +1,44 @@
+<div class="heading">
+  <h1 class="list_mach_head"> <%=@product.name%> </h1>
+  <h2 class="list_mach_head"> Product Preferences: </h2>
+</div>
+
+<div class="float_right">
+  <%= link_to 'New Preference', new_vendor_product_child_brewing_preference_path(@vendor, @product) %>
+</div>
+
+<%unless  @product_preferences.blank?%>
+    <table id="preference_table">
+      <thead>
+      <th>Temperature</th>
+      <th>Milk</th>
+      <th>Water</th>
+      <th>Quantity</th>
+      <th>Brew_type </th>
+      <th></th>
+      <th></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <%  @product_preferences.each do |preference| %>
+          <tr>
+            <td><%= preference.temperature %></td>
+            <td><%= preference.milk %></td>
+            <td><%= preference.water %></td>
+            <td><%= preference.quantity %></td>
+            <td><%= preference.brew_type %></td>
+            <td><%= link_to 'Show', [@vendor, @product,preference ] %></td>
+            <td><%= link_to 'Edit', edit_vendor_product_child_brewing_preference_path(@vendor,@product,preference) %></td>
+            <td><%= link_to 'Destroy', [@vendor,@product,preference ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<%end%>
+
+
+<script>
+    $(document).ready(function(){
+        $("#preference_table").dataTable()
+    });
+</script>

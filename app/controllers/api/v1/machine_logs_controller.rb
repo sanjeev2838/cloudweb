@@ -1,4 +1,4 @@
-class Api::V1::MachineLogsController < Api::V1::BaseController
+class Api::V1::MachineLogsController < Api::Default::BaseController
 
   def create
     @machine = Machine.where(:serialid => params[:serialid]).first

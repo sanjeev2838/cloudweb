@@ -1,4 +1,4 @@
-class VendorController < ApplicationController
+class VendorsController < ApplicationController
 
   def index
     @vendors = Vendor.all
@@ -24,7 +24,7 @@ class VendorController < ApplicationController
     @vendor.destroy
 
     respond_to do |format|
-      format.html { redirect_to vendor_index_url }
+      format.html { redirect_to vendors_path }
       format.json { head :no_content }
     end
   end
@@ -34,7 +34,7 @@ class VendorController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: vendor_index_path }
+      format.json { render json: vendors_path }
     end
   end
 
@@ -47,8 +47,8 @@ class VendorController < ApplicationController
 
     respond_to do |format|
       if @vendor.save
-        format.html { redirect_to vendor_index_path, notice: 'Vendor was successfully created.' }
-        format.json { render json: vendor_index_path, status: :created, location: @vendor }
+        format.html { redirect_to vendors_path, notice: 'Vendor was successfully created.' }
+        format.json { render json: vendors_path, status: :created, location: @vendor }
       else
         format.html { render action: "new" }
         format.json { render json: @vendor.errors, status: :unprocessable_entity }
@@ -57,12 +57,11 @@ class VendorController < ApplicationController
   end
 
   def update
-    debugger
     @vendor = Vendor.find(params[:id])
 
     respond_to do |format|
       if @vendor.update_attributes(vendor_params)
-        format.html { redirect_to vendor_index_path, notice: 'Vendor was successfully updated.' }
+        format.html { redirect_to vendors_path, notice: 'Vendor was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,6 +72,6 @@ class VendorController < ApplicationController
 
   private
   def vendor_params
-    params.require(:vendor).permit(:name)
+    params.require(:vendor).permit(:name, :brew_type)
   end
 end

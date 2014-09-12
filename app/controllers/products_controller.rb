@@ -1,6 +1,7 @@
-class ProductController < ApplicationController
+class ProductsController < ApplicationController
+  before_filter :find_vendor
+
   def index
-    @vendor = Vendor.find(params[:vendor_id])
     @vendor_products = @vendor.products
 
     respond_to do |format|
@@ -10,7 +11,10 @@ class ProductController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product =  @vendor.products.find(params[:id]) || Product.find(params[:id])
+    @product_preferences = []
+    @product_preferences = @product.child_brewing_preferences if @product
+    # @brewing_preference = @product.child_brewing_preferences.build
 
     respond_to do |format|
       format.html
@@ -19,36 +23,35 @@ class ProductController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product =  @vendor.products.find(params[:id])
     @product.destroy
 
     respond_to do |format|
-      format.html { redirect_to vendor_index_url }
+      format.html { redirect_to vendor_path(@vendor) }
       format.json { head :no_content }
     end
   end
 
   def new
-    @product = Product.new
+    @product = @vendor.products.new
 
     respond_to do |format|
       format.html
-      format.json { render json: vendor_index_path }
+      format.json { render json: vendor_path }
     end
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product =  @vendor.products.find(params[:id])
   end
 
   def create
-    @vendor = Vendor.find(params[:vendor_id])
     @product = @vendor.products.new(product_params)
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to vendor_product_index_path, notice: 'Product was successfully created.' }
-        format.json { render json: vendor_product_index_path, status: :created, location: @product }
+        format.html { redirect_to vendor_product_path(@vendor, @product), notice: 'Product was successfully created.' }
+        format.json { render json: vendor_product_path, status: :created, location: @product }
       else
         format.html { render action: "new" }
         format.json { render json: @product.errors, status: :unprocessable_entity }
@@ -61,7 +64,7 @@ class ProductController < ApplicationController
 
     respond_to do |format|
       if @product.update_attributes(product_params)
-        format.html { redirect_to vendor_product_index_path, notice: 'Product was successfully updated.' }
+        format.html { redirect_to vendor_product_path(@vendor, @product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,5 +76,9 @@ class ProductController < ApplicationController
   private
   def product_params
     params.require(:product).permit(:name)
+  end
+
+  def find_vendor
+    @vendor = Vendor.find(params[:vendor_id])
   end
 end

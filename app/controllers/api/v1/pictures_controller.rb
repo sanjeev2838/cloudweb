@@ -1,4 +1,4 @@
-class Api::V1::PicturesController < Api::V1::BaseController
+class Api::V1::PicturesController < Api::Default::BaseController
 
   before_filter :find_child_profile, :only => [:create, :index, :destroy, :show]
 

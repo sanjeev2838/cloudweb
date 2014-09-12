@@ -1,4 +1,4 @@
-class Api::V1::ChildProfilesController < Api::V1::BaseController
+class Api::V1::ChildProfilesController < Api::Default::BaseController
   before_filter :find_profile
 
   def index

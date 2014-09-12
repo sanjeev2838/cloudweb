@@ -1,7 +1,8 @@
 <div class="heading">
+  <h1></h1>
   <h1 class="list_mach_head">Vendor Products  </h1>
   <div class="float_right">
-    <%= link_to 'New Product', new_vendor_product_path(:vendor_id => params[:id]) %>
+    <%= link_to 'New Product', new_vendor_product_path(@vendor) %>
   </div>
 </div>
 <%unless @vendor_products.nil?%>
@@ -10,14 +11,13 @@
       <th>Name</th>
       <th></th>
       <th></th>
-      <th></th>
       </thead>
       <tbody>
-      <% @vendor_products.each do |vendor| %>
+      <% @vendor_products.each do |product| %>
           <tr>
-            <td><%= vendor.name%></td>
-            <td><%= link_to 'Show', vendor_product_index_path(:vendor_id=>vendor.id) %></td>
-            <td><%= link_to 'Destroy', vendor_product_path(:vendor_id=>vendor.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= product.name %></td>
+            <td><%= link_to 'Show', vendor_product_path(@vendor, product) %></td>
+            <td><%= link_to 'Destroy', vendor_product_path(@vendor, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
       <% end %>
       </tbody>

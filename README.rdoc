@@ -210,6 +210,11 @@ vaccines error codes
  8000 : vaccines found
  8001 : auth token not verified
 
+Version 2 Api details :-
+
+1.) curl -X GET -H "Content-type: application/json" http://localhost:3000/api/v2/suppliers/?brew_type=Gruel
+2.) /api/v2/suppliers/<supplierid>/products
+3.) /api/v2/suppliers/<supplier id>/products/<product id>/preferences
 
 Notes for future enhancements  :-
 =====================================================

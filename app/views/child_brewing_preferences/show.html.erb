@@ -7,9 +7,24 @@
 
 <p>
   <b>Milk qty:</b>
-  <%= @child_brewing_preference.milk_qty %>
+  <%= @child_brewing_preference.milk %>
+</p>
+
+<p>
+  <b>Water:</b>
+  <%= @child_brewing_preference.water %>
+</p>
+
+<p>
+  <b>Milk qty:</b>
+  <%= @child_brewing_preference.quantity %>
+</p>
+
+<p>
+  <b>Brew Type:</b>
+  <%= @child_brewing_preference.brew_type %>
 </p>
 
 
-<%= link_to 'Edit', edit_child_brewing_preference_path(@child_brewing_preference) %> |
-<%= link_to 'Back', child_brewing_preferences_path %>
+<!--< link_to 'Edit', edit_product_child_brewing_preference_path(@product, @child_brewing_preference) %> |-->
+<%= link_to 'Back', vendor_product_path(@vendor,@product) %>

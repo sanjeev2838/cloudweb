@@ -59,6 +59,10 @@
 .notice{
     background-color: green;
     color: #ffffff;
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0px;
 }
 .alert{
     background-color: red;

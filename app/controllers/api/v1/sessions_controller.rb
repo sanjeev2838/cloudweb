@@ -1,4 +1,4 @@
-class Api::V1::SessionsController < Api::V1::BaseController
+class Api::V1::SessionsController < Api::Default::BaseController
   protect_from_forgery :except => :update
   def new
   end

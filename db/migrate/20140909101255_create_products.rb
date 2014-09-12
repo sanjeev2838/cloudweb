@@ -2,7 +2,7 @@ class CreateProducts < ActiveRecord::Migration
   def change
     create_table :products do |t|
       t.string :name
-      t.references :vendor
+      t.references :vendors
 
       t.timestamps
     end

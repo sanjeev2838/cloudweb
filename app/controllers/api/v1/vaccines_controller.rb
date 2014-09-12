@@ -1,4 +1,4 @@
-class Api::V1::VaccinesController < Api::V1::BaseController
+class Api::V1::VaccinesController < Api::Default::BaseController
 
   def index
     @vaccines = Vaccine.where(status: true).order(:title)

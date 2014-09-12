@@ -1,4 +1,4 @@
-class Api::V1::ChildBrewingPreferencesController < Api::V1::BaseController
+class Api::V1::ChildBrewingPreferencesController < Api::Default::BaseController
 
   before_filter :find_profile, :only => [:update,:index]
 

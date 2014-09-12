@@ -1,4 +1,4 @@
-class Api::V1::LogbooksController <  Api::V1::BaseController
+class Api::V1::LogbooksController <  Api::Default::BaseController
   before_filter :find_child_profile, :only => [:index, :show, :update,:destroy, :create]
   respond_to :json
 

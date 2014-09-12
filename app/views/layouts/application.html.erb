@@ -30,7 +30,7 @@
         <div class="nav_div">
           <% if current_user%>
             <ul id="menu">
-                <li> <%= link_to "Dashboard", admin_dashboard_index_path%></li>
+                <li> <%= link_to "Dashboard", admin_dashboard_index_path %></li>
                 <li><a href="">Users</a>
                     <ul>
                         <li><a href="/parent_profiles">Parent Profile</a></li>
@@ -53,17 +53,28 @@
               <li><%= link_to "Firmware",firmwares_path%></li>
               <li><%= link_to "Vaccines",vaccines_path%></li>
                <li><a href="/milestones">Milestones</a></li>
-              <li><%= link_to "Vendors",vendor_index_path%></li>
+              <li><%= link_to "Vendors",vendors_path%></li>
            </ul>
           <%end%>
         </div>
 
-        <div id="container">
+        <div id="flash_msgs">
+          <% if notice.present? %>
+              <p class=" notice alert-success " id="flash_notice"><%= notice %></p>
+              <%= javascript_tag "setTimeout(function(){ $('#flash_notice').remove(); }, 5000);" %>
+          <% end %>
+          <% if alert.present? %>
+              <p class="alert alert-danger" id="flash_errors" ><%= alert %></p>
+              <%= javascript_tag "setTimeout(function(){ $('#flash_errors').remove();}, 5000);" %>
+          <% end %>
+          <% flash[:error] = flash[:errors] = flash[:notice] = nil %>
+        </div>
 
+        <div id="container">
             <%= yield %>
         </div>
-         <div class="clear">
 
+         <div class="clear">
          </div>
         <div class ="footer">
 

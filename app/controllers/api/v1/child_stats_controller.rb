@@ -1,4 +1,4 @@
-class Api::V1::ChildStatsController < Api::V1::BaseController
+class Api::V1::ChildStatsController < Api::Default::BaseController
 
   before_filter :verify_token
   before_filter :find_child_profile, :only => [:index, :create, :child_meals, :child_diapers, :child_vaccines,:child_half_bottles ,:child_full_bottles]

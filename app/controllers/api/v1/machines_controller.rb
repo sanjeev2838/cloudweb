@@ -1,4 +1,4 @@
-class Api::V1::MachinesController < Api::V1::BaseController
+class Api::V1::MachinesController < Api::Default::BaseController
   before_filter :find_machine, :only => [:show, :update, :destroy]
 
   def show

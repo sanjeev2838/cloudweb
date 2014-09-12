@@ -1,5 +1,5 @@
-<%debugger%>
-<%= form_for(@vendor, url: path, type: type) do |f| %>
+
+<%= form_for(@vendor) do |f| %>
   <% if @vendor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this milestone from being saved:</h2>
@@ -17,6 +17,11 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
+    <div class="field">
+      <%= f.label :brew_type %></div>
+      <%= f.select :brew_type, Vendor::BREW_TYPE %>
+    </div>
 
   <div class="actions">
     <%= f.submit %>

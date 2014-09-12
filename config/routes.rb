@@ -1,8 +1,15 @@
 Cloudweb::Application.routes.draw do
 
   get "password_resets/new"
-  resources :vendor do
-    resources :product
+
+  resources :vendors do
+    resources :products do
+      resources :child_brewing_preferences
+    end
+  end
+
+  resources :products do
+    resources :child_brewing_preferences
   end
 
   resources :milestones
@@ -135,6 +142,13 @@ Cloudweb::Application.routes.draw do
    # Api for languages
    #   match '/languages' => 'langages#index',  :via => :get
     end
+
+    namespace :v2 do
+      match '/suppliers' => 'vendors#vendors_as_per_brew_type', :via => :get
+      match '/suppliers/:supplierid/products' => 'vendors#products_of_vendor',:via => :get
+      match '/suppliers/:supplierid/products/:productid/preferences' => 'products#product_preferences', :via => :get
+    end
+
   end
 
 
