@@ -1,6 +1,9 @@
 <div class="heading">
-  <h1></h1>
-  <h1 class="list_mach_head">Vendor Products  </h1>
+  <div class="breadcrum">Dashboard > <%=link_to "vendors",vendors_path %> </div><br>
+
+  <h1><%= @vendor.name %></h1>
+  <h2 class="list_mach_head">Vendor Products:  </h2>
+
   <div class="float_right">
     <%= link_to 'New Product', new_vendor_product_path(@vendor) %>
   </div>

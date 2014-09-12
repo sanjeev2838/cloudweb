@@ -17,7 +17,7 @@ class ChildBrewingPreferencesController < ApplicationController
       if @product.child_brewing_preferences.count >= 3
        format.html { redirect_to  vendor_product_path(@vendor,@product),:alert => "You have already added three preference for each brew type"  }
       else
-       child_brewing_preference = @product.child_brewing_preferences.new
+       @child_brewing_preference = @product.child_brewing_preferences.new
        format.html
        format.json { render json: @child_brewing_preference }
       end

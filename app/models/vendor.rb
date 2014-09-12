@@ -1,5 +1,8 @@
 class Vendor < ActiveRecord::Base
-  attr_accessible :name, :brew_type
+  attr_accessible :name
   has_many :products, :dependent => :destroy
-  BREW_TYPE = ["Babyformula", "Gruel", "Porridge"]
+
+
+  validates :name, presence: true
+
 end

@@ -1,6 +1,9 @@
-<h1>Editing child_brewing_preference</h1>
+<h1 class="new_machine_head">Edit Product Preference</h1>
+<div class="edito_machine">
+  <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', product_child_brewing_preference_path(@product,@child_brewing_preference) %> |
-<!--< link_to 'Back', products_path(@product) %>-->
+  <div class="back">
+    <%= link_to 'Show', [@vendor, @product,preference ] %> |
+    <%= link_to 'Back', vendor_product_path(@vendor,@product) %>
+  </div>
+</div>

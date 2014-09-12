@@ -12,27 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :temperature %><br />
+    <%= f.label :temperature %>
     <%= f.number_field :temperature %>
   </div>
 
   <div class="field">
-    <%= f.label :milk %><br />
+    <%= f.label :milk %>
     <%= f.number_field :milk %>
   </div>
 
   <div class="field">
-    <%= f.label :water %><br />
+    <%= f.label :water %>
     <%= f.number_field :water %>
   </div>
 
   <div class="field">
-    <%= f.label :quantity %><br />
+    <%= f.label :quantity %>
     <%= f.number_field :quantity %>
   </div>
 
   <div class="field">
-    <%= f.label :brew_type %><br />
+    <%= f.label :brew_type %>
     <%= f.select :brew_type, Vendor::BREW_TYPE %>
   </div>
     <%= f.hidden_field :product_id, value: @child_brewing_preference.product_id %>
