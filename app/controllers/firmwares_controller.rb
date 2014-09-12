@@ -55,6 +55,11 @@ class FirmwaresController < ApplicationController
     end
   end
 
+  def download_firmware_file
+    @firmware = Firmware.find(params[:id])
+    send_file "#{Rails.root}/#{@firmware.binaryfile}"
+  end
+
   def update
     @firmware = Firmware.find(params[:id])
 

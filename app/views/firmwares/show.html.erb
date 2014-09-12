@@ -1,5 +1,4 @@
 <h1 class="new_machine_head">Firmware</h1>
-<p id="notice"><%= notice %></p>
 
 <div class="content_row">
   <p class="left">
@@ -12,9 +11,10 @@
 </p>
  </div>
 <div class="content_row">
+  <b>Downloading Link :</b>
   <p style="padding-right: 180px; display: table-cell">
-    <b>Binaryfile:</b>
-    <%= @firmware.binaryfile %>
+    <%= download_firmware_url(@firmware) %>
+    <%= link_to "Download Firmware file ",  download_firmware_path(@firmware) %>
   </p>
 </div>
 <br>

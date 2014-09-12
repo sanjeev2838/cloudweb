@@ -11,7 +11,7 @@
   <thead>
 
     <th>Firmware Version</th>
-    <th>Binary File</th>
+    <th>Download link</th>
     <th>Serial Ids</th>
     <th></th>
     <th></th>
@@ -22,7 +22,7 @@
 <% @firmwares.each do |firmware| %>
   <tr>
     <td><%= firmware.firmwareversion %></td>
-    <td><%= firmware.binaryfile %></td>
+    <td> <%= link_to "Download Firmware file ",  download_firmware_path(firmware) %></td>
     <td><%= firmware.serialids %></td>
     <td><%= link_to "Show", firmware%></td>
     <td><%= link_to "Edit",edit_firmware_path(firmware)%></td>
