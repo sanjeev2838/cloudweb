@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140910130800) do
+ActiveRecord::Schema.define(:version => 20140909101255) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -20,10 +20,6 @@ ActiveRecord::Schema.define(:version => 20140910130800) do
     t.integer  "parent_profile_id"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
-    t.float    "water"
-    t.float    "quantity"
-    t.string   "brew_type"
-    t.integer  "product_id"
   end
 
   create_table "child_parent_relationships", :force => true do |t|
@@ -156,7 +152,7 @@ ActiveRecord::Schema.define(:version => 20140910130800) do
 
   create_table "products", :force => true do |t|
     t.string   "name"
-    t.integer  "vendor_id"
+    t.integer  "vendors_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -210,7 +206,6 @@ ActiveRecord::Schema.define(:version => 20140910130800) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "brew_type"
   end
 
 end
