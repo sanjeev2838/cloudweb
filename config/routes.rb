@@ -144,8 +144,8 @@ Cloudweb::Application.routes.draw do
     end
 
     namespace :v2 do
-      match '/suppliers' => 'vendors#vendors_as_per_brew_type', :via => :get
-      match '/suppliers/:supplierid/products' => 'vendors#products_of_vendor',:via => :get
+      match '/suppliers' => 'vendors#vendors_as_brew_type', :via => :get
+      match '/suppliers/:supplierid/products' => 'vendors#products_of_vendor_as_brew_type',:via => :get
       match '/suppliers/:supplierid/products/:productid/preferences' => 'products#product_preferences', :via => :get
     end
 

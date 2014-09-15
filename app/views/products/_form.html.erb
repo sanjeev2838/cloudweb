@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :brew_type %>
+    <%= f.select :brew_type, Product::BREW_TYPE %>
   </div>
 
   <div class="actions">

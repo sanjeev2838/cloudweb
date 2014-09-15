@@ -12,6 +12,8 @@
     <table id="vendor_table">
       <thead>
       <th>Name</th>
+      <th>Brew Type</th>
+      <th></th>
       <th></th>
       <th></th>
       </thead>
@@ -19,7 +21,9 @@
       <% @vendor_products.each do |product| %>
           <tr>
             <td><%= product.name %></td>
+            <td><%= product.brew_type %></td>
             <td><%= link_to 'Show', vendor_product_path(@vendor, product) %></td>
+            <td><%= link_to 'Edit', edit_vendor_product_path(@vendor, product) %></td>
             <td><%= link_to 'Destroy', vendor_product_path(@vendor, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
       <% end %>

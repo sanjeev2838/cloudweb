@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
   def show
     @product =  @vendor.products.find(params[:id]) || Product.find(params[:id])
     @product_preferences = []
-    @product_preferences = @product.child_brewing_preferences if @product
+    # @product_preferences = @product.child_brewing_preferences if @product
     # @brewing_preference = @product.child_brewing_preferences.build
 
     respond_to do |format|
@@ -75,7 +75,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name)
+    params.require(:product).permit(:name, :brew_type)
   end
 
   def find_vendor
