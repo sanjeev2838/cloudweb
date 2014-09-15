@@ -31,6 +31,10 @@ class ParentProfile < ActiveRecord::Base
     ParentProfile::RELATIONS.key(self.relation).to_s
   end
 
+  def password=(paswd)
+    value = Digest::MD5.hexdigest(paswd)
+    write_attribute(:password, value)
+  end
 
   def devise_type
     ParentProfile::DEVICES.key(self.devicetypeid).to_s

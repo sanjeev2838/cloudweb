@@ -1,6 +1,7 @@
 #todo Better to write jbuilder template later on
 # I am not responsible of this code.
 # They made me write it, against my will
+
 class Api::V1::ParentProfilesController < Api::Default::BaseController
   before_filter :check_auth_token , :only => [:update,:destroy, :show]
   before_filter :find_profile, :only => [:update, :destroy, :show]
@@ -18,7 +19,7 @@ class Api::V1::ParentProfilesController < Api::Default::BaseController
       @parent_profile = ParentProfile.create(params[:parent_profile])
     else
       if @parent_profile.machine_id ==  @machine.id
-        @parent_profile.password = params[:parent_profile][:password]
+        @parent_profile.password = Digest::MD5.hexdigest(params[:parent_profile][:password])
         @parent_profile.status = true
         @parent_profile.save!
       else

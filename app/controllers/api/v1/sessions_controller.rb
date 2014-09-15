@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class Api::V1::SessionsController < Api::Default::BaseController
   protect_from_forgery :except => :update
   def new
@@ -13,8 +15,8 @@ class Api::V1::SessionsController < Api::Default::BaseController
       if @machine.id != user.machine_id
         render json:{:status => false,:status_code=>7000,:message=>"You cant login on this machine" }
       else
-        if user.password == params[:session][:password]
-          render json:{:status => true,:status_code=>7000,:message=>"Login successfull" ,:authtoken => user.authtoken, :profile=> user,:machine=> @machine}
+        if user.password == Digest::MD5.hexdigest(params[:session][:password])
+          render json:{:status => true,:status_code=>7000,:message=>"Login successful" ,:authtoken => user.authtoken, :profile=> user,:machine=> @machine}
         else
           render json:{:status => false,:status_code=>7001, :message => I18n.t('login.password')}
         end
