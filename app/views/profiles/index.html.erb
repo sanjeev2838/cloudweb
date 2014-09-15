@@ -1,0 +1,61 @@
+<h1>Listing profiles</h1>
+
+<table>
+  <tr>
+    <th>Volume</th>
+    <th>Key 32</th>
+    <th>Key 33</th>
+    <th>Key 34</th>
+    <th>Key 35</th>
+    <th>Key 36</th>
+    <th>Key 37</th>
+    <th>Key 38</th>
+    <th>Key 39</th>
+    <th>Key 40</th>
+    <th>Key 41</th>
+    <th>Key 42</th>
+    <th>Key 43</th>
+    <th>Key 44</th>
+    <th>Key 45</th>
+    <th>Key 46</th>
+    <th>Key 47</th>
+    <th>Key 48</th>
+    <th>Key 49</th>
+    <th>Key 50</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%= profile.volume %></td>
+    <td><%= profile.key_32 %></td>
+    <td><%= profile.key_33 %></td>
+    <td><%= profile.key_34 %></td>
+    <td><%= profile.key_35 %></td>
+    <td><%= profile.key_36 %></td>
+    <td><%= profile.key_37 %></td>
+    <td><%= profile.key_38 %></td>
+    <td><%= profile.key_39 %></td>
+    <td><%= profile.key_40 %></td>
+    <td><%= profile.key_41 %></td>
+    <td><%= profile.key_42 %></td>
+    <td><%= profile.key_43 %></td>
+    <td><%= profile.key_44 %></td>
+    <td><%= profile.key_45 %></td>
+    <td><%= profile.key_46 %></td>
+    <td><%= profile.key_47 %></td>
+    <td><%= profile.key_48 %></td>
+    <td><%= profile.key_49 %></td>
+    <td><%= profile.key_50 %></td>
+    <td><%= link_to 'Show', profile %></td>
+    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+    <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Profile', new_profile_path %>

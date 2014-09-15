@@ -1,0 +1,97 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :volume %><br />
+    <%= f.number_field :volume %>
+  </div>
+  <div class="field">
+    <%= f.label :key_32 %><br />
+    <%= f.number_field :key_32 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_33 %><br />
+    <%= f.number_field :key_33 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_34 %><br />
+    <%= f.number_field :key_34 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_35 %><br />
+    <%= f.number_field :key_35 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_36 %><br />
+    <%= f.number_field :key_36 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_37 %><br />
+    <%= f.number_field :key_37 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_38 %><br />
+    <%= f.number_field :key_38 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_39 %><br />
+    <%= f.number_field :key_39 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_40 %><br />
+    <%= f.number_field :key_40 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_41 %><br />
+    <%= f.number_field :key_41 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_42 %><br />
+    <%= f.number_field :key_42 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_43 %><br />
+    <%= f.number_field :key_43 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_44 %><br />
+    <%= f.number_field :key_44 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_45 %><br />
+    <%= f.number_field :key_45 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_46 %><br />
+    <%= f.number_field :key_46 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_47 %><br />
+    <%= f.number_field :key_47 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_48 %><br />
+    <%= f.number_field :key_48 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_49 %><br />
+    <%= f.number_field :key_49 %>
+  </div>
+  <div class="field">
+    <%= f.label :key_50 %><br />
+    <%= f.number_field :key_50 %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

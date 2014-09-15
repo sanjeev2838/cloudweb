@@ -1,5 +1,8 @@
 Cloudweb::Application.routes.draw do
 
+  resources :profiles
+
+
   get "password_resets/new"
 
   resources :vendors do
