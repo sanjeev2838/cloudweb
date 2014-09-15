@@ -87,7 +87,6 @@ class ChildBrewingPreferencesController < ApplicationController
     end
   end
 
-
   private
   def find_vendor
     @vendor =  Vendor.find(params[:vendor_id])
