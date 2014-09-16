@@ -6,32 +6,64 @@
 </div>
 
 <div class="float_right">
-  <%= link_to 'New Preference', new_vendor_product_child_brewing_preference_path(@vendor, @product) %>
+  <%= link_to 'New Profile', new_vendor_product_profile_path(@vendor, @product) %>
 </div>
 
-<%unless  @product_preferences.blank?%>
+<% unless  @product_profiles.blank? %>
     <table id="preference_table">
       <thead>
-      <th>Temperature</th>
-      <th>Milk</th>
-      <th>Water</th>
-      <th>Quantity</th>
-      <th>Brew_type </th>
+      <th>Volume</th>
+      <th>key_32</th>
+      <th>key_33</th>
+      <th>key_34</th>
+      <th>key_35</th>
+      <th>key_36</th>
+      <th>key_37</th>
+      <th>key_38</th>
+      <th>key_39</th>
+      <th>key_40</th>
+      <th>key_41</th>
+      <th>key_42</th>
+      <th>key_43</th>
+      <th>key_44</th>
+      <th>key_45</th>
+      <th>key_46</th>
+      <th>key_47</th>
+      <th>key_48</th>
+      <th>key_49</th>
+      <th>key_50</th>
+
       <th></th>
       <th></th>
       <th></th>
       </thead>
       <tbody>
-      <%  @product_preferences.each do |preference| %>
+      <%  @product_profiles.each do |profile| %>
           <tr>
-            <td><%= preference.temperature %></td>
-            <td><%= preference.milk %></td>
-            <td><%= preference.water %></td>
-            <td><%= preference.quantity %></td>
-            <td><%= preference.brew_type %></td>
-            <td><%= link_to 'Show', [@vendor, @product,preference ] %></td>
-            <td><%= link_to 'Edit', edit_vendor_product_child_brewing_preference_path(@vendor,@product,preference) %></td>
-            <td><%= link_to 'Destroy', [@vendor,@product,preference ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td> <%= profile.volume %></td>
+            <td> <%= profile.key_32 %></td>
+            <td> <%= profile.key_33 %></td>
+            <td> <%= profile.key_34 %></td>
+            <td> <%= profile.key_35 %></td>
+            <td> <%= profile.key_36 %></td>
+            <td> <%= profile.key_37 %></td>
+            <td> <%= profile.key_38 %></td>
+            <td> <%= profile.key_39 %></td>
+            <td> <%= profile.key_40 %></td>
+            <td> <%= profile.key_41 %></td>
+            <td> <%= profile.key_42 %></td>
+            <td> <%= profile.key_43 %></td>
+            <td> <%= profile.key_44 %></td>
+            <td> <%= profile.key_45 %></td>
+            <td> <%= profile.key_46 %></td>
+            <td> <%= profile.key_47 %></td>
+            <td> <%= profile.key_48 %></td>
+            <td> <%= profile.key_49 %></td>
+            <td> <%= profile.key_50 %></td>
+
+            <td><%= link_to 'Show', [@vendor, @product,profile ] %></td>
+            <td><%= link_to 'Edit', edit_vendor_product_profile_path(@vendor,@product,profile) %></td>
+            <td><%= link_to 'Destroy', [@vendor,@product,profile ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
       <% end %>
       </tbody>
@@ -41,6 +73,6 @@
 
 <script>
     $(document).ready(function(){
-        $("#preference_table").dataTable()
+        $("#profile_table").dataTable()
     });
 </script>

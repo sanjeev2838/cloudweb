@@ -1,8 +1,6 @@
 class Api::V1::ChildStatsController < Api::Default::BaseController
 
-  before_filter :verify_token
   before_filter :find_child_profile, :only => [:index, :create, :child_meals, :child_diapers, :child_vaccines,:child_half_bottles ,:child_full_bottles]
-  include TokenValidation
 
   #todo refactor this by using
   #def check_child_stats(nil_msg, method_symbol, method_args, empty_msg)
@@ -78,10 +76,6 @@ class Api::V1::ChildStatsController < Api::Default::BaseController
     else
       return true
     end
-  end
-
-  def verify_token
-     check_auth_token(request.headers['authtoken'],params[:profile_id])
   end
 
 end

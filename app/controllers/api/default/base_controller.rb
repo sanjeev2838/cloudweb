@@ -7,7 +7,7 @@ class Api::Default::BaseController < ActionController::Base
     profile_id = params[:profile_id]
     @profile = ParentProfile.find(profile_id)
     raise  if @profile.authtoken != authtoken
-  rescue Exception =>e
+  rescue Exception => e
     render json:{:status => false,:status_code=> 4001, :message => "Auth token not verified"}
   end
 

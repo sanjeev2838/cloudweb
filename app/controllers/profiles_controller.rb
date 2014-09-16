@@ -1,46 +1,44 @@
 class ProfilesController < ApplicationController
-  # GET /profiles
-  # GET /profiles.json
+  before_filter :find_vendor
+
   def index
+    @product = Product.find(params[:product_id])
     @profiles = Profile.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @profiles }
     end
   end
 
-  # GET /profiles/1
-  # GET /profiles/1.json
   def show
+    @product = Product.find(params[:product_id])
     @profile = Profile.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @profile }
     end
   end
 
-  # GET /profiles/new
-  # GET /profiles/new.json
   def new
-    @profile = Profile.new
+    @product = Product.find(params[:product_id])
+    @profile = @product.profiles.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @profile }
     end
   end
 
-  # GET /profiles/1/edit
   def edit
+    @product = Product.find(params[:product_id])
     @profile = Profile.find(params[:id])
   end
 
-  # POST /profiles
-  # POST /profiles.json
   def create
-    @profile = Profile.new(profile_params)
+    @product = Product.find(params[:product_id])
+    @profile = @product.profiles.new(profile_params)
 
     respond_to do |format|
       if @profile.save
@@ -53,9 +51,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /profiles/1
-  # PATCH/PUT /profiles/1.json
   def update
+    @product = Product.find(params[:product_id])
     @profile = Profile.find(params[:id])
 
     respond_to do |format|
@@ -69,9 +66,8 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # DELETE /profiles/1
-  # DELETE /profiles/1.json
   def destroy
+    @product = Product.find(params[:product_id])
     @profile = Profile.find(params[:id])
     @profile.destroy
 
@@ -83,9 +79,10 @@ class ProfilesController < ApplicationController
 
   private
 
-    # Use this method to whitelist the permissible parameters. Example:
-    # params.require(:person).permit(:name, :age)
-    # Also, you can specialize this method with per-user checking of permissible attributes.
+    def find_vendor
+      @vendor =  Vendor.find(params[:vendor_id])
+    end
+
     def profile_params
       params.require(:profile).permit(:key_32, :key_33, :key_34, :key_35, :key_36, :key_37, :key_38, :key_39, :key_40, :key_41, :key_42, :key_43, :key_44, :key_45, :key_46, :key_47, :key_48, :key_49, :key_50, :volume)
     end

@@ -1,11 +1,11 @@
 class Api::V2::ProductsController < Api::Default::BaseController
   before_filter :find_vendor
 
-  def product_preferences
+  def product_profiles
     @product = Product.find(params[:productid])
-    @preferences =  @product.child_brewing_preferences
-    if  @preferences.blank?
-      render json:{:status => false, :message => "No product preferences found for this name"}
+    @profiles  =  @product.profiles
+    if  @profiles.blank?
+      render json:{:status => false, :message => "No product preferences found for this Id"}
     end
   rescue ActiveRecord::RecordNotFound
     render json:{:status => false, :message => "Unable to find product As per given Id  on cloud"}

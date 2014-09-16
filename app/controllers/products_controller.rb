@@ -12,9 +12,8 @@ class ProductsController < ApplicationController
 
   def show
     @product =  @vendor.products.find(params[:id]) || Product.find(params[:id])
-    @product_preferences = []
-    # @product_preferences = @product.child_brewing_preferences if @product
-    # @brewing_preference = @product.child_brewing_preferences.build
+    @product_profiles = []
+    @product_profiles = @product.profiles if @product
 
     respond_to do |format|
       format.html

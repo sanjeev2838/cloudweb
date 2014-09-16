@@ -1,6 +1,8 @@
 class ChildBrewingPreferencesController < ApplicationController
   before_filter :find_vendor
 
+  # The whole logic of this controller is changed So code written is no longer applicable
+
   def show
     @product = Product.find(params[:product_id])
     @child_brewing_preference = ChildBrewingPreference.find(params[:id])
@@ -29,7 +31,7 @@ class ChildBrewingPreferencesController < ApplicationController
     @child_brewing_preference = ChildBrewingPreference.find(params[:id])
   end
 
-  # child_brewing_prefernces is also used to save settings for product
+  # child_brewing_preferences is also used to save settings for product
   def create
     @product = Product.find(params[:child_brewing_preference][:product_id])
     @old_product_preference = @product.child_brewing_preferences.where("brew_type = ? and product_id = ? ", params[:child_brewing_preference][:brew_type], params[:child_brewing_preference][:product_id] ).first

@@ -2,15 +2,9 @@ class UserMailer < ActionMailer::Base
   add_template_helper(ChildProfilesHelper)
 
   def registration_confirmation(user,subject,body)
-    # recipients  user.email
-    # from        "office@ezzie.in"
-    # subject     subject
-    # body        body
-    #mail(:from=>"saini.pardeep8@gmail.com",:to => "pardeep@ezzie.in",:subject=>"Password reset")
     @user = user
     @url = "http://gmail.com"
     mail( from: "d1.diluo.nu", to: user.email, subject: subject ,body: body)
-
   end
 
   def send_pdf(dairy, email_id)
