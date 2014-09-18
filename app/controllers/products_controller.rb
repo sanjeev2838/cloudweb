@@ -21,6 +21,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def profile_row
+    @product =  @vendor.products.find(params[:id])
+    @profile = @product.profiles.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def destroy
     @product =  @vendor.products.find(params[:id])
     @product.destroy

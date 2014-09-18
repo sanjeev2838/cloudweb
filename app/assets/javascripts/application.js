@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require best_in_place
 //= require fancybox
 //= require dataTables/jquery.dataTables
 //= require jquery_ujs

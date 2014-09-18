@@ -7,13 +7,16 @@ Cloudweb::Application.routes.draw do
 
   resources :vendors do
     resources :products do
+      member do
+        get 'profile_row'
+      end
       resources :profiles
     end
   end
 
-  resources :products do
-    resources :child_brewing_preferences
-  end
+
+
+  resources :products
 
   resources :milestones
 

@@ -1,0 +1,46 @@
+<tr>
+  <%= form_for([vendor, product, profile]) do |f| %>
+      <% if @profile.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+            <ul>
+              <% @profile.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <td><%= f.text_field :volume ,:size => 3 %>  </td>
+      <td><%= f.text_field :key_32 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_33 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_34 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_35 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_36 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_37 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_38 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_39 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_40 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_41 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_42 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_43 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_44 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_45 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_46 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_47 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_48 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_49 ,:size => 1 %>  </td>
+      <td><%= f.text_field :key_50 ,:size => 1 %>  </td>
+      <td><%= f.submit %>
+  <% end %>
+
+</tr>
+
+
+
+<script>
+//    $(document).ready(function() {
+//        jQuery(".best_in_place").best_in_place();
+//    });
+</script>

@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_filter :find_vendor
 
   def index
@@ -42,7 +43,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { redirect_to vendor_product_path(@vendor, @product), notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else
         format.html { render action: "new" }
@@ -57,7 +58,7 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.update_attributes(profile_params)
-        format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to vendor_product_path(@vendor, @product), notice: 'Profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,7 +73,7 @@ class ProfilesController < ApplicationController
     @profile.destroy
 
     respond_to do |format|
-      format.html { redirect_to profiles_url }
+      format.html { redirect_to vendor_product_path(@vendor, @product) }
       format.json { head :no_content }
     end
   end

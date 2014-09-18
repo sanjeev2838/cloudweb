@@ -40,6 +40,9 @@ GEM
     arel (3.0.3)
     atomic (1.1.15)
     bcrypt-ruby (3.0.1)
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (~> 3.1)
     builder (3.0.4)
     capistrano (3.1.0)
       i18n
@@ -222,6 +225,7 @@ PLATFORMS
 DEPENDENCIES
   apns
   bcrypt-ruby (~> 3.0.0)
+  best_in_place
   capistrano
   carrierwave
   chartkick

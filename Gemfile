@@ -37,6 +37,7 @@ gem 'capistrano'
 
 
 gem "chartkick"
+gem "best_in_place"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'

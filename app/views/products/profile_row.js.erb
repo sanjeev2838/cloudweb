@@ -1,0 +1,1 @@
+$( "#profile_table tr:last" ).after( "<%= escape_javascript( render( :partial => "profile_row", :locals => { :product => @product, :vendor => @vendor, :profile => @profile } ) ) %>" );

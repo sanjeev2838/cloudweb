@@ -6,64 +6,61 @@
 </div>
 
 <div class="float_right">
-  <%= link_to 'New Profile', new_vendor_product_profile_path(@vendor, @product) %>
+  <%= link_to "New Profile", profile_row_vendor_product_path(@vendor, @product), :remote => true %>
 </div>
 
 <% unless  @product_profiles.blank? %>
-    <table id="preference_table">
+    <table id="profile_table">
       <thead>
-      <th>Volume</th>
-      <th>key_32</th>
-      <th>key_33</th>
-      <th>key_34</th>
-      <th>key_35</th>
-      <th>key_36</th>
-      <th>key_37</th>
-      <th>key_38</th>
-      <th>key_39</th>
-      <th>key_40</th>
-      <th>key_41</th>
-      <th>key_42</th>
-      <th>key_43</th>
-      <th>key_44</th>
-      <th>key_45</th>
-      <th>key_46</th>
-      <th>key_47</th>
-      <th>key_48</th>
-      <th>key_49</th>
-      <th>key_50</th>
+      <th width="5">Volume</th>
+      <th width="5">32</th>
+      <th width="5">33</th>
+      <th width="5">34</th>
+      <th width="5">35</th>
+      <th width="5">36</th>
+      <th width="5">37</th>
+      <th width="5">38</th>
+      <th width="5">39</th>
+      <th width="5">40</th>
+      <th width="5">41</th>
+      <th width="5">42</th>
+      <th width="5">43</th>
+      <th width="5">44</th>
+      <th width="5">45</th>
+      <th width="5">46</th>
+      <th width="5">47</th>
+      <th width="5">48</th>
+      <th width="5">49</th>
+      <th width="5">50</th>
 
-      <th></th>
-      <th></th>
       <th></th>
       </thead>
       <tbody>
       <%  @product_profiles.each do |profile| %>
           <tr>
-            <td> <%= profile.volume %></td>
-            <td> <%= profile.key_32 %></td>
-            <td> <%= profile.key_33 %></td>
-            <td> <%= profile.key_34 %></td>
-            <td> <%= profile.key_35 %></td>
-            <td> <%= profile.key_36 %></td>
-            <td> <%= profile.key_37 %></td>
-            <td> <%= profile.key_38 %></td>
-            <td> <%= profile.key_39 %></td>
-            <td> <%= profile.key_40 %></td>
-            <td> <%= profile.key_41 %></td>
-            <td> <%= profile.key_42 %></td>
-            <td> <%= profile.key_43 %></td>
-            <td> <%= profile.key_44 %></td>
-            <td> <%= profile.key_45 %></td>
-            <td> <%= profile.key_46 %></td>
-            <td> <%= profile.key_47 %></td>
-            <td> <%= profile.key_48 %></td>
-            <td> <%= profile.key_49 %></td>
-            <td> <%= profile.key_50 %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :volume,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_32,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_33,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_34,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_35,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_36,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_37,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_38,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_39,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_40,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_41,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_42,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_43,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_44,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_45,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_46,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_47,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_48,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_49,  :type => :input, :html_attrs => { :size => 3 } %></td>
+            <td> <%=  best_in_place [@vendor,@product, profile], :key_50,  :type => :input, :html_attrs => { :size => 3 } %></td>
 
-            <td><%= link_to 'Show', [@vendor, @product,profile ] %></td>
-            <td><%= link_to 'Edit', edit_vendor_product_profile_path(@vendor,@product,profile) %></td>
             <td><%= link_to 'Destroy', [@vendor,@product,profile ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
           </tr>
       <% end %>
       </tbody>
@@ -72,7 +69,8 @@
 
 
 <script>
-    $(document).ready(function(){
-        $("#profile_table").dataTable()
+    $(document).ready(function() {
+        $("#profile_table").dataTable();
+         jQuery(".best_in_place").best_in_place();
     });
 </script>

@@ -1,5 +1,103 @@
-<h1>New profile</h1>
+<!--< render 'form' %>-->
+<h1 class="new_machine_head">New profile</h1>
+<div >
 
-<%= render 'form' %>
+  <table id="table">
+    <thead>
+    <th>Volume</th>
+    <th>32</th>
+    <th>33</th>
+    <th>34</th>
+    <th>35</th>
+    <th>36</th>
+    <th>37</th>
+    <th>38</th>
+    <th>39</th>
+    <th>40</th>
+    <th>41</th>
+    <th>42</th>
+    <th>43</th>
+    <th>44</th>
+    <th>45</th>
+    <th>46</th>
+    <th>47</th>
+    <th>48</th>
+    <th>49</th>
+    <th>50</th>
 
-<%= link_to 'Back', profiles_path %>
+    <th></th>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= text_field_tag 'volume' ,'', size: 5%> </td>
+      <td><%= text_field_tag 'key_32','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_33','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_34','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_35','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_36','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_37','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_38','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_39','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_40','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_41','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_42','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_43','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_44','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_45','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_46','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_47','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_48','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_49','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_50','', size: 3 %> </td>
+      <td><input type="button" class='del' value='Delete' /></td>
+    </tr>
+    <tr>
+      <td><%= text_field_tag 'volume' ,'', size: 5%> </td>
+      <td><%= text_field_tag 'key_32','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_33','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_34','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_35','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_36','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_37','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_38','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_39','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_40','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_41','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_42','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_43','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_44','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_45','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_46','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_47','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_48','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_49','', size: 3 %> </td>
+      <td><%= text_field_tag 'key_50','', size: 3 %> </td>
+      <td><input type="button" class="add" value="Add More" /></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <div class="back"><%= link_to 'Back', "www.google.com" %>  </div>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        $("#profile_table").dataTable();
+
+        $('body').on("click",'.del',function(){
+            $(this).parent().parent().remove();
+        });
+
+        $('body').on("click",'.add',function(){
+            $(this).val('Delete');
+            $(this).attr('class','del');
+            var appendTxt ="<tr><td><input id='volume' name='volume' size='5' type='text' value=''> </td><td><input id='key_32' name='key_32' size='3' type='text' value=''> </td><td><input id='key_33' name='key_33' size='3' type='text' value=''> </td><td><input id='key_34' name='key_34' size='3' type='text' value=''> </td><td><input id='key_35' name='key_35' size='3' type='text' value=''> </td><td><input id='key_36' name='key_36' size='3' type='text' value=''> </td><td><input id='key_37' name='key_37' size='3' type='text' value=''> </td><td><input id='key_38' name='key_38' size='3' type='text' value=''> </td><td><input id='key_39' name='key_39' size='3' type='text' value=''> </td><td><input id='key_40' name='key_40' size='3' type='text' value=''> </td><td><input id='key_41' name='key_41' size='3' type='text' value=''> </td><td><input id='key_42' name='key_42' size='3' type='text' value=''> </td><td><input id='key_43' name='key_43' size='3' type='text' value=''> </td><td><input id='key_44' name='key_44' size='3' type='text' value=''> </td><td><input id='key_45' name='key_45' size='3' type='text' value=''> </td><td><input id='key_46' name='key_46' size='3' type='text' value=''> </td><td><input id='key_47' name='key_47' size='3' type='text' value=''> </td><td><input id='key_48' name='key_48' size='3' type='text' value=''> </td><td><input id='key_49' name='key_49' size='3' type='text' value=''> </td><td><input id='key_50' name='key_50' size='3' type='text' value=''> </td><td><input type='button' class='add' value='Add More'></td></tr>"
+            $("tr:last").after(appendTxt);
+        });
+    });
+
+</script>
+
+<!--< link_to 'Back', profiles_path %>-->
