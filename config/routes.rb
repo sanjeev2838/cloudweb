@@ -39,6 +39,30 @@ Cloudweb::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/firmware/:id/download', to: 'firmwares#download_firmware_file', via: 'get' , as: :download_firmware
 
+  resources :parent_profiles do
+    collection do
+      get :make_machine_owner
+    end
+    resources :child_profiles
+  end
+
+  resources :logbooks
+  resources :vaccines
+  resources :child_brewing_preferences
+  resources :child_stats
+  resources :machine_logs
+  resources :pictures
+
+  resources :machines  do
+    collection do
+      get :machines_import,:machine_csv_download
+      post :import_machine_csv
+    end
+  end
+
+  resources :password_resets
+
+
   current_api_routes = lambda do
     resources :child_stats  do
       collection do
@@ -133,28 +157,6 @@ Cloudweb::Application.routes.draw do
     end
   end
 
-  resources :parent_profiles do
-    collection do
-      get :make_machine_owner
-    end
-    resources :child_profiles
-  end
-
-  resources :logbooks
-  resources :vaccines
-  resources :child_brewing_preferences
-  resources :child_stats
-  resources :machine_logs
-  resources :pictures
-
-  resources :machines  do
-    collection do
-      get :machines_import,:machine_csv_download
-      post :import_machine_csv
-    end
-  end
-
-  resources :password_resets
   match "*path", :to => "application#routing_error"
 
 end
