@@ -9,63 +9,60 @@
   <%= link_to "New Profile", profile_row_vendor_product_path(@vendor, @product), :remote => true %>
 </div>
 
-<% unless  @product_profiles.blank? %>
-    <table id="profile_table">
-      <thead>
-      <th width="5">Volume</th>
-      <th width="5">32</th>
-      <th width="5">33</th>
-      <th width="5">34</th>
-      <th width="5">35</th>
-      <th width="5">36</th>
-      <th width="5">37</th>
-      <th width="5">38</th>
-      <th width="5">39</th>
-      <th width="5">40</th>
-      <th width="5">41</th>
-      <th width="5">42</th>
-      <th width="5">43</th>
-      <th width="5">44</th>
-      <th width="5">45</th>
-      <th width="5">46</th>
-      <th width="5">47</th>
-      <th width="5">48</th>
-      <th width="5">49</th>
-      <th width="5">50</th>
-
-      <th></th>
-      </thead>
-      <tbody>
+<table id="profile_table">
+  <thead>
+    <th width="5">Volume</th>
+    <th width="5">32</th>
+    <th width="5">33</th>
+    <th width="5">34</th>
+    <th width="5">35</th>
+    <th width="5">36</th>
+    <th width="5">37</th>
+    <th width="5">38</th>
+    <th width="5">39</th>
+    <th width="5">40</th>
+    <th width="5">41</th>
+    <th width="5">42</th>
+    <th width="5">43</th>
+    <th width="5">44</th>
+    <th width="5">45</th>
+    <th width="5">46</th>
+    <th width="5">47</th>
+    <th width="5">48</th>
+    <th width="5">49</th>
+    <th width="5">50</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% unless  @product_profiles.blank? %>
       <%  @product_profiles.each do |profile| %>
-          <tr>
-            <td> <%=  best_in_place [@vendor,@product, profile], :volume,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_32,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_33,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_34,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_35,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_36,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_37,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_38,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_39,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_40,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_41,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_42,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_43,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_44,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_45,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_46,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_47,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_48,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_49,  :type => :input, :html_attrs => { :size => 3 } %></td>
-            <td> <%=  best_in_place [@vendor,@product, profile], :key_50,  :type => :input, :html_attrs => { :size => 3 } %></td>
-
-            <td><%= link_to 'Destroy', [@vendor,@product,profile ], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-          </tr>
+        <tr>
+          <td> <%=  best_in_place [@vendor,@product, profile], :volume,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_32,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_33,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_34,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_35,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_36,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_37,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_38,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_39,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_40,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_41,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_42,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_43,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_44,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_45,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_46,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_47,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_48,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_49,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%=  best_in_place [@vendor,@product, profile], :key_50,  :type => :input, :html_attrs => { :size => 3 } %> </td>
+          <td> <%= link_to 'Destroy', [@vendor,@product,profile ], method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+        </tr>
       <% end %>
-      </tbody>
-    </table>
-<%end%>
+    <%end%>
+  </tbody>
+</table>
 
 
 <script>
