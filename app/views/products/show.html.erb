@@ -1,6 +1,6 @@
 <div class="heading">
   <div class="breadcrum">Dashboard > <%=link_to "vendors", vendors_path %> > <%=link_to @vendor.name, @vendor %>  </div><br>
-  <h1 class="list_mach_head"> <%= @product.name %> </h1>
+  <h1 class="list_mach_head"> <%= @product.name.capitalize %> </h1>
   <h3 class="list_mach_head"><b>Brew Type:</b>( <%= @product.brew_type %> )</h3>
   <h2 class="list_mach_head"> Product Profiles: </h2>
 </div>

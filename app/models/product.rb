@@ -6,5 +6,4 @@ class Product < ActiveRecord::Base
   BREW_TYPE = ["Babyformula", "Gruel", "Porridge"]
 
   validates :name, presence: true
-  accepts_nested_attributes_for :profiles ,:allow_destroy => true
 end

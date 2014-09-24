@@ -161,6 +161,7 @@ Error code description :-
  3005 : error in parent profile deletion
  3006 : Parent profile not found
  3007 : Parent profile found in show.
+ 3008 : parent profile already exist for that Email address
 
  child profile error codes
  4000 : unable to find parent profile

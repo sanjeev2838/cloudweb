@@ -46,7 +46,7 @@ class ProfilesController < ApplicationController
         format.html { redirect_to vendor_product_path(@vendor, @product), notice: 'Profile was successfully created.' }
         format.json { render json: @profile, status: :created, location: @profile }
       else
-        format.html { render action: "new" }
+        format.html {  redirect_to vendor_product_path(@vendor, @product), notice: 'Provide appropriate data for adding preferences record' }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end

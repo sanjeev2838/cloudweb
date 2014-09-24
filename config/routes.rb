@@ -144,17 +144,19 @@ Cloudweb::Application.routes.draw do
 
 # All routes from current_api_routes available in version 1 and version 2.
 
-  scope :module => "Api::V1" do
-    scope :path => "api/v2", &current_api_routes
-    scope :path => "api/v1", &current_api_routes
-  end
-
   scope :module => "Api::V2" do
     scope :path => "api/v2" do
+      match  '/profiles' => 'parent_profiles#create', :via => :post
       match '/suppliers' => 'vendors#vendors_as_brew_type', :via => :get
       match '/suppliers/:supplierid/products' => 'vendors#products_of_vendor_as_brew_type',:via => :get
       match '/suppliers/:supplierid/products/:productid/preferences' => 'products#product_profiles', :via => :get
+      match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#index', :via => :get
     end
+  end
+
+  scope :module => "Api::V1" do
+    scope :path => "api/v2", &current_api_routes
+    scope :path => "api/v1", &current_api_routes
   end
 
   match "*path", :to => "application#routing_error"
