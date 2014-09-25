@@ -37,7 +37,7 @@ Cloudweb::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/firmware/:id/download', to: 'firmwares#download_firmware_file', via: 'get' , as: :download_firmware
+  match '/firmware/:id/download/:attached_file_name(.:format)', to: 'firmwares#download_firmware_file', via: 'get' , as: :download_firmware
 
   resources :parent_profiles do
     collection do

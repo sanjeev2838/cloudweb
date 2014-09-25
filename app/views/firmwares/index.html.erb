@@ -22,7 +22,9 @@
 <% @firmwares.each do |firmware| %>
   <tr>
     <td><%= firmware.firmwareversion %></td>
-    <td> <%= link_to "Download Firmware file ",  download_firmware_path(firmware) %></td>
+    <% extension = File.extname(firmware.binaryfile) %>
+    <% filename = File.basename(firmware.binaryfile, extension)%>
+    <td> <%= link_to "Download Firmware file ",  download_firmware_url(firmware, filename, extension.gsub(/\./, '')) %></td>
     <td><%= firmware.serialids %></td>
     <td><%= link_to "Show", firmware%></td>
     <td><%= link_to "Edit",edit_firmware_path(firmware)%></td>
