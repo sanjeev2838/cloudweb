@@ -13,8 +13,10 @@
 <div class="content_row">
   <b>Downloading Link :</b>
   <p style="padding-right: 180px; display: table-cell">
-    <%= download_firmware_url(@firmware) %>
-    <%= link_to "Download Firmware file ",  download_firmware_path(@firmware) %>
+    <% extension = File.extname(@firmware.binaryfile) %>
+    <%  filename = File.basename(@firmware.binaryfile, extension)%>
+    <%= download_firmware_url(@firmware, filename, extension.gsub(/\./, '')) %>
+    <%= link_to "Download Firmware file ",  download_firmware_url(@firmware, filename, extension.gsub(/\./, '')) %>
   </p>
 </div>
 <br>
