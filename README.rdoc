@@ -21,6 +21,8 @@ Create new log record :-
 create new machine object :-
   curl -X POST -H "Content-type: application/json" -d  '{"bootloader":"312","firmware":"331","hwconfig":"1231","ipaddress":"123.10.23.12","macaddress":"00:09:6B:fF:FE:42","serialid":12}' http://localhost:3000/api/v1/hosts
 
+'{"01":"1441","08":"ipaddress","03":"test_version","02":"boot_varsion","04":"hw_config"}'
+
 inactive a machine :-
 curl -X DELETE  http://localhost:3000/api/v1/hosts/12
 
@@ -216,6 +218,9 @@ Version 2 Api details :-
 1.) curl -X GET -H "Content-type: application/json" http://localhost:3000/api/v2/suppliers/?brew_type=Gruel
 2.) /api/v2/suppliers/<supplierid>/products
 3.) /api/v2/suppliers/<supplier id>/products/<product id>/preferences
+:( Registering new host ):
+4.)curl -X POST -H "Content-type: application/json" -d '{"01":"1441","08":"ipaddress","03":"test_version","02":"boot_varsion","04":"hw_config"}'  http://localhost:3002/api/v2/hosts
+
 
 Notes for future enhancements  :-
 =====================================================
