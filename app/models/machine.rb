@@ -10,10 +10,11 @@ class Machine < ActiveRecord::Base
   #validates :ipaddress,
   #          :presence => true,
   #          :format => { :with => @ip_regex }
-  validates :macaddress,
-            :presence => true,
-            :uniqueness => true,
-            :format => { :with => @mac_address }
+  #validates :macaddress,
+  #           :presence => true,
+  #           :uniqueness => true,
+  #           :format => { :with => @mac_address }
+
   has_many :machine_logs
   has_many :parent_profiles
 
@@ -22,7 +23,6 @@ class Machine < ActiveRecord::Base
 
 
   protected
-
   def set_activated_on
     self.activated_on = Time.now
   end
