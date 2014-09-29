@@ -6,9 +6,8 @@ class Api::V1::MachineLogsController < Api::Default::BaseController
     if @machine.nil?
       render json:{:status => false, :message => "please provide valid serialid " }
     else
-      @machine_log = MachineLog.create(:machine_id => @machine.id, :data => params[:data])
-      if @machine_log.valid?
-
+      @machine_log = MachineLog.new(:machine_id => @machine.id, :data => params[:data])
+      if @machine_log.save
         @parent_profile.each do |parent|
           I18n.locale = parent.lang.to_sym
           data=I18n.t(@machine_log.log_type)
@@ -19,7 +18,6 @@ class Api::V1::MachineLogsController < Api::Default::BaseController
           end
           I18n.locale = :en.to_sym
         end
-
         render json:{:status => true}
       else
         render json:{:status => false, :message => @machine_log.errors.full_messages }

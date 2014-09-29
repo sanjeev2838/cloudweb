@@ -146,6 +146,7 @@ Cloudweb::Application.routes.draw do
 
   scope :module => "Api::V2" do
     scope :path => "api/v2" do
+      match  '/logs' => 'machine_logs#create', :via => :post
       match  '/hosts' => 'machines#create' , :via => :post
       match  '/profiles' => 'parent_profiles#create', :via => :post
       match '/suppliers' => 'vendors#vendors_as_brew_type', :via => :get
