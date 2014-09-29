@@ -16,6 +16,8 @@ class Api::V1::ChildBrewingPreferencesController < Api::Default::BaseController
   def update
     @child_profile = @profile.child_profiles.find(params[:child_id])
     @child_brewing_preference = @child_profile.child_brewing_preference
+    params[:child_brewing_preference] = params[:brew_type] if params[:brew_type]
+    params[:product_id] = params[:product_id] if params[:product_id]
 
     if @child_brewing_preference.update_attributes(params[:child_brewing_preference])
        render json:{:status => true,:status_code=>6002, :message => "Child brewing preference updated successfully"}
