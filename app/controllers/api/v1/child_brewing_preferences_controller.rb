@@ -3,8 +3,7 @@ class Api::V1::ChildBrewingPreferencesController < Api::Default::BaseController
   before_filter :find_profile, :only => [:update,:index]
 
   def index
-    @parent_profile = ParentProfile.find(params[:profile_id])
-    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    @child_profile = @profile.child_profiles.find(params[:child_id])
     @child_brewing_preferences = @child_profile.child_brewing_preference
 
     unless @child_brewing_preferences.nil?
@@ -15,8 +14,7 @@ class Api::V1::ChildBrewingPreferencesController < Api::Default::BaseController
   end
 
   def update
-    @parent_profile = ParentProfile.find(params[:profile_id])
-    @child_profile = @parent_profile.child_profiles.find(params[:child_id])
+    @child_profile = @profile.child_profiles.find(params[:child_id])
     @child_brewing_preference = @child_profile.child_brewing_preference
 
     if @child_brewing_preference.update_attributes(params[:child_brewing_preference])
