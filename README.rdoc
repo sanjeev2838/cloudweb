@@ -221,6 +221,14 @@ Version 2 Api details :-
 :( Registering new host ):
 4.)curl -X POST -H "Content-type: application/json" -d '{"01":"1441","08":"ipaddress","03":"test_version","02":"boot_varsion","04":"hw_config"}'  http://localhost:3002/api/v2/hosts
 
+echo  'data={"01":"0129ABCF"%2C "08":"192.168.0.50"%2C"03":"001"%2C"02":"001"%2C "04":"0"%2C"05":"no_error"%2C "06":"37"%2C "07":"3"}'|  curl -d @- http://localhost:3002/api/v2/hosts
+echo  'data={"01":"0129AF"%2C "08":"192.168.0.50"%2C"03":"001"%2C"02":"001"%2C "04":"0"%2C"05":"no_error"%2C "06":"37"%2C "07":"3"}'|  curl -d @- http://d1.diluo.nu/api/v2/hosts
+
+echo  'data={"64":"128","01":"12"}'|  curl -d @- http://d1.diluo.nu/api/v2/logs
+echo  'data={"64":"128","01":"12"}'|  curl -d @- http://localhost:3002/api/v2/logs
+
+echo  'data={"16":"test","serialid":"12"}'|  curl -d @- http://localhost:3002/api/v1/logs
+
 
 Notes for future enhancements  :-
 =====================================================

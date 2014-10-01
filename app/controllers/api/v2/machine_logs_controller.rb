@@ -11,8 +11,11 @@
 class Api::V2::MachineLogsController < Api::Default::BaseController
 
   def create
-    serial_id = params["01"]
-    data = params["64"]
+    string  = (params[:data]).gsub('%2C', ',') if params[:data]
+    machine_params  = JSON.parse(string)
+    logger.debug "New Log entry: #{machine_params}"
+    serial_id = machine_params["01"]
+    data = machine_params["64"]
     @machine = Machine.where(:serialid => serial_id).first
     if @machine.nil?
       render json:{:status => false, :message => "please provide valid serialid " }

@@ -8,6 +8,7 @@ class Api::V2::MachinesController < Api::Default::BaseController
   def create
    string  = (params[:data]).gsub('%2C', ',') if params[:data]
    machine_params  = JSON.parse(string)
+   logger.debug "New post: #{@post.attributes.inspect}"
    params[:machine]= {}
    params[:machine][:serialid] = machine_params['01']
    params[:machine][:ipaddress] = machine_params['08']
