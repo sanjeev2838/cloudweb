@@ -8,7 +8,7 @@ class Api::V2::MachinesController < Api::Default::BaseController
   def create
    string  = (params[:data]).gsub('%2C', ',') if params[:data]
    machine_params  = JSON.parse(string)
-   logger.debug "New post: #{@post.attributes.inspect}"
+   logger.debug "New Log entry: #{machine_params}"
    params[:machine]= {}
    params[:machine][:serialid] = machine_params['01']
    params[:machine][:ipaddress] = machine_params['08']
@@ -17,7 +17,7 @@ class Api::V2::MachinesController < Api::Default::BaseController
    params[:machine][:hwconfig] = machine_params['04']
    params[:machine][:error_msg] = machine_params['05']
    params[:machine][:temp] =  machine_params['06']
-   params[:machine][:psu_voltage] = machine_parms['07']
+   params[:machine][:psu_voltage] = machine_params['07']
    params[:machine] = (params[:machine]).merge(:status => false)
    @machine = Machine.new(params[:machine])
     if @machine.save
