@@ -57,7 +57,15 @@ class FirmwaresController < ApplicationController
 
   def download_firmware_file
     @firmware = Firmware.find(params[:id])
-    send_file "#{Rails.root}/#{@firmware.binaryfile}"
+    extension = File.extname(@firmware.binaryfile)
+    filename = File.basename(@firmware.binaryfile, extension)
+    extension = extension.gsub(/\./, '')
+
+    if filename == (params[:attached_file_name] rescue nil) && extension == (params[:format] rescue nil)
+      send_file "#{Rails.root}/#{@firmware.binaryfile}"
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   def update
