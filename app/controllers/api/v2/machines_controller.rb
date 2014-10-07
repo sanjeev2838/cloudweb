@@ -15,6 +15,9 @@ class Api::V2::MachinesController < Api::Default::BaseController
    params[:machine][:firmware] =  machine_params['03']
    params[:machine][:bootloader] = machine_params['02']
    params[:machine][:hwconfig] = machine_params['04']
+   params[:machine][:error_msg] = machine_params['05']
+   params[:machine][:temp] =  machine_params['06']
+   params[:machine][:psu_voltage] = machine_parms['07']
    params[:machine] = (params[:machine]).merge(:status => false)
    @machine = Machine.new(params[:machine])
     if @machine.save
