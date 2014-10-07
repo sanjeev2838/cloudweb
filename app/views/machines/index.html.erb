@@ -1,4 +1,4 @@
-
+<!--#TODO refactor this into partials -->
 <div class="list_mach_head">
     <h1>Listing machines</h1>
 </div>
@@ -16,6 +16,11 @@
     <th>BootLoader Version</th>
     <th>Ip address</th>
     <th>Mac address</th>
+
+    <th>Error Message</th>
+    <th>Temperature</th>
+    <th>PSU Voltage</th>
+
     <th>Status</th>
     <th></th>
     <th></th>
@@ -32,6 +37,11 @@
     <td><%= machine.bootloader %></td>
     <td><%= machine.ipaddress %></td>
     <td><%= machine.macaddress %></td>
+
+    <td><%= machine.error_msg %></td>
+    <td><%= machine.temp %></td>
+    <td><%= machine.psu_voltage %></td>
+
     <td><%=  machine.status ? "active" : "inactive"  %></td>
     <td><%= link_to 'View', machine %></td>
     <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
@@ -54,6 +64,11 @@
     <th>BootLoader Version</th>
     <th>Ip address</th>
     <th>Mac address</th>
+
+    <th>Error Message</th>
+    <th>Temperature</th>
+    <th>PSU Voltage</th>
+
     <th>Status</th>
     <th></th>
     <th></th>
@@ -62,18 +77,23 @@
   </thead>
   <tbody>
   <% @inactive_machines.each do |machine| %>
-      <tr>
-        <td><%= machine.serialid %></td>
-        <td><%= machine.firmware %></td>
-        <td><%= machine.hwconfig %></td>
-        <td><%= machine.bootloader %></td>
-        <td><%= machine.ipaddress %></td>
-        <td><%= machine.macaddress %></td>
-        <td><%=  machine.status ? "active" : "inactive"  %></td>
-        <td><%= link_to 'View', machine %></td>
-        <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
-        <td><%= link_to 'Delete', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= machine.serialid %></td>
+      <td><%= machine.firmware %></td>
+      <td><%= machine.hwconfig %></td>
+      <td><%= machine.bootloader %></td>
+      <td><%= machine.ipaddress %></td>
+      <td><%= machine.macaddress %></td>
+
+      <td><%= machine.error_msg %></td>
+      <td><%= machine.temp %></td>
+      <td><%= machine.psu_voltage %></td>
+
+      <td><%=  machine.status ? "active" : "inactive"  %></td>
+      <td><%= link_to 'View', machine %></td>
+      <td><%= link_to 'Edit', edit_machine_path(machine) %></td>
+      <td><%= link_to 'Delete', machine, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
   </tbody>
 </table>
@@ -81,10 +101,6 @@
 <script>
     $(document).ready(function(){
         $("#active_machines_table").dataTable()
-    });
-</script>
-<script>
-    $(document).ready(function(){
         $("#inactive_machines_table").dataTable()
     });
 </script>

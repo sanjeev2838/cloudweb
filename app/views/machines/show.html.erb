@@ -3,47 +3,62 @@
 <h3 class="breadcrum"> Machine Manager > <%= link_to @machine.serialid, machine_path(@machine)%></h3>
 
 <div class="content_row">
-<p class="left_show_machine">
-  <b>Registered on:</b>
-  <%= @machine.activated_on.strftime("%Y-%m-%d %H:%M") %>
-</p>
+  <p class="left_show_machine">
+    <b>Registered on:</b>
+    <%= @machine.activated_on.strftime("%Y-%m-%d %H:%M") %>
+  </p>
 
-<p class="center_show_machine">
-  <b>Owner:</b>
-  <%= @owner.name unless @owner.nil?%>
+  <p class="center_show_machine">
+    <b>Owner:</b>
+    <%= @owner.name unless @owner.nil?%>
 
-</p>
+  </p>
 
-<p class="right_show_machine">
-  <b>Status:</b>
-  <%=  @machine.status ? "active" : "inactive"  %>
-</p>
+  <p class="right_show_machine">
+    <b>Status:</b>
+    <%=  @machine.status ? "active" : "inactive"  %>
+  </p>
 </div>
 
 <div class="content_row">
-<p class="left_show_machine">
-  <b>Ip address:</b>
-  <%= @machine.ipaddress %>
+  <p class="left_show_machine">
+    <b>Ip address:</b>
+    <%= @machine.ipaddress %>
+  </p>
 
-</p>
+  <p class="center_show_machine">
+    <b>Firmware version:</b>
+    <%= @machine.firmware %>
+  </p>
 
-<p class="center_show_machine">
-  <b>Firmware version:</b>
-  <%= @machine.firmware %>
-
-</p>
-
-<p class="right_show_machine">
-  <b>Hw config:</b>
-  <%= @machine.hwconfig %>
- </p>
-
+  <p class="right_show_machine">
+    <b>Hw config:</b>
+    <%= @machine.hwconfig %>
+  </p>
 </div>
 
 <div class="content_row">
-  <b>Mac address:</b>
-  <%= @machine.macaddress %>
-</p>
+  <p class="left_show_machine">
+    <b>Mac address:</b>
+    <%= @machine.macaddress %>
+  </p>
+
+  <p class="center_show_machine">
+    <b>Error Message:</b>
+    <%= @machine.error_msg %>
+  </p>
+
+  <p class="right_show_machine">
+    <b>Temperature:</b>
+    <%= @machine.temp %>
+  </p>
+</div>
+
+<div class="content_row">
+  <p class="left_show_machine">
+    <b>PSU Voltage:</b>
+    <%= @machine.psu_voltage %>
+  </p>
 </div>
 
 <%= link_to 'Edit', edit_machine_path(@machine) %> |
