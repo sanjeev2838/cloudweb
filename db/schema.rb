@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141007052033) do
+ActiveRecord::Schema.define(:version => 20141008053943) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20141007052033) do
   end
 
   create_table "machines", :force => true do |t|
-    t.integer  "serialid"
+    t.string   "serialid"
     t.string   "firmware"
     t.string   "hwconfig"
     t.string   "macaddress"
