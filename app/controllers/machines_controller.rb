@@ -63,21 +63,11 @@ class MachinesController < ApplicationController
 
   def destroy
     @machine = Machine.find(params[:id])
-    @parent_profile= ParentProfile.find_all_by_machine_id(params[:id])
-    @parent_profile.each do |profile|
-      profile.update_column(:machine_id , nil)
-    end
-    @machine.update_column(:status,false)
-
-
+    @machine.destroy
     respond_to do |format|
       format.html { redirect_to machines_url }
       format.json { head :no_content }
     end
-  end
-
-  def machines_import
-
   end
 
   def machine_csv_download

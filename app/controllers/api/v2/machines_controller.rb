@@ -18,7 +18,7 @@ class Api::V2::MachinesController < Api::Default::BaseController
    params[:machine][:error_msg] = machine_params['05']
    params[:machine][:temp] =  machine_params['06']
    params[:machine][:psu_voltage] = machine_params['07']
-   params[:machine] = (params[:machine]).merge(:status => false)
+   params[:machine] = (params[:machine]).merge(:status => true)
    @machine = Machine.new(params[:machine])
     if @machine.save
       render json:{:status => true ,:status_code=>2004,:message=>"Machine created successfully"}
