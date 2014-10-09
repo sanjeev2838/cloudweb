@@ -1,3 +1,4 @@
+require 'json'
 class Api::V2::MachinesController < Api::Default::BaseController
 #'{"01":0123456789ABCDEF%2C"08":192.168.0.50:"03":001%2C"02":001%2C"04":0%2C"05":no_error%2C"06":37%2C"07":3}'
 #'{"01":"0123456789ABCDEF", "08":"192.168.0.50","03":"001","02":"001", "04":"0","05":"no_error", "06":"37", "07":"3"}'
@@ -18,12 +19,39 @@ class Api::V2::MachinesController < Api::Default::BaseController
    params[:machine][:error_msg] = machine_params['05']
    params[:machine][:temp] =  machine_params['06']
    params[:machine][:psu_voltage] = machine_params['07']
+   profile_hash  = {}
+   9.upto(31).each do |item|
+     item  = (item == 9 ) ?  '0' << item.to_s : item.to_s
+     profile_hash[item] = machine_params[item] if  machine_params[item]
+   end
+   params[:machine][:host_profile] = profile_hash.to_json
    params[:machine] = (params[:machine]).merge(:status => true)
-   @machine = Machine.new(params[:machine])
-    if @machine.save
-      render json:{:status => true ,:status_code=>2004,:message=>"Machine created successfully"}
+   @machine = Machine.find_by_serialid(params[:machine][:serialid]) if params[:machine][:serialid]
+   if @machine.nil?
+     @machine = Machine.new(params[:machine])
+     if @machine.save
+       render json:{:status => true ,:status_code=>2004,:message=>"Machine created successfully"}
+     else
+       render json:{:status => false, :status_code => 2005 ,:message => @machine.errors }
+     end
+   else
+     if @machine.update_attributes(params[:machine])
+       render json:{:status => true ,:status_code=>2004,:message=>"Machine updated successfully"}
+     else
+       render json:{:status => false, :status_code => 2005 ,:message => @machine.errors }
+     end
+   end
+  end
+
+  def gethostprofile
+    string  = (params[:data]).gsub('%2C', ',') if params[:data]
+    params  = JSON.parse(string)
+    logger.debug "New Log entry: #{params}"
+    @machine = Machine.find_by_serialid(params['01']) if params['01']
+    if @machine.nil?
+      render json:{:status => false, :message => "please provide valid serialid " }
     else
-      render json:{:status => false, :status_code => 2005 ,:message => @machine.errors }
+      render json:{:status => true ,'01' => @machine.serialid, '06'=> JSON.parse(@machine.host_profile) }
     end
   end
 end

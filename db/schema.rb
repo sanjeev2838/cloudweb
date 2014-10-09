@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141008053943) do
+ActiveRecord::Schema.define(:version => 20141009114659) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(:version => 20141008053943) do
     t.string   "error_msg"
     t.string   "temp"
     t.string   "psu_voltage"
+    t.string   "host_profile"
   end
 
   create_table "milestones", :force => true do |t|

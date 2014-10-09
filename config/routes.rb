@@ -154,6 +154,7 @@ Cloudweb::Application.routes.draw do
       match '/suppliers/:supplierid/products' => 'vendors#products_of_vendor_as_brew_type',:via => :get
       match '/suppliers/:supplierid/products/:productid/preferences' => 'products#product_profiles', :via => :get
       match '/profiles/:profile_id/children/:child_id/brew' => 'child_brewing_preferences#index', :via => :get
+      match  '/gethostprofile' => 'machines#gethostprofile', :via => :post
     end
   end
 
