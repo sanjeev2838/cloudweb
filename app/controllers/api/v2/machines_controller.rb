@@ -51,7 +51,9 @@ class Api::V2::MachinesController < Api::Default::BaseController
     if @machine.nil?
       render json:{:status => false, :message => "please provide valid serialid " }
     else
-      render json:{:status => true ,'01' => @machine.serialid, '06'=> JSON.parse(@machine.host_profile) }
+      host_profile  = JSON.parse(@machine.host_profile) if @machine.host_profile
+      host_profile = nil if host_profile.blank?
+      render json:{:status => true ,'01' => @machine.serialid, '06'=> host_profile }
     end
   end
 end
