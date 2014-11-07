@@ -1,6 +1,6 @@
 class ParentProfile < ActiveRecord::Base
   attr_accessible :devicetypeid, :tokenid, :status, :name, :is_machine_owner,
-                  :serialid, :authtoken, :email, :password, :relation, :lang
+                  :serialid, :authtoken, :email, :password, :relation, :lang, :profile_rank
 
   attr_accessor   :serialid
   validates :serialid ,:numericality => true
