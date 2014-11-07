@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141009114659) do
+ActiveRecord::Schema.define(:version => 20141107141212) do
 
   create_table "child_brewing_preferences", :force => true do |t|
     t.integer  "temperature"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20141009114659) do
     t.datetime "updated_at",             :null => false
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.integer  "profile_rank"
   end
 
   create_table "pictures", :force => true do |t|
