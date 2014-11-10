@@ -22,12 +22,16 @@ class Api::V2::MachinesController < Api::Default::BaseController
    profile_hash  = {}
    9.upto(31).each do |item|
      item  = (item == 9 ) ?  '0' << item.to_s : item.to_s
-     profile_hash[item] = machine_params[item] if  machine_params[item]
+     if  machine_params[item]
+       profile_hash[item] = machine_params[item]
+     else
+       profile_hash[item] = nil
+     end
    end
-   params[:machine][:host_profile] = profile_hash.to_json
-   params[:machine] = (params[:machine]).merge(:status => true)
    @machine = Machine.find_by_serialid(params[:machine][:serialid]) if params[:machine][:serialid]
    if @machine.nil?
+     params[:machine][:host_profile] = profile_hash.to_json
+     params[:machine] = (params[:machine]).merge(:status => true)
      @machine = Machine.new(params[:machine])
      if @machine.save
        render json:{:status => true ,:status_code=>2004,:message=>"Machine created successfully"}
@@ -35,6 +39,11 @@ class Api::V2::MachinesController < Api::Default::BaseController
        render json:{:status => false, :status_code => 2005 ,:message => @machine.errors }
      end
    else
+     host_profile = JSON.parse(@machine.host_profile)
+     host_profile.each do |key, value|
+       host_profile[key] = profile_hash[key] if profile_hash[key]
+     end
+     params[:machine][:host_profile] = host_profile.to_json
      if @machine.update_attributes(params[:machine])
        render json:{:status => true ,:status_code=>2004,:message=>"Machine updated successfully"}
      else
