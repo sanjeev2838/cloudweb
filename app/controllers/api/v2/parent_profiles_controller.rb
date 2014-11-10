@@ -12,6 +12,7 @@ class Api::V2::ParentProfilesController < Api::Default::BaseController
     if @parent_profile.nil?
       params[:parent_profile] = (params[:parent_profile]).merge(:status => true)
       @parent_profile = ParentProfile.new(params[:parent_profile])
+      @parent_profile.profile_rank = @machine.parent_profiles.count + 1
 
       if @parent_profile.save
         render action: :create
@@ -19,7 +20,7 @@ class Api::V2::ParentProfilesController < Api::Default::BaseController
         render json:{:status => false, :status_code=> 3001,:message => @parent_profile.errors.full_messages}
       end
     else
-      render json:{:status => false, :id => @parent_profile.id, :authtoken => @parent_profile.authtoken, :status_code=> 3008,:message => "parent profile already exist for that Email address" }
+      render json:{:status => false, :id => @parent_profile.id, :authtoken => @parent_profile.authtoken, :rank => @parent_profile.profile_rank , :status_code=> 3008,:message => "parent profile already exist for that Email address" }
     end
 
   end
